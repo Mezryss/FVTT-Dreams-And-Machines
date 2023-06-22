@@ -1,0 +1,44 @@
+{
+	"id": "dreams-and-machines",
+	"title": "Dreams and Machines",
+	"description": "Unofficial implementation of the Dreams and Machines QuickStart Rules",
+	"version": "1.0.0",
+	"compatibility": {
+		"minimum": 11,
+		"verified": 11,
+		"maximum": 11
+	},
+	"templateVersion": 1,
+	"authors": [
+		{
+			"name": "Mezryss"
+		}
+	],
+	"scripts": [],
+	"esmodules": [
+		"module/Dreams-and-Machines.mjs"
+	],
+	"styles": [
+		"Dreams-and-Machines.css"
+	],
+	"languages": [
+		{
+			"lang": "en",
+			"name": "English (US)",
+			"path": "lang/en-us.json"
+		}
+	],
+	"socket": true,
+	"flags": {
+		"hotReload": {
+			"extensions": [
+				"css", "hbs", "json"
+			],
+			"paths": [
+				"lang",
+				"templates",
+				"./Dreams-and-Machines.css"
+			]
+		}
+	}
+}

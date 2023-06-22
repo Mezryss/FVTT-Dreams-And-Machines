@@ -1,0 +1,9 @@
+/.idea
+/.vscode
+/foundry
+/node_modules
+
+/Dreams-and-Machines.css
+
+.DS_Store
+yarn-error.log

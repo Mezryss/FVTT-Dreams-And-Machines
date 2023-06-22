@@ -1,0 +1,17 @@
+{
+	"Actor": {
+		"types": [
+			"character"
+		],
+		"templates": [],
+		"character": {}
+	},
+
+	"Item": {
+		"types": [
+			"base"
+		],
+		"templates": {},
+		"base": {}
+	}
+}
