@@ -1,2 +1,1 @@
-export default class DnMActor extends Actor {
-}
+export default class DnMActor extends Actor {}

@@ -12,9 +12,15 @@
 		"@tailwindcss/custom-forms": "^0.2.1",
 		"@tailwindcss/typography": "^0.5.9",
 		"@types/jquery": "^3.5.16",
+		"eslint": "^8.43.0",
+		"eslint-config-prettier": "^8.8.0",
+		"eslint-plugin-prettier": "^4.2.1",
+		"prettier": "^2.8.8",
 		"tailwindcss": "^3.3.2"
 	},
 	"scripts": {
-		"build": "tailwindcss -i style/main.css -o Dreams-and-Machines.css"
+		"build": "tailwindcss -i style/main.css -o Dreams-and-Machines.css",
+		"lint": "eslint module/ --ext .js,.mjs",
+		"format": "prettier --editorconfig --write module/"
 	}
 }

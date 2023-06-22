@@ -7,7 +7,7 @@
  */
 function buildDefinition(path, style = 'normal', weight = '400') {
 	return {
-		urls: [`systems/dreams-and-machines/fonts/${ path }`],
+		urls: [`systems/dreams-and-machines/fonts/${path}`],
 		style,
 		weight,
 	};

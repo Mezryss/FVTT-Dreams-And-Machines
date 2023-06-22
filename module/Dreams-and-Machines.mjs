@@ -1,4 +1,4 @@
-import CharacterSheet from "./actor/sheets/CharacterSheet.mjs";
+import CharacterSheet from './actor/sheets/CharacterSheet.mjs';
 
 Hooks.once('init', () => {
 	Actors.unregisterSheet('core', ActorSheet);
@@ -9,7 +9,8 @@ Hooks.once('init', () => {
 });
 
 // Add the prose class from Tailwind Typography to Journal text entries.
-Hooks.on('renderJournalTextPageSheet',
+Hooks.on(
+	'renderJournalTextPageSheet',
 	/**
 	 * @param _application
 	 * @param html {JQuery}
@@ -17,5 +18,5 @@ Hooks.on('renderJournalTextPageSheet',
 	 */
 	(_application, html, _data) => {
 		$(html[2]).addClass('prose');
-	}
+	},
 );
