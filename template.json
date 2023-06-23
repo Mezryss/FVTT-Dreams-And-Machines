@@ -9,9 +9,19 @@
 
 	"Item": {
 		"types": [
-			"base"
+			"item"
 		],
-		"templates": {},
-		"base": {}
+		"templates": {
+			"itemDescription": {
+				"description": ""
+			}
+		},
+		"item": {
+			"templates": [
+				"itemDescription"
+			],
+			"techLevel": 0,
+			"qualities": []
+		}
 	}
 }

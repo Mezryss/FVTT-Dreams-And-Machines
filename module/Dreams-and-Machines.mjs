@@ -1,11 +1,9 @@
-import CharacterSheet from './actor/sheets/CharacterSheet.mjs';
+import { registerItems } from './item/DnMItem.mjs';
+import { registerActors } from "./actor/DnMActor.mjs";
 
 Hooks.once('init', () => {
-	Actors.unregisterSheet('core', ActorSheet);
-	Actors.registerSheet('dreams-and-machines', CharacterSheet, {
-		types: ['character'],
-		makeDefault: true,
-	});
+	registerActors();
+	registerItems();
 });
 
 // Add the prose class from Tailwind Typography to Journal text entries.

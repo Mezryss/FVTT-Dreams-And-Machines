@@ -1,1 +1,18 @@
-{}
+{
+	"TYPES": {
+		"Actor": {
+			"character": "Player Character"
+		},
+		"Item": {
+			"item": "Equipment"
+		}
+	},
+	"Labels": {
+		"Item": {
+			"Qualities": "Qualities",
+			"AddQualityPlaceholder": "Type to Add Quality",
+			"DeleteQuality": "Delete Quality"
+		},
+		"TechLevel": "Tech Level"
+	}
+}

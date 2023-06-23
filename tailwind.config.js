@@ -12,6 +12,11 @@ module.exports = {
 			fontFamily: {
 				'roboto-flex': '"Roboto Flex", sans-serif',
 			},
+			minHeight: {
+				'10': '10rem',
+				'15': '15rem',
+				'20': '20rem',
+			},
 		},
 		fontFamily: {
 			body: ['Roboto Flex', 'sans-serif'],

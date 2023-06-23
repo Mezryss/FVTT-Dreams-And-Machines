@@ -40,6 +40,10 @@
 	.oblique {
 		font-style: oblique 10deg;
 	}
+
+	.bg-none {
+		background: none;
+	}
 }
 
 /* Unify target font size */
@@ -73,8 +77,15 @@ body {
 
 .dnm .window-content, .dnm .window-content > * {
 	flex: unset;
+	padding: unset;
 }
 
 .dnm .window-content {
 	height: 100%;
+}
+
+.editor, .editor-content {
+	width: 100%;
+	height: 100%;
+	flex: 1;
 }
