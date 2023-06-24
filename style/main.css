@@ -69,6 +69,17 @@ body {
 	font-style: oblique 0deg 10deg;
 }
 
+/** Minimum Sheet Sizes */
+.window-app.actor {
+	min-width: 600px;
+	min-height: 400px;
+}
+
+.window-app.item {
+	min-width: 400px;
+	min-height: 300px;
+}
+
 /* Foundry Overrides */
 .action-buttons button {
 	/* Restore action button background set in Foundry (this gets removed by Tailwind preflight) */

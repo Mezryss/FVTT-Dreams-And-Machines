@@ -1,13 +1,12 @@
-import ItemDataModel from "./data/ItemDataModel.mjs";
-import TalentDataModel from "./data/TalentDataModel.mjs";
-import EquipmentSheet from "./sheet/EquipmentSheet.mjs";
-import DnMItemSheet from "./DnMItemSheet.mjs";
+import ItemDataModel from './data/ItemDataModel.mjs';
+import TalentDataModel from './data/TalentDataModel.mjs';
+import EquipmentSheet from './sheet/EquipmentSheet.mjs';
+import DnMItemSheet from './DnMItemSheet.mjs';
 
 /**
  * Shared base class for all Dreams and Machines item documents.
  */
-export class DnMItem extends Item {
-}
+export class DnMItem extends Item {}
 
 /**
  * Handles registration for the DnMItem class, sheets, all data models.

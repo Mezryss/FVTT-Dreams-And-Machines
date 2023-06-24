@@ -9,12 +9,53 @@
 			"talent": "Talent"
 		}
 	},
+	"Attributes": {
+		"Insight": "Insight",
+		"Might": "Might",
+		"Quickness": "Quickness",
+		"Resolve": "Resolve"
+	},
+	"Skills": {
+		"Fight": "Fight",
+		"Move": "Move",
+		"Operate": "Operate",
+		"Sneak": "Sneak",
+		"Study": "Study",
+		"Survive": "Survive",
+		"Talk": "Talk"
+	},
 	"Labels": {
+		"Actor": {
+			"Origin": "Origin",
+			"Archetype": "Archetype",
+			"Temperament": "Temperament",
+			"Bond": "Bond",
+			"Attributes": "Attributes",
+			"Exhaustion": "Exhaustion",
+			"Confused": "Confused",
+			"Weary": "Weary",
+			"Breathless": "Breathless",
+			"Despairing": "Despairing",
+			"Skills": "Skills",
+			"Coin": "Coin",
+			"Spirit": "Spirit",
+			"SupplyPoints": "Supply Points",
+			"OriginBenefits": "Origin Benefits",
+			"Talents": "Talents",
+			"Goal": "Goal",
+			"Attitude": "Attitude",
+			"Drive": "Drive",
+			"Equipment": "Equipment"
+		},
 		"Item": {
 			"Qualities": "Qualities",
 			"AddQualityPlaceholder": "Type to Add Quality",
-			"DeleteQuality": "Delete Quality"
+			"DeleteQuality": "Delete Quality",
+			"Edit": "Edit Item",
+			"Delete": "Delete Item"
 		},
+		"Current": "Current",
+		"Max": "Max",
 		"TechLevel": "Tech Level"
 	}
 }

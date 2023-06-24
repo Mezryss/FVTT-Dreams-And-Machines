@@ -1,22 +1,54 @@
+import DnMActorSheet from '../DnMActorSheet.mjs';
+
 /**
  * Player Character sheet
  */
-export default class CharacterSheet extends ActorSheet {
-	static get defaultOptions() {
-		return {
-			...super.defaultOptions,
-			classes: ['dnm', 'sheet', 'actor'],
-		};
+export default class CharacterSheet extends DnMActorSheet {
+	/**
+	 * @returns {CharacterDataModel}
+	 */
+	get system() {
+		return super.system;
 	}
 
-	get template() {
-		return 'systems/dreams-and-machines/templates/actor/character-sheet.hbs';
-	}
-
-	getData(options = {}) {
+	async getData(options = {}) {
+		const originBenefits = await Promise.all(
+			this.actor.items
+				.filter((i) => i.type === 'originBenefit')
+				.map(
+					/**
+					 * @param {DnMItem} i
+					 */
+					async (i) => ({
+						uuid: i.uuid,
+						name: i.name,
+						description: await TextEditor.enrichHTML(i.system.description, { async: true }),
+					}),
+				),
+		);
+		const talents = await Promise.all(
+			this.actor.items
+				.filter((i) => i.type === 'talent')
+				.map(
+					/**
+					 * @param {DnMItem} i
+					 */
+					async (i) => ({
+						uuid: i.uuid,
+						name: i.name,
+						description: await TextEditor.enrichHTML(i.system.description, { async: true }),
+					}),
+				),
+		);
+		const equipment = this.actor.items.filter((i) => i.type === 'item').map((i) => i);
 		return {
 			...super.getData(options),
-			system: this.actor.system,
+			originBenefits,
+			talents,
+			equipment,
+			enrichedGoal: await TextEditor.enrichHTML(this.system.goal, { async: true }),
+			enrichedAttitude: await TextEditor.enrichHTML(this.system.attitude, { async: true }),
+			enrichedDrive: await TextEditor.enrichHTML(this.system.drive, { async: true }),
 		};
 	}
 }

@@ -1,6 +1,250 @@
-<form class="{{cssClass}}">
-	<div class="flex flex-col gap-1 items-center w-full h-full">
-		<h1>Testing</h1>
-		<input type="text" name="name" value="{{actor.name}}" />
+<form class="{{cssClass}} flex !flex-1 flex-col gap-1 bg-white bg-opacity-50">
+	<div class="flex bg-fuchsia-900 w-full p-3 gap-4 items-center">
+		<img class="w-14 h-14 -m-2" src="{{ actor.img }}" data-edit="img" alt="{{ actor.name }}" />
+		<input type="text" name="name" value="{{ actor.name }}" class="!border-0 !text-white !text-3xl !h-full !font-roboto-flex uppercase focus:normal-case" />
+	</div>
+
+	<div class="p-1 flex flex-col gap-4">
+		{{!-- Background --}}
+		<div class="grid grid-cols-2 gap-1">
+			<label class="grid grid-cols-2 gap-1 items-center">
+				<span class="bg-fuchsia-900 text-white uppercase font-semibold flex items-center px-1 h-full justify-center">{{ localize "Labels.Actor.Origin" }}</span>
+				<input type="text" name="system.origin" value="{{ system.origin }}" class="!bg-white !rounded-none !bg-opacity-75 !text-center font-semibold !text-fuchsia-900 uppercase focus:normal-case" />
+			</label>
+
+			<label class="grid grid-cols-2 gap-1 items-center">
+				<span class="bg-fuchsia-900 text-white uppercase font-semibold flex items-center px-1 h-full justify-center">{{ localize "Labels.Actor.Archetype" }}</span>
+				<input type="text" name="system.archetype" value="{{ system.archetype }}" class="!bg-white !rounded-none !bg-opacity-75 !text-center font-semibold !text-fuchsia-900 uppercase focus:normal-case" />
+			</label>
+
+			<label class="grid grid-cols-2 gap-1 items-center">
+				<span class="bg-fuchsia-900 text-white uppercase font-semibold flex items-center px-1 h-full justify-center">{{ localize "Labels.Actor.Temperament" }}</span>
+				<input type="text" name="system.temperament" value="{{ system.temperament }}" class="!bg-white !rounded-none !bg-opacity-75 !text-center font-semibold !text-fuchsia-900 uppercase focus:normal-case" />
+			</label>
+
+			<label class="grid grid-cols-2 gap-1 items-center">
+				<span class="bg-fuchsia-900 text-white uppercase font-semibold flex items-center px-1 h-full justify-center">{{ localize "Labels.Actor.Bond" }}</span>
+				<input type="text" name="system.bond" value="{{ system.bond }}" class="!bg-white !rounded-none !bg-opacity-75 !text-center font-semibold !text-fuchsia-900 uppercase focus:normal-case" />
+			</label>
+		</div>
+
+		{{!-- Attributes --}}
+		<div class="grid grid-cols-4">
+			<span class="col-span-4 bg-fuchsia-900 text-white uppercase font-semibold flex items-center px-1 h-full justify-center">{{ localize "Labels.Actor.Attributes" }}</span>
+
+			<label class="flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
+				<span class="font-semibold uppercase text-fuchsia-900">{{ localize "Attributes.Insight" }}</span>
+				<input type="number" name="system.attributes.insight.value" value="{{ system.attributes.insight.value }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-4xl font-semibold !p-2 !py-6" />
+			</label>
+
+			<label class="flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
+				<span class="font-semibold uppercase text-fuchsia-900">{{ localize "Attributes.Might" }}</span>
+				<input type="number" name="system.attributes.might.value" value="{{ system.attributes.might.value }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-4xl font-semibold !p-2 !py-6" />
+			</label>
+
+			<label class="flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
+				<span class="font-semibold uppercase text-fuchsia-900">{{ localize "Attributes.Quickness" }}</span>
+				<input type="number" name="system.attributes.quickness.value" value="{{ system.attributes.quickness.value }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-4xl font-semibold !p-2 !py-6" />
+			</label>
+
+			<label class="flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
+				<span class="font-semibold uppercase text-fuchsia-900">{{ localize "Attributes.Resolve" }}</span>
+				<input type="number" name="system.attributes.resolve.value" value="{{ system.attributes.resolve.value }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-4xl font-semibold !p-2 !py-6" />
+			</label>
+
+			<div class="flex flex-col p-1 whitespace-nowrap">
+				<label class="flex flex-nowrap items-center font-semibold">
+					<input type="checkbox" name="system.attributes.insight.exhaustion" {{ checked system.attributes.insight.exhaustion }} />
+					<span>{{ localize "Labels.Actor.Exhaustion" }}</span>
+				</label>
+
+				<label class="flex flex-nowrap items-center font-semibold">
+					<input type="checkbox" name="system.attributes.insight.confused" {{ checked system.attributes.insight.confused }} />
+					<span>{{ localize "Labels.Actor.Confused" }}</span>
+				</label>
+			</div>
+
+			<div class="flex flex-col p-1 whitespace-nowrap">
+				<label class="flex flex-nowrap items-center font-semibold">
+					<input type="checkbox" name="system.attributes.might.exhaustion" {{ checked system.attributes.might.exhaustion }} />
+					<span>{{ localize "Labels.Actor.Exhaustion" }}</span>
+				</label>
+
+				<label class="flex flex-nowrap items-center font-semibold">
+					<input type="checkbox" name="system.attributes.might.weary" {{ checked system.attributes.might.weary }} />
+					<span>{{ localize "Labels.Actor.Weary" }}</span>
+				</label>
+			</div>
+
+			<div class="flex flex-col p-1 whitespace-nowrap">
+				<label class="flex flex-nowrap items-center font-semibold">
+					<input type="checkbox" name="system.attributes.quickness.exhaustion" {{ checked system.attributes.quickness.exhaustion }} />
+					<span>{{ localize "Labels.Actor.Exhaustion" }}</span>
+				</label>
+
+				<label class="flex flex-nowrap items-center font-semibold">
+					<input type="checkbox" name="system.attributes.quickness.confused" {{ checked system.attributes.quickness.breathless }} />
+					<span>{{ localize "Labels.Actor.Breathless" }}</span>
+				</label>
+			</div>
+
+			<div class="flex flex-col p-1 whitespace-nowrap">
+				<label class="flex flex-nowrap items-center font-semibold">
+					<input type="checkbox" name="system.attributes.resolve.exhaustion" {{ checked system.attributes.resolve.exhaustion }} />
+					<span>{{ localize "Labels.Actor.Exhaustion" }}</span>
+				</label>
+
+				<label class="flex flex-nowrap items-center font-semibold">
+					<input type="checkbox" name="system.attributes.resolve.despairing" {{ checked system.attributes.resolve.despairing }} />
+					<span>{{ localize "Labels.Actor.Despairing" }}</span>
+				</label>
+			</div>
+		</div>
+
+		{{!-- Skills --}}
+		<div class="grid grid-cols-12">
+			<span class="col-span-12 bg-fuchsia-900 text-white uppercase font-semibold flex items-center px-1 h-full justify-center">{{ localize "Labels.Actor.Skills" }}</span>
+
+			<label class="col-span-3 flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
+				<span class="font-semibold uppercase text-fuchsia-900">{{ localize "Skills.Fight" }}</span>
+				<input type="number" name="system.skills.fight" value="{{ system.skills.fight }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-4xl font-semibold !p-2 !py-6" />
+			</label>
+
+			<label class="col-span-3 flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
+				<span class="font-semibold uppercase text-fuchsia-900">{{ localize "Skills.Move" }}</span>
+				<input type="number" name="system.skills.move" value="{{ system.skills.move }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-4xl font-semibold !p-2 !py-6" />
+			</label>
+
+			<label class="col-span-3 flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
+				<span class="font-semibold uppercase text-fuchsia-900">{{ localize "Skills.Operate" }}</span>
+				<input type="number" name="system.skills.operate" value="{{ system.skills.operate }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-4xl font-semibold !p-2 !py-6" />
+			</label>
+
+			<label class="col-span-3 flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
+				<span class="font-semibold uppercase text-fuchsia-900">{{ localize "Skills.Sneak" }}</span>
+				<input type="number" name="system.skills.sneak" value="{{ system.skills.sneak }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-4xl font-semibold !p-2 !py-6" />
+			</label>
+
+			<label class="col-span-4 flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
+				<span class="font-semibold uppercase text-fuchsia-900">{{ localize "Skills.Study" }}</span>
+				<input type="number" name="system.skills.study" value="{{ system.skills.study }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-4xl font-semibold !p-2 !py-6" />
+			</label>
+
+			<label class="col-span-4 flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
+				<span class="font-semibold uppercase text-fuchsia-900">{{ localize "Skills.Survive" }}</span>
+				<input type="number" name="system.skills.survive" value="{{ system.skills.survive }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-4xl font-semibold !p-2 !py-6" />
+			</label>
+
+			<label class="col-span-4 flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
+				<span class="font-semibold uppercase text-fuchsia-900">{{ localize "Skills.Talk" }}</span>
+				<input type="number" name="system.skills.talk" value="{{ system.skills.talk }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-4xl font-semibold !p-2 !py-6" />
+			</label>
+		</div>
+
+		{{!-- Coin/TL/etc --}}
+		<div class="grid grid-cols-4 gap-4">
+			<label class="flex flex-col bg-white border-1 border-fuchsia-200 border-solid">
+				<span class="bg-fuchsia-900 text-white uppercase font-semibold flex items-center px-1 justify-center">{{ localize "Labels.Actor.Coin" }}</span>
+				<input type="number" name="system.coin" value="{{ system.coin }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-2xl font-semibold !p-2 !h-full" />
+			</label>
+
+			<label class="flex flex-col bg-white border-1 border-fuchsia-200 border-solid">
+				<span class="bg-fuchsia-900 text-white uppercase font-semibold flex items-center px-1 justify-center">{{ localize "Labels.TechLevel" }}</span>
+				<input type="number" name="system.techLevel" value="{{ system.techLevel }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-2xl font-semibold !p-2 !h-full" />
+			</label>
+
+			<div class="grid grid-cols-2 bg-white border-1 border-fuchsia-200 border-solid">
+				<span class="col-span-2 bg-fuchsia-900 text-white uppercase font-semibold flex items-center px-1 justify-center">{{ localize "Labels.Actor.Spirit" }}</span>
+				<label class="flex flex-col border-fuchsia-200 border-r-1 border-solid">
+					<input type="number" name="system.spirit.value" value="{{ system.spirit.value }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-2xl font-semibold !p-2 !h-full" />
+					<span class="border-t-1 border-fuchsia-200 text-fuchsia-900 uppercase text-xs flex items-center justify-center">{{ localize "Labels.Current" }}</span>
+				</label>
+				<label class="flex flex-col">
+					<input type="number" name="system.spirit.max" value="{{ system.spirit.max }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-2xl font-semibold !p-2 !h-full" />
+					<span class="border-t-1 border-fuchsia-200 text-fuchsia-900 uppercase text-xs flex items-center justify-center">{{ localize "Labels.Max" }}</span>
+				</label>
+			</div>
+
+			<label class="flex flex-col bg-white border-1 border-fuchsia-200 border-solid">
+				<span class="bg-fuchsia-900 text-white uppercase font-semibold flex items-center px-1 justify-center">{{ localize "Labels.Actor.SupplyPoints" }}</span>
+				<input type="number" name="system.supplyPoints" value="{{ system.supplyPoints }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-2xl font-semibold !p-2 !h-full" />
+			</label>
+		</div>
+
+		{{!-- Origin Benefits --}}
+		<div class="flex flex-col">
+			<span class="w-full bg-fuchsia-900 text-white uppercase font-semibold flex items-center px-1 h-full justify-center">{{ localize "Labels.Actor.OriginBenefits" }}</span>
+			<div class="w-full h-full bg-white border-1 border-t-0 border-fuchsia-200 p-2">
+				{{#each originBenefits}}
+					<div class="pl-4">
+						<span class="font-bold -ml-4" data-menu="item" data-action="open-sheet" data-uuid="{{ uuid }}"><a>{{ name }}:</a></span>
+						{{{ description }}}
+					</div>
+				{{/each}}
+			</div>
+		</div>
+
+		{{!-- Talents --}}
+		<div class="flex flex-col">
+			<span class="w-full bg-fuchsia-900 text-white uppercase font-semibold flex items-center px-1 h-full justify-center">{{ localize "Labels.Actor.Talents" }}</span>
+			<div class="w-full h-full bg-white border-1 border-t-0 border-fuchsia-200 p-2">
+				{{#each talents}}
+					<div class="pl-4">
+						<span class="font-bold -ml-4" data-menu="item" data-action="open-sheet" data-uuid="{{ uuid }}"><a>{{ name }}:</a></span>
+						{{{ description }}}
+					</div>
+				{{/each}}
+			</div>
+		</div>
+
+		{{!-- Goal/Attitude/Drive --}}
+		<div class="grid grid-cols-3 gap-4">
+			<div class="flex flex-col bg-white border-1 border-fuchsia-200 border-solid">
+				<span class="bg-fuchsia-900 text-white uppercase font-semibold flex items-center px-1 justify-center">{{ localize "Labels.Actor.Goal" }}</span>
+				<div class="w-full h-full min-h-15 p-2">
+					{{ editor enrichedGoal target="system.goal" button=true editable=editable engine="prosemirror" }}
+				</div>
+			</div>
+
+			<div class="flex flex-col bg-white border-1 border-fuchsia-200 border-solid">
+				<span class="bg-fuchsia-900 text-white uppercase font-semibold flex items-center px-1 justify-center">{{ localize "Labels.Actor.Attitude" }}</span>
+				<div class="w-full h-full min-h-15 p-2">
+					{{ editor enrichedAttitude target="system.attitude" button=true editable=editable engine="prosemirror" }}
+				</div>
+			</div>
+
+			<div class="flex flex-col bg-white border-1 border-fuchsia-200 border-solid">
+				<span class="bg-fuchsia-900 text-white uppercase font-semibold flex items-center px-1 justify-center">{{ localize "Labels.Actor.Drive" }}</span>
+				<div class="w-full h-full min-h-15 p-2">
+					{{ editor enrichedDrive target="system.drive" button=true editable=editable engine="prosemirror" }}
+				</div>
+			</div>
+		</div>
+
+		{{!-- Equipment --}}
+		<div class="flex flex-col">
+			<span class="w-full bg-fuchsia-900 text-white uppercase font-semibold flex items-center px-1 h-full justify-center">{{ localize "Labels.Actor.Equipment" }}</span>
+			<div class="w-full h-full bg-white border-1 border-t-0 border-fuchsia-200 p-2">
+				{{#each equipment}}
+					<div class="pl-4">
+						<span class="-ml-4 flex whitespace-nowrap gap-1 text-lg" data-menu="item" data-action="open-sheet" data-uuid="{{ uuid }}">
+							<a class="font-bold">{{ name }} (TL{{ system.techLevel }}){{#if system.hasQualities}}:{{else}}.{{/if}}</a>
+							{{#if system.hasQualities}}
+								<div class="flex flex-wrap whitespace-nowrap gap-x-1 gap-y-0.5 items-center w-full">
+									{{#each system.qualities}}
+										<span class="after:content-[','] after:-ml-1 last-of-type:after:content-['.']">
+											<span>{{ label }}</span>
+											{{#if rating}}
+												<span>{{ rating }}</span>
+											{{/if}}
+										</span>
+									{{/each}}
+								</div>
+							{{/if}}
+						</span>
+					</div>
+				{{/each}}
+			</div>
+		</div>
 	</div>
 </form>

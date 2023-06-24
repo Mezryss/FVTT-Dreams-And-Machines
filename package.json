@@ -15,6 +15,7 @@
 		"eslint": "^8.43.0",
 		"eslint-config-prettier": "^8.8.0",
 		"eslint-plugin-prettier": "^4.2.1",
+		"handlebars": "^4.7.7",
 		"prettier": "^2.8.8",
 		"tailwindcss": "^3.3.2"
 	},

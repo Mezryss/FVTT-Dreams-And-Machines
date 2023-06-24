@@ -1,4 +1,4 @@
-import ItemDescription from "./templates/ItemDescription.mjs";
+import ItemDescription from './templates/ItemDescription.mjs';
 
 /**
  * @typedef {object} ItemQuality
@@ -20,7 +20,9 @@ export default class ItemDataModel extends foundry.abstract.TypeDataModel {
 	 *
 	 * @returns {boolean} Whether the Item has any Qualities in its list.
 	 */
-	get hasQualities() { return this.qualities.length > 0; }
+	get hasQualities() {
+		return this.qualities.length > 0;
+	}
 
 	static defineSchema() {
 		const fields = foundry.data.fields;
@@ -49,8 +51,8 @@ export default class ItemDataModel extends foundry.abstract.TypeDataModel {
 				{
 					initial: [],
 					nullable: false,
-				}
-			)
+				},
+			),
 		};
 	}
 }

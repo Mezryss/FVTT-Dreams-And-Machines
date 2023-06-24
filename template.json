@@ -4,7 +4,53 @@
 			"character"
 		],
 		"templates": [],
-		"character": {}
+		"character": {
+			"origin": "",
+			"archetype": "",
+			"temperament": "",
+			"bond": "",
+			"attributes": {
+				"insight": {
+					"value": 7,
+					"exhaustion": false,
+					"confused": false
+				},
+				"might": {
+					"value":  7,
+					"exhaustion":  false,
+					"weary": false
+				},
+				"quickness": {
+					"value":  7,
+					"exhaustion":  false,
+					"breathless": false
+				},
+				"resolve": {
+					"value":  7,
+					"exhaustion":  false,
+					"despairing": false
+				}
+			},
+			"skills": {
+				"fight": 1,
+				"move": 1,
+				"operate": 1,
+				"sneak": 1,
+				"study": 1,
+				"survive": 1,
+				"talk": 1
+			},
+			"coin": 0,
+			"techLevel": 1,
+			"spirit": {
+				"value": 1,
+				"max": 1
+			},
+			"supplyPoints": 0,
+			"goal": "",
+			"attitude": "",
+			"drive": ""
+		}
 	},
 
 	"Item": {

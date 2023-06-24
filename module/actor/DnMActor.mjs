@@ -1,7 +1,12 @@
-import CharacterSheet from "./sheets/CharacterSheet.mjs";
+import CharacterSheet from './sheets/CharacterSheet.mjs';
+import CharacterDataModel from './data/CharacterDataModel.mjs';
 
 /**
  * Shared base class for all Dreams and Machines actor documents.
+ *
+ * @property {EmbeddedCollection} items
+ * @property {object} system
+ * @property {string} type
  */
 export default class DnMActor extends Actor {}
 
@@ -18,7 +23,9 @@ export function registerActors() {
 /**
  * Handles registration for all Dreams and Machines Actor data models.
  */
-function registerDataModels() {}
+function registerDataModels() {
+	CONFIG.Actor.dataModels.character = CharacterDataModel;
+}
 
 /**
  * Handles registration for all Dreams and Machines Actor sheets.

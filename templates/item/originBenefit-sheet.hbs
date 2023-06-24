@@ -1,12 +1,7 @@
-<form class="{{ cssClass }} flex !flex-1 flex-col gap-1 items-center min-h-10">
+<form class="{{ cssClass }} flex !flex-1 flex-col gap-1 items-center min-h-10 bg-white bg-opacity-50">
 	{{!-- Item Header --}}
-	<div class="flex bg-black w-full p-2 gap-4 items-center">
-		<img class="w-14 h-14 -m-2" src="{{ item.img }}" data-edit="img" alt="{{ item.name }}" />
-		<input type="text" name="name" value="{{ item.name }}" class="!border-0 !text-white !text-3xl !h-full !font-roboto-flex uppercase focus:normal-case" />
-	</div>
+	{{> systems/dreams-and-machines/templates/item/partials/item-header.hbs }}
 
 	{{!-- Description --}}
-	<div class="w-full h-full min-h-15 p-1">
-		{{ editor enrichedDescription target="system.description" button=true editable=editable engine="prosemirror" }}
-	</div>
+	{{> systems/dreams-and-machines/templates/item/partials/item-description.hbs }}
 </form>

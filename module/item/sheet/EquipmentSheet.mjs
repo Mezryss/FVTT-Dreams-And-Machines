@@ -1,4 +1,4 @@
-import DnMItemSheet from "../DnMItemSheet.mjs";
+import DnMItemSheet from '../DnMItemSheet.mjs';
 
 /**
  * Regexp used for Rating input.
@@ -15,7 +15,9 @@ export default class EquipmentSheet extends DnMItemSheet {
 	 *
 	 * @returns ItemDataModel
 	 */
-	get system() { return this.item.system; }
+	get system() {
+		return super.system;
+	}
 
 	static get defaultOptions() {
 		return {
@@ -51,7 +53,9 @@ export default class EquipmentSheet extends DnMItemSheet {
 		const inputValue = event.target.value;
 
 		const match = inputValue.trim().match(RATING_INPUT_REGEXP);
-		if (!match) { return; }
+		if (!match) {
+			return;
+		}
 
 		const label = match.groups.label;
 		/** @type {number|null} */
