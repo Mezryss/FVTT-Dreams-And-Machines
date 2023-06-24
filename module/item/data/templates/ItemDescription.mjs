@@ -6,11 +6,11 @@ const fields = foundry.data.fields;
  * @mixin
  * @property {string} description User-friendly descriptive string for the item.
  */
-const ItemDescription = {
+const ItemDescription = () => ({
 	description: new fields.HTMLField({
 		initial: '',
 		nullable: false,
 	}),
-};
+});
 
 export default ItemDescription;

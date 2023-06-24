@@ -26,7 +26,7 @@ export default class ItemDataModel extends foundry.abstract.TypeDataModel {
 		const fields = foundry.data.fields;
 
 		return {
-			...ItemDescription,
+			...ItemDescription(),
 
 			techLevel: new fields.NumberField({
 				initial: 0,

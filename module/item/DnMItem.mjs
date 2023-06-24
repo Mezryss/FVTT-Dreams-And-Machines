@@ -1,5 +1,7 @@
 import ItemDataModel from "./data/ItemDataModel.mjs";
-import DnMItemSheet from "./sheet/DnMItemSheet.mjs";
+import TalentDataModel from "./data/TalentDataModel.mjs";
+import EquipmentSheet from "./sheet/EquipmentSheet.mjs";
+import DnMItemSheet from "./DnMItemSheet.mjs";
 
 /**
  * Shared base class for all Dreams and Machines item documents.
@@ -22,6 +24,8 @@ export function registerItems() {
  */
 function registerDataModels() {
 	CONFIG.Item.dataModels.item = ItemDataModel;
+	CONFIG.Item.dataModels.originBenefit = TalentDataModel;
+	CONFIG.Item.dataModels.talent = TalentDataModel;
 }
 
 /**
@@ -30,8 +34,13 @@ function registerDataModels() {
 function registerSheets() {
 	Items.unregisterSheet('core', ItemSheet);
 
-	Items.registerSheet('dreams-and-machines', DnMItemSheet, {
+	Items.registerSheet('dreams-and-machines', EquipmentSheet, {
 		types: ['item'],
+		makeDefault: true,
+	});
+
+	Items.registerSheet('dreams-and-machines', DnMItemSheet, {
+		types: ['originBenefit', 'talent'],
 		makeDefault: true,
 	});
 }

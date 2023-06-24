@@ -4,7 +4,9 @@
 			"character": "Player Character"
 		},
 		"Item": {
-			"item": "Equipment"
+			"item": "Equipment",
+			"originBenefit": "Origin Benefit",
+			"talent": "Talent"
 		}
 	},
 	"Labels": {
