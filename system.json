@@ -46,5 +46,6 @@
 	"changelog": "https://github.com/Mezryss/FVTT-Dreams-And-Machines/blob/main/CHANGELOG.md",
 	"license": "https://github.com/Mezryss/FVTT-Dreams-And-Machines/blob/main/LICENSE",
 	"manifest": "https://github.com/Mezryss/FVTT-Dreams-And-Machines/releases/latest/download/manifest.json",
-	"download": "https://github.com/Mezryss/FVTT-Dreams-And-Machines/releases/latest/download/dreams-and-machines.zip"
+	"download": "https://github.com/Mezryss/FVTT-Dreams-And-Machines/releases/latest/download/dreams-and-machines.zip",
+	"initiative": null
 }
