@@ -31,7 +31,7 @@
 
 	<div class="flex justify-center gap-4 text-5xl">
 		{{#each results}}
-			<div class="relative" data-tooltip="{{#if isCritical}}{{localize 'Roll.Critical' }}{{/if}} {{#if isSuccess}}{{localize 'Roll.Success'}}{{/if}} {{#if isComplication}}{{localize 'Roll.Complication'}}{{/if}}">
+			<div class="relative" {{#if (or isCritical isSuccess isComplication)}}data-tooltip="{{#if isCritical}}{{localize 'Roll.Critical' }}{{/if}} {{#if isSuccess}}{{localize 'Roll.Success'}}{{/if}} {{#if isComplication}}{{localize 'Roll.Complication'}}{{/if}}"{{/if}}>
 				<i class="fat fa-dice-d20 opacity-25 {{#if ../isGM}}text-teal-600{{else}}text-fuchsia-800{{/if}}"></i>
 				<div class="absolute w-full h-full text-3xl top-2 font-bold text-center {{#unless (or isSuccess isCritical isComplication) }}opacity-40{{/unless}} {{#if isCritical}}{{#if isGM}}text-blue-700{{else}}text-emerald-800{{/if}}{{/if}} {{#if isComplication}}text-rose-900{{/if}}">{{ face }}</div>
 			</div>
