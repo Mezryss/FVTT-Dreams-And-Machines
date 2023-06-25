@@ -8,13 +8,13 @@
 		</div>
 	</div>
 
-	<div class="flex flex-col gap-1 items-center bg-emerald-800 rounded-lg w-full p-2">
-		<span class="text-2xl text-emerald-100 font-semibold uppercase">{{ localize 'Labels.Threat' }}</span>
+	<div class="flex flex-col gap-1 items-center bg-teal-800 rounded-lg w-full p-2">
+		<span class="text-2xl text-teal-100 font-semibold uppercase">{{ localize 'Labels.Threat' }}</span>
 		<div class="grid grid-cols-5 gap-1 items-center w-full">
 			{{#if isGM}}
 				<a class="text-center text-xl font-bold text-white" data-action="decrease" data-type="threat">-</a>
 			{{/if}}
-			<span class="{{#if isGM}}col-span-3{{else}}col-span-5{{/if}} text-4xl text-emerald-100 font-bold w-full text-center">{{ threat }}</span>
+			<span class="{{#if isGM}}col-span-3{{else}}col-span-5{{/if}} text-4xl text-teal-100 font-bold w-full text-center">{{ threat }}</span>
 			{{#if isGM}}
 				<a class="text-center text-xl font-bold text-white" data-action="increase" data-type="threat">+</a>
 			{{/if}}

@@ -1,0 +1,114 @@
+<form class="{{cssClass}} flex !flex-1 flex-col bg-white bg-opacity-50">
+	{{!-- Header --}}
+	<div class="flex bg-teal-600 w-full p-3 gap-4 items-center">
+		<img class="w-14 h-14 -m-2" src="{{ actor.img }}" data-edit="img" alt="{{ actor.name }}" />
+		<input type="text" name="name" value="{{ actor.name }}" class="!border-0 !text-white !text-3xl !h-full !font-roboto-flex uppercase focus:normal-case !bg-none" />
+	</div>
+
+	<div class="grid grid-cols-2 h-full">
+		<div class="grid grid-cols-4 auto-rows-min border-2 border-teal-600 border-solid">
+			<div class="col-span-3 flex flex-col">
+				<span class="font-semibold pl-1 pr-2 w-min bg-teal-600 text-white uppercase flex flex-nowrap gap-1 items-center">
+					<span>{{ localize "Labels.Actor.Traits" }}</span>
+					<a data-action="add-trait">
+						<i class="fas fa-plus"></i>
+					</a>
+				</span>
+				{{#each traits}}
+					<div class="pl-2 flex items-center flex-nowrap gap-1 hover:bg-teal-200 hover:bg-opacity-30">
+						<a data-action="delete-trait" data-index="{{ @index }}" class="text-sm">
+							<i class="fas fa-trash"></i>
+						</a>
+						<input type="text" name="system.traits.{{ @index }}" value="{{ this }}" class="!bg-none !rounded-none !border-none font-semibold" />
+					</div>
+				{{/each}}
+			</div>
+
+			<label class="flex flex-col border-0 border-l-2 border-solid border-l-teal-600">
+				<span class="text-xs font-semibold text-center bg-teal-600 text-white uppercase">{{ localize "Labels.Actor.PersonalThreat" }}</span>
+				<input type="number" name="system.threat.current" value="{{ system.threat.current }}" class="!w-full !h-full !text-center !border-none !rounded-none !text-2xl !p-0 !m-0 !bg-none" />
+			</label>
+			<div class="flex flex-col col-span-3 row-span-2">
+				<span class="w-full font-semibold text-center bg-teal-600 text-white uppercase">{{ localize "Labels.Actor.Attributes" }}</span>
+
+				<div class="grid grid-cols-2">
+					<label class="flex flex-col border-1 border-solid border-teal-600">
+						<span class="font-semibold text-center text-teal-600 uppercase text-sm">{{ localize "Attributes.Might" }}</span>
+						<input type="number" name="system.attributes.might.value" value="{{ system.attributes.might.value }}" class="!w-full !h-full !text-center !border-none !rounded-none !text-3xl !p-0 !m-0 !bg-none" />
+					</label>
+
+					<label class="flex flex-col border-1 border-solid border-teal-600">
+						<span class="font-semibold text-center text-teal-600 uppercase text-sm">{{ localize "Attributes.Quickness" }}</span>
+						<input type="number" name="system.attributes.quickness.value" value="{{ system.attributes.quickness.value }}" class="!w-full !h-full !text-center !border-none !rounded-none !text-3xl !p-0 !m-0 !bg-none" />
+					</label>
+
+					<label class="flex flex-col border-1 border-solid border-teal-600">
+						<span class="font-semibold text-center text-teal-600 uppercase text-sm">{{ localize "Attributes.Insight" }}</span>
+						<input type="number" name="system.attributes.insight.value" value="{{ system.attributes.insight.value }}" class="!w-full !h-full !text-center !border-none !rounded-none !text-3xl !p-0 !m-0 !bg-none" />
+					</label>
+
+					<label class="flex flex-col border-1 border-solid border-teal-600">
+						<span class="font-semibold text-center text-teal-600 uppercase text-sm">{{ localize "Attributes.Resolve" }}</span>
+						<input type="number" name="system.attributes.resolve.value" value="{{ system.attributes.resolve.value }}" class="!w-full !h-full !text-center !border-none !rounded-none !text-3xl !p-0 !m-0 !bg-none" />
+					</label>
+				</div>
+			</div>
+			<div class="row-span-7 border-0 border-l-2 border-solid border-teal-600 flex flex-col">
+				<span class="w-full font-semibold text-center bg-teal-600 text-white uppercase">{{ localize "Labels.Actor.Skills" }}</span>
+
+				<div class="grid h-full">
+					<label class="flex flex-col border-0 border-b-1 border-solid border-teal-600">
+						<span class="font-semibold text-center text-teal-600 uppercase text-sm">{{ localize "Skills.Fight" }}</span>
+						<input type="number" name="system.skills.fight" value="{{ system.skills.fight }}" class="!w-full !text-center !border-none !rounded-none !text-3xl !p-0 !m-0 !bg-none" />
+					</label>
+
+					<label class="flex flex-col border-0 border-b-1 border-solid border-teal-600">
+						<span class="font-semibold text-center text-teal-600 uppercase text-sm">{{ localize "Skills.Move" }}</span>
+						<input type="number" name="system.skills.move" value="{{ system.skills.move }}" class="!w-full !text-center !border-none !rounded-none !text-3xl !p-0 !m-0 !bg-none" />
+					</label>
+
+					<label class="flex flex-col border-0 border-b-1 border-solid border-teal-600">
+						<span class="font-semibold text-center text-teal-600 uppercase text-sm">{{ localize "Skills.Operate" }}</span>
+						<input type="number" name="system.skills.operate" value="{{ system.skills.operate }}" class="!w-full !text-center !border-none !rounded-none !text-3xl !p-0 !m-0 !bg-none" />
+					</label>
+
+					<label class="flex flex-col border-0 border-b-1 border-solid border-teal-600">
+						<span class="font-semibold text-center text-teal-600 uppercase text-sm">{{ localize "Skills.Sneak" }}</span>
+						<input type="number" name="system.skills.sneak" value="{{ system.skills.sneak }}" class="!w-full !text-center !border-none !rounded-none !text-3xl !p-0 !m-0 !bg-none" />
+					</label>
+
+					<label class="flex flex-col border-0 border-b-1 border-solid border-teal-600">
+						<span class="font-semibold text-center text-teal-600 uppercase text-sm">{{ localize "Skills.Study" }}</span>
+						<input type="number" name="system.skills.study" value="{{ system.skills.study }}" class="!w-full !text-center !border-none !rounded-none !text-3xl !p-0 !m-0 !bg-none" />
+					</label>
+
+					<label class="flex flex-col border-0 border-b-1 border-solid border-teal-600">
+						<span class="font-semibold text-center text-teal-600 uppercase text-sm">{{ localize "Skills.Survive" }}</span>
+						<input type="number" name="system.skills.survive" value="{{ system.skills.survive }}" class="!w-full !text-center !border-none !rounded-none !text-3xl !p-0 !m-0 !bg-none" />
+					</label>
+
+					<label class="flex flex-col border-0 border-b-1 border-solid border-teal-600">
+						<span class="font-semibold text-center text-teal-600 uppercase text-sm">{{ localize "Skills.Talk" }}</span>
+						<input type="number" name="system.skills.talk" value="{{ system.skills.talk }}" class="!w-full !text-center !border-none !rounded-none !text-3xl !p-0 !m-0 !bg-none" />
+					</label>
+				</div>
+			</div>
+
+			<div class="col-span-3 row-span-6 flex flex-col min-h-15 border-0 border-b-2 border-teal-600 border-solid">
+				<span class="font-semibold pl-1 pr-2 w-min bg-teal-600 text-white uppercase">{{ localize "Labels.Notes" }}</span>
+				<div class="w-full h-full p-1">
+					{{ editor enrichedNotes target="system.notes" button=true editable=editable engine="prosemirror" }}
+				</div>
+			</div>
+
+			<label class="border-0 border-l-2 border-b-2 border-teal-600 border-solid flex flex-col">
+				<span class="text-xs font-semibold text-center bg-teal-600 text-white uppercase">{{ localize "Labels.Actor.InjuriesToDefeat" }}</span>
+				<input type="number" name="system.injuries.max" value="{{ system.injuries.max }}" class="!w-full !text-center !border-none !rounded-none !text-3xl !p-0 !m-0 !bg-none" />
+			</label>
+		</div>
+
+		<div class="w-full h-full min-h-15 p-2">
+			{{ editor enrichedDescription target="system.description" button=true editable=editable engine="prosemirror" }}
+		</div>
+	</div>
+</form>

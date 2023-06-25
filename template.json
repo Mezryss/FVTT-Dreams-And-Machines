@@ -1,45 +1,55 @@
 {
 	"Actor": {
 		"types": [
-			"character"
+			"character",
+			"majorNPC"
 		],
-		"templates": [],
+		"templates": {
+			"attributes": {
+				"attributes": {
+					"insight": {
+						"value": 7,
+						"exhaustion": false,
+						"confused": false
+					},
+					"might": {
+						"value":  7,
+						"exhaustion":  false,
+						"weary": false
+					},
+					"quickness": {
+						"value":  7,
+						"exhaustion":  false,
+						"breathless": false
+					},
+					"resolve": {
+						"value":  7,
+						"exhaustion":  false,
+						"despairing": false
+					}
+				}
+			},
+			"skills": {
+				"skills": {
+					"fight": 1,
+					"move": 1,
+					"operate": 1,
+					"sneak": 1,
+					"study": 1,
+					"survive": 1,
+					"talk": 1
+				}
+			}
+		},
 		"character": {
+			"templates": [
+				"attributes",
+				"skills"
+			],
 			"origin": "",
 			"archetype": "",
 			"temperament": "",
 			"bond": "",
-			"attributes": {
-				"insight": {
-					"value": 7,
-					"exhaustion": false,
-					"confused": false
-				},
-				"might": {
-					"value":  7,
-					"exhaustion":  false,
-					"weary": false
-				},
-				"quickness": {
-					"value":  7,
-					"exhaustion":  false,
-					"breathless": false
-				},
-				"resolve": {
-					"value":  7,
-					"exhaustion":  false,
-					"despairing": false
-				}
-			},
-			"skills": {
-				"fight": 1,
-				"move": 1,
-				"operate": 1,
-				"sneak": 1,
-				"study": 1,
-				"survive": 1,
-				"talk": 1
-			},
 			"coin": 0,
 			"techLevel": 1,
 			"spirit": {
@@ -50,6 +60,23 @@
 			"goal": "",
 			"attitude": "",
 			"drive": ""
+		},
+		"majorNPC": {
+			"templates": [
+				"attributes",
+				"skills"
+			],
+			"traits": [],
+			"threat": {
+				"current": 0,
+				"max": 0
+			},
+			"injuries": {
+				"current": 0,
+				"max": 1
+			},
+			"notes": "",
+			"description": ""
 		}
 	},
 

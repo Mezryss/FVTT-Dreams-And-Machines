@@ -20,6 +20,9 @@ module.exports = {
 				'15': '15rem',
 				'20': '20rem',
 			},
+			gridRow: {
+				'span-7': 'span 7 / span 7',
+			},
 		},
 		fontFamily: {
 			body: ['Roboto Flex', 'sans-serif'],
