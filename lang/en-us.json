@@ -15,14 +15,11 @@
 		"Quickness": "Quickness",
 		"Resolve": "Resolve"
 	},
-	"Skills": {
-		"Fight": "Fight",
-		"Move": "Move",
-		"Operate": "Operate",
-		"Sneak": "Sneak",
-		"Study": "Study",
-		"Survive": "Survive",
-		"Talk": "Talk"
+	"ChatMessages": {
+		"SpendMomentum": "Spending a point of Momentum!",
+		"StoreMomentum": "Storing a point of Momentum!",
+		"SpendThreat": "Spending a point of Threat!",
+		"StoreThreat": "Storing a point of Threat!"
 	},
 	"Labels": {
 		"Actor": {
@@ -56,6 +53,21 @@
 		},
 		"Current": "Current",
 		"Max": "Max",
-		"TechLevel": "Tech Level"
+		"TechLevel": "Tech Level",
+		"Momentum": "Momentum",
+		"Threat": "Threat"
+	},
+	"Notifications": {
+		"NotEnoughMomentum": "Cannot spend Momentum while the pool is empty! Perhaps you should generate Threat instead?",
+		"NotEnoughThreat": "Cannot spend Threat while the pool is empty!"
+	},
+	"Skills": {
+		"Fight": "Fight",
+		"Move": "Move",
+		"Operate": "Operate",
+		"Sneak": "Sneak",
+		"Study": "Study",
+		"Survive": "Survive",
+		"Talk": "Talk"
 	}
 }

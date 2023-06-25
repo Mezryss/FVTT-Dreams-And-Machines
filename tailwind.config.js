@@ -4,6 +4,9 @@ module.exports = {
 		'templates/**/*.hbs',
 		'module/**/*.{js,mjs}',
 	],
+	corePlugins: {
+		preflight: false,
+	},
 	theme: {
 		extend: {
 			borderWidth: {

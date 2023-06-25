@@ -1,0 +1,36 @@
+<div class="flex flex-col gap-4 absolute -bottom-24 right-96 w-64 h-80">
+	<div class="flex flex-col gap-1 items-center bg-fuchsia-900 rounded-lg w-full p-2">
+		<span class="text-2xl text-fuchsia-200 font-semibold uppercase">{{ localize 'Labels.Momentum' }}</span>
+		<div class="grid grid-cols-5 gap-1 items-center w-full">
+			<a class="text-center text-xl font-bold text-white" data-action="decrease" data-type="momentum">-</a>
+			<span class="col-span-3 text-4xl text-fuchsia-200 font-bold w-full text-center">{{ momentum }}</span>
+			<a class="text-center text-xl font-bold text-white" data-action="increase" data-type="momentum">+</a>
+		</div>
+	</div>
+
+	<div class="flex flex-col gap-1 items-center bg-emerald-800 rounded-lg w-full p-2">
+		<span class="text-2xl text-emerald-100 font-semibold uppercase">{{ localize 'Labels.Threat' }}</span>
+		<div class="grid grid-cols-5 gap-1 items-center w-full">
+			{{#if isGM}}
+				<a class="text-center text-xl font-bold text-white" data-action="decrease" data-type="threat">-</a>
+			{{/if}}
+			<span class="{{#if isGM}}col-span-3{{else}}col-span-5{{/if}} text-4xl text-emerald-100 font-bold w-full text-center">{{ threat }}</span>
+			{{#if isGM}}
+				<a class="text-center text-xl font-bold text-white" data-action="increase" data-type="threat">+</a>
+			{{/if}}
+		</div>
+	</div>
+<!--	<span class="text-3xl">Momentum Tracker</span>-->
+<!--	<span>Momentum: {{ momentum }}</span>-->
+<!--	<span class="grid grid-cols-2 gap-2">-->
+<!--		<button data-action="decrease" data-type="momentum">-</button>-->
+<!--		<button data-action="increase" data-type="momentum">+</button>-->
+<!--	</span>-->
+<!--	<span>Threat: {{ threat }}</span>-->
+<!--	{{#if isGM}}-->
+<!--		<span class="grid grid-cols-2 gap-2">-->
+<!--			<button data-action="decrease" data-type="threat">-</button>-->
+<!--			<button data-action="increase" data-type="threat">+</button>-->
+<!--		</span>-->
+<!--	{{/if}}-->
+</div>

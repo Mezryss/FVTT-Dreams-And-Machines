@@ -2,6 +2,8 @@ import { registerItems } from './item/DnMItem.mjs';
 import { registerActors } from './actor/DnMActor.mjs';
 import registerTemplates from './templates.mjs';
 
+import './momentumTracker/index.mjs';
+
 Hooks.once('init', () => {
 	registerActors();
 	registerItems();
