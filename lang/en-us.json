@@ -22,6 +22,12 @@
 		"SpendThreat": "Spending a point of Threat!",
 		"StoreThreat": "Storing a point of Threat!"
 	},
+    "Combat": {
+        "CombatantsTurnDone": "Turn Completed",
+        "CombatantsTurnNotDone": "Turn Not Completed",
+        "CombatHasNotStarted": "Combat Has Not Started",
+        "ToggleCombatantsTurnDone": "Toggle Turn Completed"
+    },
 	"Labels": {
 		"Actor": {
 			"Origin": "Origin",
