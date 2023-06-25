@@ -28,6 +28,17 @@
 			"path": "lang/en-us.json"
 		}
 	],
+	"packs": [
+		{
+			"name": "macros",
+			"label": "Macros",
+			"system": "dreams-and-machines",
+			"path": "packs/macros",
+			"type": "Macro",
+			"private": false,
+			"flags": {}
+		}
+	],
 	"socket": true,
 	"flags": {
 		"hotReload": {
