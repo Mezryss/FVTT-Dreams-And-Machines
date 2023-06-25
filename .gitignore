@@ -4,6 +4,7 @@
 /node_modules
 
 /Dreams-and-Machines.css
+/dreams-and-machines.zip
 
 .DS_Store
 yarn-error.log
