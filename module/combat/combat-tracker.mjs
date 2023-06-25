@@ -4,7 +4,7 @@ export default class CombatTracker2d20 extends CombatTracker {
 	static get defaultOptions() {
 		return {
 			...super.defaultOptions,
-			template: 'systems/dreams-and-machines/templates/combat/combat-tracker.html',
+			template: 'systems/dreams-and-machines/templates/combat/combat-tracker.hbs',
 		};
 	}
 
