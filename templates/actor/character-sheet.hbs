@@ -32,25 +32,37 @@
 		<div class="grid grid-cols-4">
 			<span class="col-span-4 bg-fuchsia-900 text-white uppercase font-semibold flex items-center px-1 h-full justify-center">{{ localize "Labels.Actor.Attributes" }}</span>
 
-			<label class="flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
-				<span class="font-semibold uppercase text-fuchsia-900">{{ localize "Attributes.Insight" }}</span>
+			<div class="flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
+				<a data-action="roll" data-attribute="insight" class="flex items-baseline gap-1 font-semibold uppercase text-fuchsia-900">
+					<i class="fas fa-dice-d20"></i>
+					<span>{{ localize "Attributes.Insight" }}</span>
+				</a>
 				<input type="number" name="system.attributes.insight.value" value="{{ system.attributes.insight.value }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-4xl font-semibold !p-2 !py-6" />
-			</label>
+			</div>
 
-			<label class="flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
-				<span class="font-semibold uppercase text-fuchsia-900">{{ localize "Attributes.Might" }}</span>
+			<div class="flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
+				<a data-action="roll" data-attribute="might" class="flex items-baseline gap-1 font-semibold uppercase text-fuchsia-900">
+					<i class="fas fa-dice-d20"></i>
+					<span>{{ localize "Attributes.Might" }}</span>
+				</a>
 				<input type="number" name="system.attributes.might.value" value="{{ system.attributes.might.value }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-4xl font-semibold !p-2 !py-6" />
-			</label>
+			</div>
 
-			<label class="flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
-				<span class="font-semibold uppercase text-fuchsia-900">{{ localize "Attributes.Quickness" }}</span>
+			<div class="flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
+				<a data-action="roll" data-attribute="quickness" class="flex items-baseline gap-1 font-semibold uppercase text-fuchsia-900">
+					<i class="fas fa-dice-d20"></i>
+					<span>{{ localize "Attributes.Quickness" }}</span>
+				</a>
 				<input type="number" name="system.attributes.quickness.value" value="{{ system.attributes.quickness.value }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-4xl font-semibold !p-2 !py-6" />
-			</label>
+			</div>
 
-			<label class="flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
-				<span class="font-semibold uppercase text-fuchsia-900">{{ localize "Attributes.Resolve" }}</span>
+			<div class="flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
+				<a data-action="roll" data-attribute="resolve" class="flex items-baseline gap-1 font-semibold uppercase text-fuchsia-900">
+					<i class="fas fa-dice-d20"></i>
+					<span>{{ localize "Attributes.Resolve" }}</span>
+				</a>
 				<input type="number" name="system.attributes.resolve.value" value="{{ system.attributes.resolve.value }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-4xl font-semibold !p-2 !py-6" />
-			</label>
+			</div>
 
 			<div class="flex flex-col p-1 whitespace-nowrap">
 				<label class="flex flex-nowrap items-center font-semibold">
@@ -105,40 +117,61 @@
 		<div class="grid grid-cols-12">
 			<span class="col-span-12 bg-fuchsia-900 text-white uppercase font-semibold flex items-center px-1 h-full justify-center">{{ localize "Labels.Actor.Skills" }}</span>
 
-			<label class="col-span-3 flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
-				<span class="font-semibold uppercase text-fuchsia-900">{{ localize "Skills.Fight" }}</span>
+			<div class="col-span-3 flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
+				<a class="flex items-baseline gap-1 font-semibold uppercase text-fuchsia-900" data-action="roll" data-skill="fight">
+					<i class="fas fa-dice-d20"></i>
+					<span>{{ localize "Skills.Fight" }}</span>
+				</a>
 				<input type="number" name="system.skills.fight" value="{{ system.skills.fight }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-4xl font-semibold !p-2 !py-6" />
-			</label>
+			</div>
 
-			<label class="col-span-3 flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
-				<span class="font-semibold uppercase text-fuchsia-900">{{ localize "Skills.Move" }}</span>
+			<div class="col-span-3 flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
+				<a class="flex items-baseline gap-1 font-semibold uppercase text-fuchsia-900" data-action="roll" data-skill="move">
+					<i class="fas fa-dice-d20"></i>
+					<span>{{ localize "Skills.Move" }}</span>
+				</a>
 				<input type="number" name="system.skills.move" value="{{ system.skills.move }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-4xl font-semibold !p-2 !py-6" />
-			</label>
+			</div>
 
-			<label class="col-span-3 flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
-				<span class="font-semibold uppercase text-fuchsia-900">{{ localize "Skills.Operate" }}</span>
+			<div class="col-span-3 flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
+				<a class="flex items-baseline gap-1 font-semibold uppercase text-fuchsia-900" data-action="roll" data-skill="operate">
+					<i class="fas fa-dice-d20"></i>
+					<span>{{ localize "Skills.Operate" }}</span>
+				</a>
 				<input type="number" name="system.skills.operate" value="{{ system.skills.operate }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-4xl font-semibold !p-2 !py-6" />
-			</label>
+			</div>
 
-			<label class="col-span-3 flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
-				<span class="font-semibold uppercase text-fuchsia-900">{{ localize "Skills.Sneak" }}</span>
+			<div class="col-span-3 flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
+				<a class="flex items-baseline gap-1 font-semibold uppercase text-fuchsia-900" data-action="roll" data-skill="sneak">
+					<i class="fas fa-dice-d20"></i>
+					<span>{{ localize "Skills.Sneak" }}</span>
+				</a>
 				<input type="number" name="system.skills.sneak" value="{{ system.skills.sneak }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-4xl font-semibold !p-2 !py-6" />
-			</label>
+			</div>
 
-			<label class="col-span-4 flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
-				<span class="font-semibold uppercase text-fuchsia-900">{{ localize "Skills.Study" }}</span>
+			<div class="col-span-4 flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
+				<a class="flex items-baseline gap-1 font-semibold uppercase text-fuchsia-900" data-action="roll" data-skill="study">
+					<i class="fas fa-dice-d20"></i>
+					<span>{{ localize "Skills.Study" }}</span>
+				</a>
 				<input type="number" name="system.skills.study" value="{{ system.skills.study }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-4xl font-semibold !p-2 !py-6" />
-			</label>
+			</div>
 
-			<label class="col-span-4 flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
-				<span class="font-semibold uppercase text-fuchsia-900">{{ localize "Skills.Survive" }}</span>
+			<div class="col-span-4 flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
+				<a class="flex items-baseline gap-1 font-semibold uppercase text-fuchsia-900" data-action="roll" data-skill="survive">
+					<i class="fas fa-dice-d20"></i>
+					<span>{{ localize "Skills.Survive" }}</span>
+				</a>
 				<input type="number" name="system.skills.survive" value="{{ system.skills.survive }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-4xl font-semibold !p-2 !py-6" />
-			</label>
+			</div>
 
-			<label class="col-span-4 flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
-				<span class="font-semibold uppercase text-fuchsia-900">{{ localize "Skills.Talk" }}</span>
+			<div class="col-span-4 flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
+				<a class="flex items-baseline gap-1 font-semibold uppercase text-fuchsia-900" data-action="roll" data-skill="talk">
+					<i class="fas fa-dice-d20"></i>
+					<span>{{ localize "Skills.Talk" }}</span>
+				</a>
 				<input type="number" name="system.skills.talk" value="{{ system.skills.talk }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-4xl font-semibold !p-2 !py-6" />
-			</label>
+			</div>
 		</div>
 
 		{{!-- Coin/TL/etc --}}

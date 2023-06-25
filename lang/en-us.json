@@ -48,6 +48,12 @@
 			"Traits": "Traits",
 			"InjuriesToDefeat": "Injuries to Defeat"
 		},
+		"DicePrompt": {
+			"Attribute": "Attribute",
+			"Skill": "Skill",
+			"Complication": "Complication Range",
+			"Roll": "Roll"
+		},
 		"Item": {
 			"Qualities": "Qualities",
 			"AddQualityPlaceholder": "Type to Add Quality",
@@ -65,6 +71,11 @@
 	"Notifications": {
 		"NotEnoughMomentum": "Cannot spend Momentum while the pool is empty! Perhaps you should generate Threat instead?",
 		"NotEnoughThreat": "Cannot spend Threat while the pool is empty!"
+	},
+	"Roll": {
+		"Success": "Success",
+		"Critical": "Critical Success",
+		"Complication": "Complication"
 	},
 	"Skills": {
 		"Fight": "Fight",

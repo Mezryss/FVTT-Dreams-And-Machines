@@ -1,0 +1,86 @@
+{{!--
+	Credit where it's due: while the specific markup is fresh, the layout was borrowed from the Achtung! Cthulhu system by superseva/HappySteve.
+	The A!C system is released under the MIT license.
+
+	https://github.com/superseva/ac2d20/tree/main
+
+	MIT License
+
+	Copyright (c) 2021 superseva
+
+	Permission is hereby granted, free of charge, to any person obtaining a copy
+	of this software and associated documentation files (the "Software"), to deal
+	in the Software without restriction, including without limitation the rights
+	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+	copies of the Software, and to permit persons to whom the Software is
+	furnished to do so, subject to the following conditions:
+
+	The above copyright notice and this permission notice shall be included in all
+	copies or substantial portions of the Software.
+
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+	SOFTWARE.
+--}}
+
+<div class="flex flex-col min-w-[450px] !p-1 gap-3 whitespace-nowrap">
+	<div class="grid grid-cols-3 gap-1">
+		<label class="flex flex-col items-center gap-1 rounded-md p-2 pt-1 {{#if isGM}}bg-teal-600 text-teal-50{{else}}bg-fuchsia-800 text-fuchsia-200{{/if}}">
+			<span class="text-lg font-semibold">
+				{{ localize "Labels.DicePrompt.Attribute" }}
+			</span>
+			<select name="attribute" class="!border-none !bg-white !w-full !px-2 text-lg font-semibold {{#if isGM}}!text-teal-800{{else}}!text-fuchsia-800{{/if}}">
+				{{#select attribute}}
+					{{#each attributes}}
+						<option value="{{ name }}">{{ label }} ({{ value }})</option>
+					{{/each}}
+				{{/select}}
+			</select>
+		</label>
+		<label class="flex flex-col items-center gap-1 rounded-md p-2 pt-1 {{#if isGM}}bg-teal-600 text-teal-50{{else}}bg-fuchsia-800 text-fuchsia-200{{/if}}">
+			<span class="text-lg font-semibold">
+				{{ localize "Labels.DicePrompt.Skill" }}
+			</span>
+			<select name="skill" class="!border-none !bg-white !w-full !px-2 text-lg font-semibold {{#if isGM}}!text-teal-800{{else}}!text-fuchsia-800{{/if}}">
+				{{#select skill}}
+					<option value="-">—</option>
+					{{#each skills}}
+						<option value="{{ name }}">{{ label }} ({{ value }})</option>
+					{{/each}}
+				{{/select}}
+			</select>
+		</label>
+		<label class="flex flex-col items-center gap-1 rounded-md p-2 pt-1 {{#if isGM}}bg-teal-600 text-teal-50{{else}}bg-fuchsia-800 text-fuchsia-200{{/if}}">
+			<span class="text-lg font-semibold">
+				{{ localize "Labels.DicePrompt.Complication" }}
+			</span>
+			<input type="number" name="complication" value="{{ complication }}" min="1" max="20" class="!bg-white !border-none !text-center !text-2xl {{#if isGM}}!text-teal-800{{else}}!text-fuchsia-800{{/if}} !w-40" />
+		</label>
+	</div>
+
+	<div class="flex justify-center gap-4 text-5xl">
+		<a data-action="set-num-dice" data-value="1" class="{{#if isGM}}text-teal-600{{else}}text-fuchsia-900{{/if}}">
+			<i class="fas fa-dice-d20"></i>
+		</a>
+	<a data-action="set-num-dice" data-value="2" class="{{#if (lt numDice 2)}}opacity-25{{/if}} {{#if isGM}}text-teal-600{{else}}text-fuchsia-900{{/if}}">
+			<i class="fas fa-dice-d20"></i>
+		</a>
+	<a data-action="set-num-dice" data-value="3" class=" {{#if (lt numDice 3)}}opacity-25{{/if}} {{#if isGM}}text-teal-600{{else}}text-fuchsia-900{{/if}}">
+			<i class="fas fa-dice-d20"></i>
+		</a>
+	<a data-action="set-num-dice" data-value="4" class=" {{#if (lt numDice 4)}}opacity-25{{/if}} {{#if isGM}}text-teal-600{{else}}text-fuchsia-900{{/if}}">
+			<i class="fas fa-dice-d20"></i>
+		</a>
+		<a data-action="set-num-dice" data-value="5" class=" {{#if (lt numDice 5)}}opacity-25{{/if}} {{#if isGM}}text-teal-600{{else}}text-fuchsia-900{{/if}}">
+			<i class="fas fa-dice-d20"></i>
+		</a>
+	</div>
+
+	<button class="gap-1 text-xl font-semibold" data-action="roll">
+		{{ localize "Labels.DicePrompt.Roll" }}
+	</button>
+</div>

@@ -1,3 +1,5 @@
+import DicePrompt from '../dice/DicePrompt.mjs';
+
 /**
  * Shared base class for all Actor Sheets.
  */
@@ -41,6 +43,7 @@ export default class DnMActorSheet extends ActorSheet {
 		super.activateListeners(html);
 
 		html.find('[data-action="open-sheet"]').on('click', this.openSheet.bind(this));
+		html.find('[data-action=roll]').on('click', this.promptForRoll.bind(this));
 
 		new ContextMenu(/** @type {jQuery} */ html, '[data-menu="item"]', [
 			{
@@ -70,6 +73,22 @@ export default class DnMActorSheet extends ActorSheet {
 				},
 			},
 		]);
+	}
+
+	/**
+	 * @param {MouseEvent} event
+	 */
+	promptForRoll(event) {
+		const target = $(event.currentTarget);
+
+		const attribute = target.data('attribute');
+		const skill = target.data('skill');
+
+		DicePrompt.promptForRoll({
+			actor: this.actor,
+			attribute,
+			skill,
+		});
 	}
 
 	/**

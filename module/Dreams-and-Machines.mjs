@@ -3,12 +3,17 @@ import { registerActors } from './actor/DnMActor.mjs';
 import registerTemplates from './templates.mjs';
 
 import './momentumTracker/index.mjs';
+import DicePrompt from './dice/DicePrompt.mjs';
 
 Hooks.once('init', () => {
 	registerActors();
 	registerItems();
 
 	registerTemplates();
+
+	CONFIG.DreamsAndMachines = {
+		DicePrompt,
+	};
 });
 
 // Add the prose class from Tailwind Typography to Journal text entries.

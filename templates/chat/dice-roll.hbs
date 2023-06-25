@@ -1,0 +1,40 @@
+<div class="flex flex-col gap-1 w-full p-2">
+	<span class="text-lg font-semibold text-center rounded-md text-white {{#if isGM}}bg-teal-600{{else}}bg-fuchsia-800{{/if}}">
+		{{#if skill}}
+			Rolling {{ attribute }} + {{ skill }}
+		{{else}}
+			Rolling {{ attribute }}
+		{{/if}}
+	</span>
+
+	<span class="grid grid-cols-2 gap-1 whitespace-nowrap">
+		<span class="flex flex-col gap-1 items-center">
+			<span class="text-sm font-semibold w-full text-center rounded-md text-white {{#if isGM}}bg-teal-600{{else}}bg-fuchsia-800{{/if}}">Target Number</span>
+			<span class="text-xl">{{ targetNumber }}</span>
+		</span>
+
+		<span class="flex flex-col gap-1 items-center">
+			<span class="text-sm font-semibold w-full text-center rounded-md text-white {{#if isGM}}bg-teal-600{{else}}bg-fuchsia-800{{/if}}">Complication Range</span>
+			<span class="text-xl">{{ complicationRange }}{{#if (lt complicationRange 20)}}–20{{/if}}</span>
+		</span>
+
+		<span class="flex flex-col gap-1 items-center">
+			<span class="text-sm font-semibold w-full text-center rounded-md text-white {{#if isGM}}bg-teal-600{{else}}bg-fuchsia-800{{/if}}">Successes</span>
+			<span class="text-xl">{{ successes }}</span>
+		</span>
+
+		<span class="flex flex-col gap-1 items-center">
+		<span class="text-sm font-semibold w-full text-center rounded-md text-white {{#if (gt complications 0)}}bg-rose-800{{else}}{{#if isGM}}bg-teal-600{{else}}bg-fuchsia-800{{/if}}{{/if}}">Complications</span>
+			<span class="text-xl">{{ complications }}</span>
+		</span>
+	</span>
+
+	<div class="flex justify-center gap-4 text-5xl">
+		{{#each results}}
+			<div class="relative" data-tooltip="{{#if isCritical}}{{localize 'Roll.Critical' }}{{/if}} {{#if isSuccess}}{{localize 'Roll.Success'}}{{/if}} {{#if isComplication}}{{localize 'Roll.Complication'}}{{/if}}">
+				<i class="fat fa-dice-d20 opacity-25 {{#if ../isGM}}text-teal-600{{else}}text-fuchsia-800{{/if}}"></i>
+				<div class="absolute w-full h-full text-3xl top-2 font-bold text-center {{#unless (or isSuccess isCritical isComplication) }}opacity-40{{/unless}} {{#if isCritical}}{{#if isGM}}text-blue-700{{else}}text-emerald-800{{/if}}{{/if}} {{#if isComplication}}text-rose-900{{/if}}">{{ face }}</div>
+			</div>
+		{{/each}}
+	</div>
+</div>
