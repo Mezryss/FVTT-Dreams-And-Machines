@@ -40,7 +40,19 @@ export default class CharacterSheet extends DnMActorSheet {
 					}),
 				),
 		);
-		const equipment = this.actor.items.filter((i) => i.type === 'item').map((i) => i);
+		const equipment = await Promise.all(
+			this.actor.items.filter((i) => i.type === 'item').map(
+				/**
+				 * @param {DnMItem} item
+				 */
+				async (item) => {
+					item.system.description = await TextEditor.enrichHTML(item.system.description, { async: true });
+
+					return item;
+				}
+			)
+		);
+
 		return {
 			...super.getData(options),
 			originBenefits,
