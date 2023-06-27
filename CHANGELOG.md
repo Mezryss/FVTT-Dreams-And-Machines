@@ -1,3 +1,9 @@
+### v1.0.2
+- Add item description, when present, in Equipment list on character sheet.
+- Don't display tech level in Equipment list for items with TL0.
+- Remove the tooltip entirely from non-success/critical/complication dice faces.
+- Add Macros compendium containing the dice prompt macro.
+
 ### v1.0.1
 - Combat tracker added, thanks to Muttley!
 - Fixed styling of "Current" box for Spirit
