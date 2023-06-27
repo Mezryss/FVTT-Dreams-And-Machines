@@ -261,7 +261,7 @@
 				{{#each equipment}}
 					<div class="pl-4">
 						<span class="-ml-4 flex whitespace-nowrap gap-1 text-lg" data-menu="item" data-action="open-sheet" data-uuid="{{ uuid }}">
-							<a class="font-bold">{{ name }} (TL{{ system.techLevel }}){{#if system.hasQualities}}:{{else}}.{{/if}}</a>
+							<a class="font-bold">{{ name }}{{#if (gt system.techLevel 0)}} (TL{{ system.techLevel }}){{/if}}{{#if system.hasQualities}}:{{else}}.{{/if}}</a>
 							{{#if system.hasQualities}}
 								<div class="flex flex-wrap whitespace-nowrap gap-x-1 gap-y-0.5 items-center w-full">
 									{{#each system.qualities}}
