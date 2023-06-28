@@ -16,7 +16,7 @@ function buildDefinition(path, style = 'normal', weight = '400') {
 /**
  * Registers all fonts used by the system so that they are available in the text editor.
  */
-export function register() {
+export function registerFonts() {
 	CONFIG.fontDefinitions['Roboto Flex'] = {
 		editor: true,
 		fonts: [

@@ -1,16 +1,18 @@
-import { registerItems } from './item/DnMItem.mjs';
 import { registerActors } from './actor/DnMActor.mjs';
 import { registerCombatTracker } from './combat/combat-tracker.mjs';
+import DicePrompt from './dice/DicePrompt.mjs';
+import { registerFonts } from './fonts.mjs';
+import { registerItems } from './item/DnMItem.mjs';
 import registerTemplates from './templates.mjs';
 
 import './momentumTracker/index.mjs';
-import DicePrompt from './dice/DicePrompt.mjs';
 
 Hooks.once('init', () => {
 	registerActors();
 	registerItems();
 	registerCombatTracker();
 
+	registerFonts();
 	registerTemplates();
 
 	CONFIG.DreamsAndMachines = {
