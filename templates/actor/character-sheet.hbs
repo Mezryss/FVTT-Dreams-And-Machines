@@ -28,6 +28,27 @@
 			</label>
 		</div>
 
+		{{!-- Traits --}}
+		<div class="flex flex-col">
+			<span class="w-full bg-fuchsia-900 text-white uppercase font-semibold flex items-center px-1 h-full justify-center">{{ localize "Labels.Actor.Traits" }}</span>
+			<div class="grid grid-cols-4 gap-x-2 gap-y-1 w-full h-full bg-white border-1 border-t-0 border-fuchsia-200 p-2">
+				{{#each system.traits}}
+					<div class="border-0 border-b-1 border-solid border-fuchsia-900 pl-2 flex items-center flex-nowrap gap-1 hover:bg-teal-200 hover:bg-opacity-30">
+						<input type="text" name="system.traits.{{ @index }}" value="{{ this }}" class="!bg-none !rounded-none !border-none font-semibold" />
+						<a data-action="delete-trait" data-index="{{ @index }}" class="text-sm">
+							<i class="fas fa-trash"></i>
+						</a>
+					</div>
+				{{/each}}
+				<div class="col-span-4 text-right">
+					<a data-action="add-trait">
+						<i class="fas fa-plus"></i>
+						<span>{{ localize "Labels.Actor.AddTrait" }}</span>
+					</a>
+				</div>
+			</div>
+		</div>
+
 		{{!-- Attributes --}}
 		<div class="grid grid-cols-4">
 			<span class="col-span-4 bg-fuchsia-900 text-white uppercase font-semibold flex items-center px-1 h-full justify-center">{{ localize "Labels.Actor.Attributes" }}</span>

@@ -1,13 +1,14 @@
 import Attributes from './templates/Attributes.mjs';
 import Skills from './templates/Skills.mjs';
+import Traits from "./templates/Traits.mjs";
 
 /**
  * Data Model representing a Major NPC
  *
  * @mixes {Attributes}
  * @mixes {Skills}
+ * @mixes {Traits}
  *
- * @property {string[]} traits
  * @property {object} threat
  * @property {number} threat.current
  * @property {number} threat.max
@@ -24,17 +25,7 @@ export default class ManorNPCDataModel extends foundry.abstract.TypeDataModel {
 		return {
 			...Attributes(),
 			...Skills(),
-
-			traits: new fields.ArrayField(
-				new fields.StringField({
-					initial: '',
-					nullable: false,
-				}),
-				{
-					initial: [],
-					nullable: false,
-				},
-			),
+			...Traits(),
 
 			threat: new fields.SchemaField({
 				current: new fields.NumberField({

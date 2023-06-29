@@ -39,12 +39,16 @@
 					"survive": 1,
 					"talk": 1
 				}
+			},
+			"traits": {
+				"traits": []
 			}
 		},
 		"character": {
 			"templates": [
 				"attributes",
-				"skills"
+				"skills",
+				"traits"
 			],
 			"origin": "",
 			"archetype": "",
@@ -64,9 +68,9 @@
 		"majorNPC": {
 			"templates": [
 				"attributes",
-				"skills"
+				"skills",
+				"traits"
 			],
-			"traits": [],
 			"threat": {
 				"current": 0,
 				"max": 0

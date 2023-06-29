@@ -52,7 +52,8 @@
 			"Equipment": "Equipment",
 			"PersonalThreat": "Personal Threat",
 			"Traits": "Traits",
-			"InjuriesToDefeat": "Injuries to Defeat"
+			"InjuriesToDefeat": "Injuries to Defeat",
+			"AddTrait": "Add Trait"
 		},
 		"DicePrompt": {
 			"Attribute": "Attribute",
