@@ -1,3 +1,7 @@
+### v1.0.3
+- Roboto Flex font should be selectable in ProseMirror editors.
+- Added Traits box to player character sheets.
+
 ### v1.0.2
 - Add item description, when present, in Equipment list on character sheet.
 - Don't display tech level in Equipment list for items with TL0.

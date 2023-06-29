@@ -1,6 +1,6 @@
 import Attributes from './templates/Attributes.mjs';
 import Skills from './templates/Skills.mjs';
-import Traits from "./templates/Traits.mjs";
+import Traits from './templates/Traits.mjs';
 
 /**
  * Data Model representing a Player Character
