@@ -27,7 +27,7 @@ export function registerActors() {
  */
 function registerDataModels() {
 	CONFIG.Actor.dataModels.character = CharacterDataModel;
-	CONFIG.Actor.dataModels.manorNPC = MajorNPCDataModel;
+	CONFIG.Actor.dataModels.majorNPC = MajorNPCDataModel;
 }
 
 /**
