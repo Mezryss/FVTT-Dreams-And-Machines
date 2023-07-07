@@ -1,3 +1,10 @@
+### v1.1.0
+- First release for Starter Set release series.
+
+### v1.0.4
+- Final version with QuickStart support.
+- Fixed a typo preventing the Major NPC data model from actually being used.
+
 ### v1.0.3
 - Roboto Flex font should be selectable in ProseMirror editors.
 - Added Traits box to player character sheets.

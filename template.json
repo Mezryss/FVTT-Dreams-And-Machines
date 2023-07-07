@@ -2,7 +2,8 @@
 	"Actor": {
 		"types": [
 			"character",
-			"majorNPC"
+			"majorNPC",
+			"npc"
 		],
 		"templates": {
 			"attributes": {
@@ -81,30 +82,98 @@
 			},
 			"notes": "",
 			"description": ""
+		},
+		"npc": {
+			"truth": "",
+			"attribute": {
+				"value": 8,
+				"default": 1
+			} ,
+			"skill": {
+				"value": 3,
+				"default": 1
+			},
+			"specialActions": "",
+			"notes": ""
 		}
 	},
 
 	"Item": {
 		"types": [
+			"archetype",
 			"item",
-			"originBenefit",
-			"talent"
+			"origin",
+			"talent",
+			"temperament",
+			"majorNPCAction"
 		],
 		"templates": {
 			"itemDescription": {
 				"description": ""
 			}
 		},
+		"archetype": {
+			"templates": ["itemDescription"],
+			"skills": {
+				"fight": 1,
+				"move": 1,
+				"operate": 1,
+				"sneak": 1,
+				"study": 1,
+				"survive": 1,
+				"talk": 1
+			},
+			"spirit": 1,
+			"supplyPoints": 0,
+			"startingGear": [],
+			"startingCoin": 0
+		},
 		"item": {
 			"templates": ["itemDescription"],
 			"techLevel": 0,
-			"qualities": []
+			"value": 0,
+			"protection": {
+				"value": 0,
+				"note": ""
+			},
+			"qualities": [],
+			"isWeapon": false,
+			"weapon": null
 		},
-		"originBenefit": {
-			"templates": ["itemDescription"]
+		"origin": {
+			"templates": ["itemDescription"],
+			"attributes": {
+				"might": 8,
+				"quickness": 8,
+				"insight": 8,
+				"resolve": 8,
+				"techLevel": 1,
+				"spirit": 1,
+				"supplyPoints": 0
+			},
+			"benefit": {
+				"name": "",
+				"description": ""
+			},
+			"archetypes": []
 		},
 		"talent": {
-			"templates": ["itemDescription"]
+			"templates": ["itemDescription"],
+			"archetype": ""
+		},
+		"temperament": {
+			"templates": ["itemDescription"],
+			"spiritEffect": "",
+			"exhaustionEffect": "",
+			"exhaustionType": "Despairing"
+		},
+		"majorNPCAction": {
+			"templates": ["itemDescription"],
+			"skillTest": {
+				"tn": 8,
+				"focus": 4
+			},
+			"weapon": null
 		}
 	}
 }

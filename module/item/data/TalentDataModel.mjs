@@ -1,7 +1,7 @@
 import ItemDescription from './templates/ItemDescription.mjs';
 
 /**
- * Data model representing Talents & Origin Benefits.
+ * Data model representing Talents.
  *
  * @mixes ItemDescription
  */

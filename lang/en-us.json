@@ -2,12 +2,16 @@
 	"TYPES": {
 		"Actor": {
 			"character": "Player Character",
-			"majorNPC": "Major NPC"
+			"majorNPC": "Major NPC",
+			"npc": "NPC"
 		},
 		"Item": {
+			"archetype": "Archetype",
 			"item": "Equipment",
-			"originBenefit": "Origin Benefit",
-			"talent": "Talent"
+			"origin": "Origin",
+			"talent": "Talent",
+			"temperament": "Temperament",
+			"majorNPCAction": "Major NPC Action"
 		}
 	},
 	"Attributes": {
@@ -44,7 +48,6 @@
 			"Coin": "Coin",
 			"Spirit": "Spirit",
 			"SupplyPoints": "Supply Points",
-			"OriginBenefits": "Origin Benefits",
 			"Talents": "Talents",
 			"Goal": "Goal",
 			"Attitude": "Attitude",

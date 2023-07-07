@@ -225,19 +225,6 @@
 			</label>
 		</div>
 
-		{{!-- Origin Benefits --}}
-		<div class="flex flex-col">
-			<span class="w-full bg-fuchsia-900 text-white uppercase font-semibold flex items-center px-1 h-full justify-center">{{ localize "Labels.Actor.OriginBenefits" }}</span>
-			<div class="w-full h-full bg-white border-1 border-t-0 border-fuchsia-200 p-2">
-				{{#each originBenefits}}
-					<div class="pl-4">
-						<span class="font-bold -ml-4" data-menu="item" data-action="open-sheet" data-uuid="{{ uuid }}"><a>{{ name }}:</a></span>
-						{{{ description }}}
-					</div>
-				{{/each}}
-			</div>
-		</div>
-
 		{{!-- Talents --}}
 		<div class="flex flex-col">
 			<span class="w-full bg-fuchsia-900 text-white uppercase font-semibold flex items-center px-1 h-full justify-center">{{ localize "Labels.Actor.Talents" }}</span>

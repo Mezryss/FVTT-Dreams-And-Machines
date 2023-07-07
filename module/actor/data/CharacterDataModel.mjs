@@ -12,7 +12,7 @@ import Traits from './templates/Traits.mjs';
  * @property {string} origin
  * @property {string} archetype
  * @property {string} temperament
- * @property {string} bond TODO: Identify whether Bond should be something else.
+ * @property {string} bond
  * @property {number} coin
  * @property {number} techLevel
  * @property {object} spirit

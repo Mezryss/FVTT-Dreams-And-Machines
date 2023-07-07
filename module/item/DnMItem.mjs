@@ -23,7 +23,6 @@ export function registerItems() {
  */
 function registerDataModels() {
 	CONFIG.Item.dataModels.item = ItemDataModel;
-	CONFIG.Item.dataModels.originBenefit = TalentDataModel;
 	CONFIG.Item.dataModels.talent = TalentDataModel;
 }
 
@@ -39,7 +38,7 @@ function registerSheets() {
 	});
 
 	Items.registerSheet('dreams-and-machines', DnMItemSheet, {
-		types: ['originBenefit', 'talent'],
+		types: ['talent'],
 		makeDefault: true,
 	});
 }

@@ -12,20 +12,6 @@ export default class CharacterSheet extends DnMActorSheet {
 	}
 
 	async getData(options = {}) {
-		const originBenefits = await Promise.all(
-			this.actor.items
-				.filter((i) => i.type === 'originBenefit')
-				.map(
-					/**
-					 * @param {DnMItem} i
-					 */
-					async (i) => ({
-						uuid: i.uuid,
-						name: i.name,
-						description: await TextEditor.enrichHTML(i.system.description, { async: true }),
-					}),
-				),
-		);
 		const talents = await Promise.all(
 			this.actor.items
 				.filter((i) => i.type === 'talent')
@@ -57,7 +43,6 @@ export default class CharacterSheet extends DnMActorSheet {
 
 		return {
 			...super.getData(options),
-			originBenefits,
 			talents,
 			equipment,
 			enrichedGoal: await TextEditor.enrichHTML(this.system.goal, { async: true }),
