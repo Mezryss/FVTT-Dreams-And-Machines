@@ -1,47 +1,181 @@
-<form class="{{ cssClass }} flex !flex-1 flex-col gap-1 items-center min-h-10 bg-white bg-opacity-50">
-	{{> systems/dreams-and-machines/templates/item/partials/item-header.hbs }}
-
-	{{!-- Tech Level --}}
-	<label class="flex items-center gap-1 font-semibold whitespace-nowrap text-lg">
-		<span>{{ localize "Labels.TechLevel" }}</span>
-		<input type="number" class="!w-10 !text-center" name="system.techLevel" value="{{system.techLevel}}" />
-	</label>
-
-	{{!-- Item Qualities --}}
-	{{#if editable}}
-		<div class="px-1 w-full">
-			<label class="flex flex-wrap gap-x-1 gap-y-0.5 w-full items-center px-1 justify-center">
-				<span class="font-semibold text-lg">{{ localize "Labels.Item.Qualities" }}:</span>
-				{{#each system.qualities}}
-					<span class="flex gap-1 border-1 border-solid border-black px-1 rounded-md bg-gray-100 font-roboto-flex items-center">
-						<input type="hidden" name="system.qualities.{{ @index }}.label" value="{{ label }}" />
+{{#*inline "qualitiesInput"}}
+	<div class="px-1 w-full">
+		<label class="flex flex-wrap gap-x-1 gap-y-1 w-full items-center px-1 justify-center">
+			{{#each value}}
+				<span class="flex gap-1 border-1 border-solid border-black p-1 rounded-md bg-gray-100 font-roboto-flex items-center">
+						<input type="hidden" name="{{ ../name }}.{{ @index }}.label" value="{{ label }}" />
 						<span>{{ label }}</span>
 						{{#if rating}}
-							<input type="number" class="!w-10 !text-center" name="system.qualities.{{ @index }}.rating" value="{{ rating }}" />
+							<input type="number" class="!w-10 !text-center !my-0 !h-5" name="{{ ../name }}.{{ @index }}.rating" value="{{ rating }}" />
 						{{/if}}
-						<a class="text-xs" data-action="delete-quality" data-index="{{ @index }}" title="{{ localize "Labels.Item.DeleteQuality" }}">
+						<a class="text-xs" data-action="delete-quality" data-name="{{ ../name }}" data-index="{{ @index }}" title="{{ localize "Labels.Item.DeleteQuality" }}">
 							<i class="fas fa-trash"></i>
 						</a>
 					</span>
-				{{/each}}
-				<input name="new-quality" type="text" class="min-w-[100px] max-w-[150px] rounded-md" placeholder="{{ localize "Labels.Item.AddQualityPlaceholder" }}" data-action="add-quality" />
-			</label>
-		</div>
-	{{else}}
-		{{#if system.hasQualities}}
-			<div class="flex flex-wrap font-semibold text-lg whitespace-nowrap gap-x-1 gap-y-0.5 items-center w-full justify-center">
-				{{#each system.qualities}}
-					<span class="after:content-[','] after:-ml-1 last-of-type:after:content-['.']">
-						<span>{{ label }}</span>
-						{{#if rating}}
-							<span>{{ rating }}</span>
-						{{/if}}
-					</span>
-				{{/each}}
-			</div>
-		{{/if}}
-	{{/if}}
+			{{/each}}
+			<input name="new-quality" type="text" class="min-w-[100px] max-w-[150px] rounded-md" placeholder="{{ localize "Labels.Item.AddQualityPlaceholder" }}" data-action="add-quality" data-name="{{ name }}" />
+		</label>
+	</div>
+{{/inline}}
 
-	{{!-- Description --}}
-	{{> systems/dreams-and-machines/templates/item/partials/item-description.hbs }}
+{{#*inline "qualitiesDisplay"}}
+	{{#if system.hasQualities}}
+		<div class="flex flex-wrap font-semibold text-lg whitespace-nowrap gap-x-1 gap-y-0.5 items-center w-full justify-center">
+			{{#each system.qualities}}
+				<span class="after:content-[','] after:-ml-1 last-of-type:after:content-['.']">
+						<span>{{ label }}</span>
+					{{#if rating}}
+						<span>{{ rating }}</span>
+					{{/if}}
+					</span>
+			{{/each}}
+		</div>
+	{{/if}}
+{{/inline}}
+
+{{#*inline "techLevelValueInput"}}
+	<div class="grid grid-cols-2 w-full">
+		<label class="flex flex-col items-center font-semibold">
+			<span class="text-center py-0.5 w-full whitespace-nowrap bg-fuchsia-900 text-white uppercase">{{ localize "Labels.TechLevel" }}</span>
+			<input type="number" class="disabled:!border-1 disabled:!border-solid !text-center !h-10 !text-3xl !rounded-none !w-full !border-fuchsia-900" name="system.techLevel" value="{{ system.techLevel }}" />
+		</label>
+		<label class="flex flex-col items-center font-semibold">
+			<span class="text-center py-0.5 w-full whitespace-nowrap bg-fuchsia-900 text-white uppercase">{{ localize "Labels.Value" }}</span>
+			<input type="number" class="disabled:!border-b-1 disabled:!border-t-1 disabled:!border-r-1 disabled:!border-solid !border-l-0 !text-center !h-10 !text-3xl !rounded-none !w-full !border-fuchsia-900" name="system.value" value="{{ system.value }}" />
+		</label>
+	</div>
+{{/inline}}
+
+<form class="{{ cssClass }} flex !flex-1 flex-col gap-1 items-center min-h-10 bg-white bg-opacity-50">
+	{{> systems/dreams-and-machines/templates/item/partials/item-header.hbs }}
+
+	{{!-- Editable Sheet --}}
+	{{#if editable}}
+		{{!-- Weapon Block --}}
+		<div class="flex flex-col items-start w-full">
+			{{!-- Is Weapon checkbox --}}
+			<label class="flex items-center">
+				<input type="checkbox" name="system.isWeapon" {{ checked system.isWeapon }} />
+				<span>{{ localize "Labels.Item.IsWeapon" }}</span>
+			</label>
+
+			{{!-- Item Qualities --}}
+			<div class="flex flex-col items-center w-full p-1">
+				<div class="py-0.5 w-full text-center font-semibold uppercase text-white bg-fuchsia-900">{{ localize "Labels.Item.Qualities" }}</div>
+				<div class="w-full border-1 border-t-0 border-fuchsia-900 border-solid p-1">
+					{{> qualitiesInput value=system.qualities name="system.qualities" }}
+				</div>
+			</div>
+
+			{{!-- Weapon Stat Input --}}
+			{{#if system.isWeapon}}
+				<div class="w-full grid grid-cols-2 p-1">
+					<label class="text-center bg-fuchsia-900 w-full text-white uppercase font-semibold p-1">
+						{{ localize "Labels.Item.Damage" }}
+					</label>
+
+					<label class="text-center bg-fuchsia-900 w-full text-white uppercase font-semibold p-1">
+						{{ localize "Labels.Item.Qualities" }}
+					</label>
+
+					<div class="border-1 border-solid border-t-0 border-fuchsia-900 p-1">
+						{{> qualitiesInput value=system.weapon.damageQualities name="system.weapon.damageQualities" }}
+					</div>
+
+					<div class="border-1 border-solid border-t-0 border-fuchsia-900 p-1">
+						{{> qualitiesInput value=system.weapon.qualities name="system.weapon.qualities" }}
+					</div>
+				</div>
+			{{/if}}
+		</div>
+
+		{{!-- Protection Block --}}
+		<div class="flex flex-col items-start w-full">
+			<label class="flex items-center">
+				<input type="checkbox" name="system.hasProtection" {{ checked system.hasProtection }} />
+				<span>{{ localize "Labels.Item.HasProtection" }}</span>
+			</label>
+
+			{{#if system.hasProtection}}
+				<div class="grid grid-cols-3 p-1 w-full">
+					<label class="flex flex-col text-center bg-fuchsia-900 w-full text-white uppercase font-semibold p-1">
+						{{ localize "Labels.Item.ProtectionValue" }}
+					</label>
+
+					<label class="col-span-2 text-center bg-fuchsia-900 w-full text-white uppercase font-semibold p-1">
+						{{ localize "Labels.Notes" }}
+					</label>
+
+					<input type="number" class="!text-center !h-full !text-xl !rounded-none !w-full !border-fuchsia-900" name="system.protection.value" value="{{ system.protection.value }}" />
+
+					<div class="col-span-2 border-1 border-fuchsia-900 border-solid">
+						<textarea class="resize-y border-none rounded-none w-full h-full" name="system.protection.notes">{{ system.protection.notes }}</textarea>
+					</div>
+				</div>
+			{{/if}}
+		</div>
+
+		{{!-- Tech Level & Value --}}
+		<div class="px-1">
+			{{> techLevelValueInput }}
+		</div>
+
+		{{!-- Description --}}
+		{{> systems/dreams-and-machines/templates/item/partials/item-description.hbs }}
+	{{!-- Non-Editable Sheet --}}
+	{{else}}
+		<div class="px-2 flex flex-col gap-2">
+			<div class="text-center text-lg">
+				{{{ enrichedDescription }}}
+			</div>
+
+			{{> qualitiesDisplay }}
+
+			{{#if system.isWeapon}}
+				<div class="w-full grid grid-cols-2 border-1 border-solid border-fuchsia-900">
+					<label class="col-span-2 text-center w-full p-0.5 bg-fuchsia-900 text-white uppercase font-semibold">
+						{{ localize "Labels.Item.Weapon.Label" }}
+					</label>
+					<span class="col-span-2 text-center text-xl font-semibold">
+						{{ item.name }} ({{ localize (concat "Labels.Item.Weapon." system.weapon.type) }})
+					</span>
+
+					<label class="text-center w-full p-0.5 bg-fuchsia-900 text-white uppercase font-semibold">
+						{{ localize "Labels.Item.Damage" }}
+					</label>
+
+					<label class="text-center w-full p-0.5 bg-fuchsia-900 text-white uppercase font-semibold">
+						{{ localize "Labels.Item.Qualities" }}
+					</label>
+
+					<span class="text-lg w-full text-center border-0 border-r-1 border-solid border-fuchsia-900">
+						{{#each system.weapon.damageQualities}}
+							<em class="oblique font-semibold">{{ label }} {{ rating }}</em>
+							{{#unless @last}}{{ localize "Labels.Item.Weapon.or" }}{{/unless}}
+						{{/each}}
+					</span>
+
+					<span class="text-lg w-full text-center">
+						{{#each system.weapon.qualities}}
+							<span>{{ label }}{{#if rating}} {{ rating }}{{/if}}{{#unless @last}},{{/unless}}</span>
+						{{/each}}
+						{{#unless system.weapon.qualities}}—{{/unless}}
+					</span>
+				</div>
+			{{/if}}
+
+			{{#if system.hasProtection}}
+				<div class="w-full text-center text-lg">
+					<strong>{{ localize "Labels.Item.Protection" }}:</strong>
+					{{#if system.protection.notes}}
+						<span>{{ system.protection.value }}, {{{ system.protection.notes }}}</span>
+					{{else}}
+						<span>{{ system.protection.value }}</span>
+					{{/if}}
+				</div>
+			{{/if}}
+
+			{{> techLevelValueInput }}
+		</div>
+	{{/if}}
 </form>

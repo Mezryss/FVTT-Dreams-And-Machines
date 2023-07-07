@@ -20,6 +20,10 @@
 		@apply text-lg;
 	}
 
+	em {
+		@apply oblique;
+	}
+
 	button {
 		@apply flex;
 		@apply items-center;
@@ -90,6 +94,12 @@ body {
 	flex: unset;
 	padding: unset;
 }
+
+/* TODO: Come up with a nice background image for sheets. */
+/*.window-app.dnm.sheet .window-content {*/
+/*	background-image: url('images/SheetBG.svg');*/
+/*	background-size: 2160px 3840px;*/
+/*}*/
 
 .dnm .window-content {
 	height: 100%;

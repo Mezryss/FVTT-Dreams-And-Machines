@@ -132,13 +132,18 @@
 			"templates": ["itemDescription"],
 			"techLevel": 0,
 			"value": 0,
-			"protection": {
-				"value": 0,
-				"note": ""
-			},
 			"qualities": [],
+			"hasProtection": false,
+			"protection": {
+				"number": 0,
+				"notes": ""
+			},
 			"isWeapon": false,
-			"weapon": null
+			"weapon": {
+				"type": "Melee",
+				"qualities": [],
+				"damageQualities": []
+			}
 		},
 		"origin": {
 			"templates": ["itemDescription"],

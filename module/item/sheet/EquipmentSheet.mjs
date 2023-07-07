@@ -52,6 +52,9 @@ export default class EquipmentSheet extends DnMItemSheet {
 		/** @type {string} */
 		const inputValue = event.target.value;
 
+		/** @type {string} */
+		const name = $(event.currentTarget).data('name');
+
 		const match = inputValue.trim().match(RATING_INPUT_REGEXP);
 		if (!match) {
 			return;
@@ -64,9 +67,25 @@ export default class EquipmentSheet extends DnMItemSheet {
 			rating = null;
 		}
 
+		/** @type ItemQuality[] */
+		let qualities;
+		switch (name) {
+			case 'system.weapon.damageQualities':
+				qualities = [...this.system.weapon.damageQualities];
+				break;
+
+			case 'system.weapon.qualities':
+				qualities = [...this.system.weapon.qualities];
+				break;
+
+			default:
+				qualities = [...this.system.qualities];
+				break;
+		}
+
 		await this.item.update({
-			'system.qualities': [
-				...this.system.qualities,
+			[name]: [
+				...qualities,
 				{
 					label,
 					rating,
@@ -83,12 +102,28 @@ export default class EquipmentSheet extends DnMItemSheet {
 		const target = $(event.currentTarget);
 
 		const index = +target.data('index');
+		const name = target.data('name');
 
-		const qualities = [...this.system.qualities];
+		/** @type ItemQuality[] */
+		let qualities;
+
+		switch (name) {
+			case 'system.weapon.damageQualities':
+				qualities = [...this.system.weapon.damageQualities];
+				break;
+
+			case 'system.weapon.qualities':
+				qualities = [...this.system.weapon.qualities];
+				break;
+
+			default:
+				qualities = [...this.system.qualities];
+				break;
+		}
 		qualities.splice(index, 1);
 
 		await this.item.update({
-			'system.qualities': qualities,
+			[name]: qualities,
 		});
 	}
 }

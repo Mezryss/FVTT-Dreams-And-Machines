@@ -69,14 +69,26 @@
 			"AddQualityPlaceholder": "Type to Add Quality",
 			"DeleteQuality": "Delete Quality",
 			"Edit": "Edit Item",
-			"Delete": "Delete Item"
+			"Delete": "Delete Item",
+			"HasProtection": "Provides Protection",
+			"IsWeapon": "Is Weapon",
+			"Damage": "Damage",
+			"ProtectionValue": "Protection Value",
+			"Protection": "Protection",
+			"Weapon": {
+				"Label": "Weapon",
+				"Melee": "Melee",
+				"Ranged": "Ranged",
+				"or": "or"
+			}
 		},
 		"Current": "Current",
 		"Max": "Max",
 		"TechLevel": "Tech Level",
 		"Momentum": "Momentum",
 		"Threat": "Threat",
-		"Notes": "Notes"
+		"Notes": "Notes",
+		"Value": "Value"
 	},
 	"Notifications": {
 		"NotEnoughMomentum": "Cannot spend Momentum while the pool is empty! Perhaps you should generate Threat instead?",
