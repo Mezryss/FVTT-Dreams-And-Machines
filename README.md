@@ -32,6 +32,11 @@ The code for this system is licensed under the [Creative Commons Attribution-Sha
 > 1. Contributors should not make use of FontAwesome Pro icons in the code they contribute to the project (because FontAwesome licenses are based on individual seats) unless they have a seat on a FontAwesome Pro license.
 > 2. If you fork this project, you are responsible for either removing all uses of FontAwesome Pro icons, or purchasing an appropriate license.
 
+#### Sheet Background Image
+> **License:** [Pexels License](https://www.pexels.com/license/)
+>
+> The [image](images/dnm-bg.jpg) used for sheet backgrounds is modified (mostly just lightened, tiled, shrunk, and color-tweaked) from "[Close-up Photo of Gray Wall](https://www.pexels.com/photo/close-up-photo-of-gray-wall-2768398/)" by Milo Textures on Pexels.
+
 ## Copyright Disclaimer
 
 This project, and the creator of this project, are unaffiliated with Modiphius. This is an unofficial, third-party system implementation built freely as a hobby project.

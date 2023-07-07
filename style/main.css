@@ -95,11 +95,10 @@ body {
 	padding: unset;
 }
 
-/* TODO: Come up with a nice background image for sheets. */
-/*.window-app.dnm.sheet .window-content {*/
-/*	background-image: url('images/SheetBG.svg');*/
-/*	background-size: 2160px 3840px;*/
-/*}*/
+.window-app.dnm.sheet .window-content {
+	background-image: url('images/dnm-bg.jpg');
+	background-size: 1024px 1024px;
+}
 
 .dnm .window-content {
 	height: 100%;
