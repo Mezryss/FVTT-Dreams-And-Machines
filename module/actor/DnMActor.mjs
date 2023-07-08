@@ -2,7 +2,7 @@ import CharacterSheet from './sheets/CharacterSheet.mjs';
 import CharacterDataModel from './data/CharacterDataModel.mjs';
 import MajorNPCDataModel from './data/MajorNPCDataModel.mjs';
 import MajorNPCSheet from './sheets/MajorNPCSheet.mjs';
-import DnMActorSheet from "./DnMActorSheet.mjs";
+import DnMActorSheet from './DnMActorSheet.mjs';
 
 /**
  * Shared base class for all Dreams and Machines actor documents.

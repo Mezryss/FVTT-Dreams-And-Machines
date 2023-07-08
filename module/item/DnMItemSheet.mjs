@@ -45,7 +45,9 @@ export default class DnMItemSheet extends ItemSheet {
 	 */
 	async openSheet(event) {
 		const uuid = $(event.currentTarget).data('uuid');
-		if (!uuid) { return; }
+		if (!uuid) {
+			return;
+		}
 
 		const document = await fromUuid(uuid);
 		document?.sheet?.render(true);

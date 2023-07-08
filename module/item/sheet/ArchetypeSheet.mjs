@@ -6,7 +6,9 @@ import { DnMItem } from '../DnMItem.mjs';
  */
 export default class ArchetypeSheet extends DnMItemSheet {
 	/** @type ArchetypeDataModel */
-	get system() { return this.item.system; }
+	get system() {
+		return this.item.system;
+	}
 
 	activateListeners(html) {
 		super.activateListeners(html);
@@ -42,18 +44,16 @@ export default class ArchetypeSheet extends DnMItemSheet {
 						'system.startingGear': gear,
 					});
 				},
-			}
+			},
 		]);
 	}
 
 	async getData(options = {}) {
 		/** @type DnMItem[] */
-		const startingGear = await Promise.all(
-			this.system.startingGear.map(i => fromUuid(i)),
-		);
+		const startingGear = await Promise.all(this.system.startingGear.map((i) => fromUuid(i)));
 
 		return {
-			...await super.getData(options),
+			...(await super.getData(options)),
 			startingGear,
 		};
 	}
@@ -70,15 +70,12 @@ export default class ArchetypeSheet extends DnMItemSheet {
 		}
 
 		// Disallow multiples of the same item.
-		if (this.system.startingGear.find(id => id === droppedItem.uuid)) {
+		if (this.system.startingGear.find((id) => id === droppedItem.uuid)) {
 			return;
 		}
 
 		await this.item.update({
-			'system.startingGear': [
-				...this.system.startingGear,
-				droppedItem.uuid,
-			],
+			'system.startingGear': [...this.system.startingGear, droppedItem.uuid],
 		});
 	}
 }

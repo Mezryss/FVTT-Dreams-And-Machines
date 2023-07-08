@@ -1,4 +1,4 @@
-import ArchetypeDataModel from "./data/ArchetypeDataModel.mjs";
+import ArchetypeDataModel from './data/ArchetypeDataModel.mjs';
 import ItemDataModel from './data/ItemDataModel.mjs';
 import TalentDataModel from './data/TalentDataModel.mjs';
 import EquipmentSheet from './sheet/EquipmentSheet.mjs';
