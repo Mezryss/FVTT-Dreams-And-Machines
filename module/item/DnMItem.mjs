@@ -1,7 +1,9 @@
+import ArchetypeDataModel from "./data/ArchetypeDataModel.mjs";
 import ItemDataModel from './data/ItemDataModel.mjs';
 import TalentDataModel from './data/TalentDataModel.mjs';
 import EquipmentSheet from './sheet/EquipmentSheet.mjs';
 import DnMItemSheet from './DnMItemSheet.mjs';
+import ArchetypeSheet from './sheet/ArchetypeSheet.mjs';
 
 /**
  * Shared base class for all Dreams and Machines item documents.
@@ -22,6 +24,7 @@ export function registerItems() {
  * Handles registration for all Dreams and Machine Item data models.
  */
 function registerDataModels() {
+	CONFIG.Item.dataModels.archetype = ArchetypeDataModel;
 	CONFIG.Item.dataModels.item = ItemDataModel;
 	CONFIG.Item.dataModels.talent = TalentDataModel;
 }
@@ -31,6 +34,11 @@ function registerDataModels() {
  */
 function registerSheets() {
 	Items.unregisterSheet('core', ItemSheet);
+
+	Items.registerSheet('dreams-and-machines', ArchetypeSheet, {
+		types: ['archetype'],
+		makeDefault: true,
+	});
 
 	Items.registerSheet('dreams-and-machines', EquipmentSheet, {
 		types: ['item'],

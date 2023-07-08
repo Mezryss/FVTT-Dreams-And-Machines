@@ -75,6 +75,10 @@
 			"Damage": "Damage",
 			"ProtectionValue": "Protection Value",
 			"Protection": "Protection",
+			"StartingCoin": "Starting Coin",
+			"StartingGear": "Starting Gear",
+			"AddStartingGear": "Drag & Drop Equipment onto this sheet to reference them as starting equipment for the archetype!",
+			"MissingUUID": "(Missing UUID)",
 			"Weapon": {
 				"Label": "Weapon",
 				"Melee": "Melee",

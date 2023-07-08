@@ -1,0 +1,91 @@
+<form class="{{ cssClass }} flex !flex-1 flex-col items-center min-h-10">
+	{{> systems/dreams-and-machines/templates/item/partials/item-header.hbs }}
+
+	<div class="w-full h-full p-1">
+		{{!-- Skills --}}
+		<div class="grid grid-cols-3">
+			<span class="col-span-3 uppercase text-center font-semibold bg-fuchsia-900 text-white p-1">
+				{{ localize "Labels.Actor.Skills" }}
+			</span>
+
+			<label class="flex flex-col border-1 border-fuchsia-900 border-solid font-semibold uppercase border-r-0">
+				<span class="w-full text-center text-fuchsia-900 text-lg">{{ localize "Skills.Fight" }}</span>
+				<input type="number" name="system.skills.fight" value="{{ system.skills.fight }}" class="!text-center !font-semibold !text-3xl !border-none !rounded-none !bg-none !mb-1" />
+			</label>
+			<label class="flex flex-col border-1 border-fuchsia-900 border-solid font-semibold uppercase">
+				<span class="w-full text-center text-fuchsia-900 text-lg">{{ localize "Skills.Move" }}</span>
+				<input type="number" name="system.skills.move" value="{{ system.skills.move }}" class="!text-center !font-semibold !text-3xl !border-none !rounded-none !bg-none !mb-1" />
+			</label>
+			<label class="flex flex-col border-1 border-fuchsia-900 border-solid font-semibold uppercase border-l-0">
+				<span class="w-full text-center text-fuchsia-900 text-lg">{{ localize "Skills.Operate" }}</span>
+				<input type="number" name="system.skills.operate" value="{{ system.skills.operate }}" class="!text-center !font-semibold !text-3xl !border-none !rounded-none !bg-none !mb-1" />
+			</label>
+
+			<label class="flex flex-col border-1 border-fuchsia-900 border-solid font-semibold uppercase border-r-0 border-t-0">
+				<span class="w-full text-center text-fuchsia-900 text-lg">{{ localize "Skills.Sneak" }}</span>
+				<input type="number" name="system.skills.sneak" value="{{ system.skills.sneak }}" class="!text-center !font-semibold !text-3xl !border-none !rounded-none !bg-none !mb-1" />
+			</label>
+			<label class="flex flex-col border-1 border-fuchsia-900 border-solid font-semibold uppercase border-t-0">
+				<span class="w-full text-center text-fuchsia-900 text-lg">{{ localize "Skills.Study" }}</span>
+				<input type="number" name="system.skills.study" value="{{ system.skills.study }}" class="!text-center !font-semibold !text-3xl !border-none !rounded-none !bg-none !mb-1" />
+			</label>
+			<label class="flex flex-col border-1 border-fuchsia-900 border-solid font-semibold uppercase border-l-0 border-t-0">
+				<span class="w-full text-center text-fuchsia-900 text-lg">{{ localize "Skills.Survive" }}</span>
+				<input type="number" name="system.skills.survive" value="{{ system.skills.survive }}" class="!text-center !font-semibold !text-3xl !border-none !rounded-none !bg-none !mb-1" />
+			</label>
+
+			<span></span>
+			<label class="flex flex-col border-1 border-fuchsia-900 border-solid font-semibold uppercase border-t-0">
+				<span class="w-full text-center text-fuchsia-900 text-lg">{{ localize "Skills.Talk" }}</span>
+				<input type="number" name="system.skills.talk" value="{{ system.skills.talk }}" class="!text-center !font-semibold !text-3xl !border-none !rounded-none !bg-none !mb-1" />
+			</label>
+			<span></span>
+		</div>
+
+		{{!-- Spirit & Supply --}}
+		<div class="grid grid-cols-2">
+			<label class="flex flex-col border-1 border-fuchsia-900 border-solid font-semibold uppercase border-t-0">
+				<span class="uppercase text-center font-semibold bg-fuchsia-900 text-white p-1">
+					{{ localize "Labels.Actor.Spirit" }}
+				</span>
+				<input type="number" name="system.spirit" value="{{ system.spirit }}" class="!text-center !font-semibold !text-3xl !border-none !rounded-none !bg-none !mb-1" />
+			</label>
+
+			<label class="flex flex-col border-1 border-fuchsia-900 border-solid font-semibold uppercase border-t-0 border-l-0">
+				<span class="uppercase text-center font-semibold bg-fuchsia-900 text-white p-1">
+					{{ localize "Labels.Actor.SupplyPoints" }}
+				</span>
+				<input type="number" name="system.supplyPoints" value="{{ system.supplyPoints }}" class="!text-center !font-semibold !text-3xl !border-none !rounded-none !bg-none !mb-1" />
+			</label>
+		</div>
+
+		{{!-- Starting Gear --}}
+		<div class="flex flex-col items-center text-center py-4">
+			<span class="font-semibold text-xl">{{ localize "Labels.Item.StartingGear" }}:</span>
+			{{#unless system.hasStartingGear}}
+				<em>{{ localize "Labels.Item.AddStartingGear" }}</em>
+			{{/unless}}
+			<div class="flex flex-wrap justify-center gap-1 text-lg">
+				{{#each startingGear}}
+					{{#if (eq this null)}}
+						<span class="oblique text-red-900" data-menu="starting-gear" data-index="{{ @index }}">
+							<a>{{ localize "Labels.Item.MissingUUID" }}</a></span>
+					{{else}}
+						<span data-menu="starting-gear" data-index="{{ @index }}">
+							<a data-action="open-sheet" data-uuid="{{ uuid }}">{{ name }}</a>{{#unless @last}},{{/unless}}
+						</span>
+					{{/if}}
+				{{/each}}
+			</div>
+		</div>
+
+		{{!-- Starting Coin --}}
+		<div class="grid grid-cols-3">
+			<span class="col-span-2"></span>
+			<label class="flex flex-col border-1 border-fuchsia-900 border-solid font-semibold uppercase">
+				<span class="w-full text-center text-fuchsia-900 text-lg">{{ localize "Labels.Item.StartingCoin" }}</span>
+				<input type="number" name="system.startingCoin" value="{{ system.startingCoin }}" class="!text-center !font-semibold !text-3xl !border-none !rounded-none !bg-none !mb-1" />
+			</label>
+		</div>
+	</div>
+</form>
