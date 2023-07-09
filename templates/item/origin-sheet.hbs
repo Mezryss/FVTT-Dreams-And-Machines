@@ -45,12 +45,18 @@
 		</div>
 
 		{{!-- Benefit --}}
-		<div class="flex flex-col my-2">
-			<input type="text" name="system.benefit.name" value="{{ system.benefit.name }}" placeholder="Benefit Name" class="!text-center !font-semibold" />
+		<div class="flex flex-col my-2 {{#if editable}}gap-1{{/if}}">
+			{{#if editable}}
+				<input type="text" name="system.benefit.name" value="{{ system.benefit.name }}" placeholder="Benefit Name" class="!text-center !font-semibold" />
 
-			<div class="flex w-full h-full min-h-10 text-center">
-				{{ editor enrichedBenefitDescription target="system.benefit.description" button=true editable=editable engine="prosemirror" }}
-			</div>
+				<div class="flex w-full h-full min-h-10 text-center">
+					{{ editor enrichedBenefitDescription target="system.benefit.description" button=true editable=editable engine="prosemirror" }}
+				</div>
+			{{else}}
+				<span class="text-center text-lg font-bold">{{ system.benefit.name }}</span>
+
+				<div class="text-center text-lg w-full">{{{ enrichedBenefitDescription }}}</div>
+			{{/if}}
 		</div>
 
 		{{!-- Archetypes --}}

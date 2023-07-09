@@ -53,18 +53,29 @@
 	{{#if editable}}
 		{{!-- Weapon Block --}}
 		<div class="flex flex-col items-start w-full">
-			{{!-- Is Weapon checkbox --}}
-			<label class="flex items-center">
-				<input type="checkbox" name="system.isWeapon" {{ checked system.isWeapon }} />
-				<span>{{ localize "Labels.Item.IsWeapon" }}</span>
-			</label>
-
 			{{!-- Item Qualities --}}
 			<div class="flex flex-col items-center w-full p-1">
 				<div class="py-0.5 w-full text-center font-semibold uppercase text-white bg-fuchsia-900">{{ localize "Labels.Item.Qualities" }}</div>
 				<div class="w-full border-1 border-t-0 border-fuchsia-900 border-solid p-1">
 					{{> qualitiesInput value=system.qualities name="system.qualities" }}
 				</div>
+			</div>
+
+			{{!-- Is Weapon checkbox --}}
+			<div class="grid grid-cols-2 gap-2 w-full pr-1">
+				<label class="flex items-center">
+					<input type="checkbox" name="system.isWeapon" {{ checked system.isWeapon }} />
+					<span>{{ localize "Labels.Item.IsWeapon" }}</span>
+				</label>
+
+				{{#if system.isWeapon}}
+					<select name="system.weapon.type" class="!w-full">
+						{{#select system.weapon.type}}
+							<option value="Melee">{{ localize "Labels.Item.Weapon.Melee" }}</option>
+							<option value="Ranged">{{ localize "Labels.Item.Weapon.Ranged" }}</option>
+						{{/select}}
+					</select>
+				{{/if}}
 			</div>
 
 			{{!-- Weapon Stat Input --}}

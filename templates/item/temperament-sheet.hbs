@@ -3,18 +3,30 @@
 
 	<div class="flex flex-col w-full p-2">
 		{{!-- Description --}}
-		<div class="flex w-full h-full min-h-10 text-center font-bold uppercase oblique text-lg">
-			{{ editor enrichedDescription target="system.description" button=true editable=editable engine="prosemirror" }}
+		<div class="flex w-full h-full {{#if editable}}min-h-10{{/if}} text-center font-bold uppercase oblique text-lg">
+			{{#if editable}}
+				{{ editor enrichedDescription target="system.description" button=true editable=editable engine="prosemirror" }}
+			{{else}}
+				<span>{{{ enrichedDescription }}}</span>
+			{{/if}}
 		</div>
 
 		{{!-- Spirit Effect --}}
-		<div class="flex w-full h-full min-h-10 text-center font-semibold text-lg border-1 border-solid border-fuchsia-900 p-1">
-			{{ editor enrichedSpiritEffect target="system.spiritEffect" button=true editable=editable engine="prosemirror" }}
+		<div class="flex w-full h-full {{#if editable}}min-h-10{{/if}} text-center font-semibold text-lg border-1 border-solid border-fuchsia-900 p-1">
+			{{#if editable}}
+				{{ editor enrichedSpiritEffect target="system.spiritEffect" button=true editable=editable engine="prosemirror" }}
+			{{else}}
+				<span>{{{ enrichedSpiritEffect }}}</span>
+			{{/if}}
 		</div>
 
 		{{!-- Exhaustion Effect --}}
-		<div class="flex w-full h-full min-h-10 text-center font-semibold text-lg p-1">
-			{{ editor enrichedExhaustionEffect target="system.exhaustionEffect" button=true editable=editable engine="prosemirror" }}
+		<div class="flex w-full h-full {{#if editable}}min-h-10{{/if}} text-center font-semibold text-lg p-1">
+			{{#if editable}}
+				{{ editor enrichedExhaustionEffect target="system.exhaustionEffect" button=true editable=editable engine="prosemirror" }}
+			{{else}}
+				<span>{{{ enrichedExhaustionEffect }}}</span>
+			{{/if}}
 		</div>
 
 		{{!-- Exhaustion Type --}}
