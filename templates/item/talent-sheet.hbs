@@ -3,7 +3,13 @@
 	{{> systems/dreams-and-machines/templates/item/partials/item-header.hbs }}
 
 	{{!-- Description --}}
-	{{> systems/dreams-and-machines/templates/item/partials/item-description.hbs }}
+	{{#if editable}}
+		{{> systems/dreams-and-machines/templates/item/partials/item-description.hbs }}
+	{{else}}
+		<div class="text-center text-lg p-1">
+			{{{ enrichedDescription }}}
+		</div>
+	{{/if}}
 
 	{{!-- Archetype --}}
 	<input type="text" name="system.archetype" value="{{ system.archetype }}" class="!py-5 !bg-black uppercase focus:normal-case !text-3xl !text-center !text-white placeholder:text-white placeholder:oblique placeholder:opacity-80 placeholder:text-xl" placeholder="{{ localize "TYPES.Item.archetype" }}" />
