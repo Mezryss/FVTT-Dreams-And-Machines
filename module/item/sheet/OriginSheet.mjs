@@ -50,13 +50,13 @@ export default class OriginSheet extends DnMItemSheet {
 
 	async getData(options = {}) {
 		const enrichedBenefitDescription = await TextEditor.enrichHTML(this.system.benefit.description);
-		const archetypes = await Promise.all(this.system.archetypes.map(i => fromUuid(i)));
+		const archetypes = await Promise.all(this.system.archetypes.map((i) => fromUuid(i)));
 
 		return {
 			...(await super.getData(options)),
 			archetypes,
 			enrichedBenefitDescription,
-		}
+		};
 	}
 
 	async _onDropItem(_event, data) {

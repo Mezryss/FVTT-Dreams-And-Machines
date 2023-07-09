@@ -1,7 +1,8 @@
 import ArchetypeDataModel from './data/ArchetypeDataModel.mjs';
 import ItemDataModel from './data/ItemDataModel.mjs';
-import OriginDataModel from './data/OriginDataModel.mjs'
+import OriginDataModel from './data/OriginDataModel.mjs';
 import TalentDataModel from './data/TalentDataModel.mjs';
+import TemperamentDataModel from './data/TemperamentDataModel.mjs';
 
 import DnMItemSheet from './DnMItemSheet.mjs';
 import ArchetypeSheet from './sheet/ArchetypeSheet.mjs';
@@ -31,6 +32,7 @@ function registerDataModels() {
 	CONFIG.Item.dataModels.item = ItemDataModel;
 	CONFIG.Item.dataModels.origin = OriginDataModel;
 	CONFIG.Item.dataModels.talent = TalentDataModel;
+	CONFIG.Item.dataModels.temperament = TemperamentDataModel;
 }
 
 /**
@@ -55,7 +57,7 @@ function registerSheets() {
 	});
 
 	Items.registerSheet('dreams-and-machines', DnMItemSheet, {
-		types: ['talent'],
+		types: ['talent', 'temperament'],
 		makeDefault: true,
 	});
 }

@@ -1,9 +1,12 @@
 import { registerActors } from './actor/DnMActor.mjs';
 import { registerCombatTracker } from './combat/combat-tracker.mjs';
-import DicePrompt from './dice/DicePrompt.mjs';
 import { registerFonts } from './fonts.mjs';
 import { registerItems } from './item/DnMItem.mjs';
 import registerTemplates from './templates.mjs';
+
+import DicePrompt from './dice/DicePrompt.mjs';
+
+import Exhaustion from './actor/Exhaustion.mjs';
 
 import './momentumTracker/index.mjs';
 
@@ -17,6 +20,7 @@ Hooks.once('init', () => {
 
 	CONFIG.DreamsAndMachines = {
 		DicePrompt,
+		Exhaustion,
 	};
 });
 

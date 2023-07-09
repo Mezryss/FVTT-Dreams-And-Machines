@@ -100,7 +100,7 @@ export default class OriginDataModel extends foundry.abstract.TypeDataModel {
 				{
 					initial: [],
 					nullable: false,
-				}
+				},
 			),
 		};
 	}

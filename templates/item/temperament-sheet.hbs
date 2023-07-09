@@ -1,0 +1,32 @@
+<form class="{{ cssClass }} flex !flex-1 flex-col items-center min-h-10">
+	{{> systems/dreams-and-machines/templates/item/partials/item-header.hbs }}
+
+	<div class="flex flex-col w-full p-2">
+		{{!-- Description --}}
+		<div class="flex w-full h-full min-h-10 text-center font-bold uppercase oblique text-lg">
+			{{ editor enrichedDescription target="system.description" button=true editable=editable engine="prosemirror" }}
+		</div>
+
+		{{!-- Spirit Effect --}}
+		<div class="flex w-full h-full min-h-10 text-center font-semibold text-lg border-1 border-solid border-fuchsia-900 p-1">
+			{{ editor enrichedSpiritEffect target="system.spiritEffect" button=true editable=editable engine="prosemirror" }}
+		</div>
+
+		{{!-- Exhaustion Effect --}}
+		<div class="flex w-full h-full min-h-10 text-center font-semibold text-lg p-1">
+			{{ editor enrichedExhaustionEffect target="system.exhaustionEffect" button=true editable=editable engine="prosemirror" }}
+		</div>
+
+		{{!-- Exhaustion Type --}}
+		<label class="flex flex-col border-0 border-t-1 border-solid border-fuchsia-900">
+			<span class="uppercase text-fuchsia-900 font-semibold">{{ localize "Labels.Actor.Exhaustion" }}:</span>
+			<select name="system.exhaustionType" class="!border-none !rounded-none !text-2xl uppercase text-white !bg-black !p-2 !text-center !h-[unset]">
+				{{#select system.exhaustionType}}
+					{{#each CONFIG.DreamsAndMachines.Exhaustion.all}}
+						<option value="{{ this }}">{{ localize (concat "Labels.Exhaustion." this ) }}</option>
+					{{/each}}
+				{{/select}}
+			</select>
+		</label>
+	</div>
+</form>

@@ -40,10 +40,6 @@
 			"Bond": "Bond",
 			"Attributes": "Attributes",
 			"Exhaustion": "Exhaustion",
-			"Confused": "Confused",
-			"Weary": "Weary",
-			"Breathless": "Breathless",
-			"Despairing": "Despairing",
 			"Skills": "Skills",
 			"Coin": "Coin",
 			"Spirit": "Spirit",
@@ -63,6 +59,12 @@
 			"Skill": "Skill",
 			"Complication": "Complication Range",
 			"Roll": "Roll"
+		},
+		"Exhaustion": {
+			"Confused": "Confused",
+			"Weary": "Weary",
+			"Breathless": "Breathless",
+			"Despairing": "Despairing"
 		},
 		"Item": {
 			"Qualities": "Qualities",

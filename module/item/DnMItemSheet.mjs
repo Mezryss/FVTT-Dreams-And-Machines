@@ -56,10 +56,17 @@ export default class DnMItemSheet extends ItemSheet {
 	async getData(options = {}) {
 		const enrichedDescription = await TextEditor.enrichHTML(this.system.description, { async: true });
 
+		const enrichedFields = this.system.enrichedFields ?? {};
+		for (let key of Object.keys(enrichedFields)) {
+			enrichedFields[key] = await TextEditor.enrichHTML(enrichedFields[key]);
+		}
+
 		return {
 			...super.getData(options),
 			system: this.system,
 			enrichedDescription,
+			CONFIG,
+			...enrichedFields,
 		};
 	}
 
