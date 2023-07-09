@@ -1,0 +1,82 @@
+<form class="{{ cssClass }} flex !flex-1 flex-col items-center min-h-10">
+	{{> systems/dreams-and-machines/templates/item/partials/item-header.hbs }}
+
+	<div class="w-full h-full p-1">
+		{{!-- Attributes --}}
+		<div class="grid grid-cols-4">
+			<span class="col-span-4 uppercase text-center font-semibold bg-fuchsia-900 text-white p-1">
+				{{ localize "Labels.Actor.Attributes" }}
+			</span>
+
+			<label class="flex flex-col border-1 border-fuchsia-900 border-solid font-semibold uppercase border-r-0">
+				<span class="w-full text-center text-fuchsia-900 text-lg">{{ localize "Attributes.Might" }}</span>
+				<input type="number" name="system.attributes.might" value="{{ system.attributes.might }}" class="!text-center !font-semibold !text-3xl !border-none !rounded-none !bg-none !mb-1" />
+			</label>
+			<label class="flex flex-col border-1 border-fuchsia-900 border-solid font-semibold uppercase">
+				<span class="w-full text-center text-fuchsia-900 text-lg">{{ localize "Attributes.Quickness" }}</span>
+				<input type="number" name="system.attributes.quickness" value="{{ system.attributes.quickness }}" class="!text-center !font-semibold !text-3xl !border-none !rounded-none !bg-none !mb-1" />
+			</label>
+			<label class="flex flex-col border-1 border-fuchsia-900 border-solid font-semibold uppercase border-l-0">
+				<span class="w-full text-center text-fuchsia-900 text-lg">{{ localize "Attributes.Insight" }}</span>
+				<input type="number" name="system.attributes.insight" value="{{ system.attributes.insight }}" class="!text-center !font-semibold !text-3xl !border-none !rounded-none !bg-none !mb-1" />
+			</label>
+			<label class="flex flex-col border-1 border-fuchsia-900 border-solid font-semibold uppercase border-l-0">
+				<span class="w-full text-center text-fuchsia-900 text-lg">{{ localize "Attributes.Resolve" }}</span>
+				<input type="number" name="system.attributes.resolve" value="{{ system.attributes.resolve }}" class="!text-center !font-semibold !text-3xl !border-none !rounded-none !bg-none !mb-1" />
+			</label>
+		</div>
+
+		{{!-- Tech Level/Spirit/Supply Poijnts --}}
+		<div class="grid grid-cols-3">
+			<label class="flex flex-col uppercase text-center font-semibold border-1 border-t-0 border-solid border-fuchsia-900">
+				<span class="bg-fuchsia-900 text-white p-1">{{ localize "Labels.TechLevel" }}</span>
+				<input type="number" name="system.techLevel" value="{{ system.techLevel }}" class="!py-5 !text-center !font-semibold !text-3xl !border-none !rounded-none !bg-none !mb-1" />
+			</label>
+
+			<label class="flex flex-col uppercase text-center font-semibold border-1 border-t-0 border-solid border-fuchsia-900 border-l-0">
+				<span class="bg-fuchsia-900 text-white p-1">{{ localize "Labels.Actor.Spirit" }}</span>
+				<input type="number" name="system.spirit" value="{{ system.spirit }}" class="!py-5 !text-center !font-semibold !text-3xl !border-none !rounded-none !bg-none !mb-1" />
+			</label>
+
+			<label class="flex flex-col uppercase text-center font-semibold border-1 border-t-0 border-solid border-fuchsia-900 border-l-0">
+				<span class="bg-fuchsia-900 text-white p-1">{{ localize "Labels.Actor.SupplyPoints" }}</span>
+				<input type="number" name="system.supplyPoints" value="{{ system.supplyPoints }}" class="!py-5 !text-center !font-semibold !text-3xl !border-none !rounded-none !bg-none !mb-1" />
+			</label>
+		</div>
+
+		{{!-- Benefit --}}
+		<div class="flex flex-col my-2">
+			<input type="text" name="system.benefit.name" value="{{ system.benefit.name }}" placeholder="Benefit Name" class="!text-center !font-semibold" />
+
+			<div class="flex w-full h-full min-h-10 text-center">
+				{{ editor enrichedBenefitDescription target="system.benefit.description" button=true editable=editable engine="prosemirror" }}
+			</div>
+		</div>
+
+		{{!-- Archetypes --}}
+		<div class="flex flex-col">
+			<span class="uppercase text-center font-semibold bg-fuchsia-900 text-white p-1">
+				{{ localize "Labels.Item.Archetypes" }}
+			</span>
+
+			<div class="flex flex-col p-2 items-center">
+				{{#if (eq system.numArchetypes 0)}}
+					<em class="text-center text-lg">{{ localize "Labels.Item.AddArchetypes" }}</em>
+				{{else}}
+					{{#if (gt system.numArchetypes 1)}}
+						<span class="uppercase font-semibold text-xl">{{ localize "Labels.Item.ChooseBetween" }}:</span>
+					{{/if}}
+					{{#each archetypes}}
+						<div data-menu="archetype" data-index="{{ @index }}" data-uuid="{{ uuid }}" class="w-full p-1 bg-black text-center text-2xl text-white font-semibold uppercase">
+							<a data-action="open-sheet" data-uuid="{{ uuid }}">{{ name }}</a>
+						</div>
+
+						{{#unless @last}}
+							<span class="uppercase font-semibold text-xl">{{ localize "Labels.Item.Or" }}</span>
+						{{/unless}}
+					{{/each}}
+				{{/if}}
+			</div>
+		</div>
+	</div>
+</form>

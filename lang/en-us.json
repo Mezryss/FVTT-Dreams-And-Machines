@@ -79,12 +79,16 @@
 			"StartingGear": "Starting Gear",
 			"AddStartingGear": "Drag & Drop Equipment onto this sheet to reference them as starting equipment for the archetype!",
 			"MissingUUID": "(Missing UUID)",
+			"AddArchetypes": "Drag & Drop Archetypes onto this sheet to reference them as starting equipment for the origin!",
+			"ChooseBetween": "Choose Between",
+			"Or": "Or",
 			"Weapon": {
 				"Label": "Weapon",
 				"Melee": "Melee",
 				"Ranged": "Ranged",
 				"or": "or"
-			}
+			},
+			"Archetypes": "Archetypes"
 		},
 		"Current": "Current",
 		"Max": "Max",

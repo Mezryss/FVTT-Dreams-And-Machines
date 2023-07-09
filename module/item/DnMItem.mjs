@@ -1,9 +1,12 @@
 import ArchetypeDataModel from './data/ArchetypeDataModel.mjs';
 import ItemDataModel from './data/ItemDataModel.mjs';
+import OriginDataModel from './data/OriginDataModel.mjs'
 import TalentDataModel from './data/TalentDataModel.mjs';
-import EquipmentSheet from './sheet/EquipmentSheet.mjs';
+
 import DnMItemSheet from './DnMItemSheet.mjs';
 import ArchetypeSheet from './sheet/ArchetypeSheet.mjs';
+import EquipmentSheet from './sheet/EquipmentSheet.mjs';
+import OriginSheet from './sheet/OriginSheet.mjs';
 
 /**
  * Shared base class for all Dreams and Machines item documents.
@@ -26,6 +29,7 @@ export function registerItems() {
 function registerDataModels() {
 	CONFIG.Item.dataModels.archetype = ArchetypeDataModel;
 	CONFIG.Item.dataModels.item = ItemDataModel;
+	CONFIG.Item.dataModels.origin = OriginDataModel;
 	CONFIG.Item.dataModels.talent = TalentDataModel;
 }
 
@@ -42,6 +46,11 @@ function registerSheets() {
 
 	Items.registerSheet('dreams-and-machines', EquipmentSheet, {
 		types: ['item'],
+		makeDefault: true,
+	});
+
+	Items.registerSheet('dreams-and-machines', OriginSheet, {
+		types: ['origin'],
 		makeDefault: true,
 	});
 

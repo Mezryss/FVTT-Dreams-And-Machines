@@ -68,10 +68,10 @@
 			<div class="flex flex-wrap justify-center gap-1 text-lg">
 				{{#each startingGear}}
 					{{#if (eq this null)}}
-						<span class="oblique text-red-900" data-menu="starting-gear" data-index="{{ @index }}">
+						<span class="oblique text-red-900" data-menu="starting-gear" data-index="{{ @index }}" data-uuid="{{ uuid }}">
 							<a>{{ localize "Labels.Item.MissingUUID" }}</a></span>
 					{{else}}
-						<span data-menu="starting-gear" data-index="{{ @index }}">
+						<span data-menu="starting-gear" data-index="{{ @index }}" data-uuid="{{ uuid }}">
 							<a data-action="open-sheet" data-uuid="{{ uuid }}">{{ name }}</a>{{#unless @last}},{{/unless}}
 						</span>
 					{{/if}}
