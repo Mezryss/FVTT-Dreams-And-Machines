@@ -1,5 +1,5 @@
 {{!-- Item Header --}}
-<div class="flex bg-black w-full p-2 gap-4 items-center">
-	<img class="w-14 h-14 -m-2" src="{{ item.img }}" data-edit="img" alt="{{ item.name }}" />
-	<input type="text" name="name" value="{{ item.name }}" class="!border-0 !text-white !text-3xl !h-full !font-roboto-flex uppercase focus:normal-case" />
+<div class="flex {{#if bgColor}}{{ bgColor }}{{else}}bg-black{{/if}} w-full p-2 gap-4 items-center">
+	<img class="w-14 h-14 -m-2 !border-none" src="{{ item.img }}" data-edit="img" alt="{{ item.name }}" />
+	<input type="text" name="name" value="{{ item.name }}" class="!bg-none !border-0 !text-white !text-3xl !h-full !font-roboto-flex uppercase focus:normal-case" />
 </div>

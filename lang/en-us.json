@@ -52,7 +52,8 @@
 			"PersonalThreat": "Personal Threat",
 			"Traits": "Traits",
 			"InjuriesToDefeat": "Injuries to Defeat",
-			"AddTrait": "Add Trait"
+			"AddTrait": "Add Trait",
+			"AddActions": "Drag some Major NPC Actions onto this sheet to add actions this NPC can perform!"
 		},
 		"DicePrompt": {
 			"Attribute": "Attribute",
@@ -84,20 +85,29 @@
 			"AddArchetypes": "Drag & Drop Archetypes onto this sheet to reference them as starting equipment for the origin!",
 			"ChooseBetween": "Choose Between",
 			"Or": "Or",
+			"Action": "Action",
+			"SkillTest": "Skill Test",
+			"TN": "TN",
+			"Focus": "Focus",
+			"AddToNPC": "Add this action to a Major NPC's sheet!",
 			"Weapon": {
 				"Label": "Weapon",
 				"Melee": "Melee",
 				"Ranged": "Ranged",
-				"or": "or"
+				"or": "or",
+				"Name": "Weapon Name",
+				"Type": "Weapon Type"
 			},
 			"Archetypes": "Archetypes"
 		},
+		"Actions": "Actions",
 		"Current": "Current",
 		"Max": "Max",
 		"TechLevel": "Tech Level",
 		"Momentum": "Momentum",
 		"Threat": "Threat",
 		"Notes": "Notes",
+		"Description": "Description",
 		"Value": "Value"
 	},
 	"Notifications": {

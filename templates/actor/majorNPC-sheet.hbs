@@ -140,8 +140,43 @@
 			</label>
 		</div>
 
-		<div class="w-full h-full min-h-15 p-2">
-			{{ editor enrichedDescription target="system.description" button=true editable=editable engine="prosemirror" }}
+		<div class="w-full h-full flex flex-col">
+			<label class="w-full bg-teal-600 py-0.5 pl-2 text-white font-semibold uppercase">{{ localize "Labels.Actions" }}</label>
+			{{#if actions}}
+				<div class="flex flex-col w-full p-1">
+					{{#each actions}}
+						<div class="flex items-center gap-1 text-teal-700">
+							{{#if (gt system.skillTest.tn 0)}}
+								<a data-action="roll-action" data-uuid="{{ uuid }}" class="text-xl">
+									<i class="fas fa-dice-d20"></i>
+								</a>
+							{{else}}
+								<a data-action="send-action-to-chat" data-uuid="{{ uuid }}" class="text-xl">
+									<i class="text-lg fas fa-message"></i>
+								</a>
+							{{/if}}
+							<span data-menu="action" data-uuid="{{ uuid }}" class="text-black">
+								<span class="flex items-center gap-1">
+									<a class="text-2xl font-semibold text-teal-700" data-action="open-sheet" data-uuid="{{ uuid }}">{{ name }}</a>
+									<span class="text-lg text-teal-700">({{ localize "Labels.Item.TN" }} {{#if (gt system.skillTest.tn 0)}}{{ system.skillTest.tn }}{{else}}—{{/if}} / {{ localize "Labels.Item.Focus" }} {{#if (gt system.skillTest.focus 0)}}{{ system.skillTest.focus }}{{else}}—{{/if}})</span>
+								</span>
+							</span>
+						</div>
+						{{#if enrichedDescription}}
+							<div class="border-0 border-l-4 border-solid border-teal-600 pl-2 text-sm oblique">{{{ enrichedDescription }}}</div>
+						{{else}}
+							<span class="h-2"></span>
+						{{/if}}
+					{{/each}}
+				</div>
+			{{else}}
+				<em class="p-1">{{ localize "Labels.Actor.AddActions" }}</em>
+			{{/if}}
+
+			<label class="w-full bg-teal-600 py-0.5 pl-2 text-white font-semibold uppercase">{{ localize "Labels.Description" }}</label>
+			<div class="w-full h-full min-h-15 p-2">
+				{{ editor enrichedDescription target="system.description" button=true editable=editable engine="prosemirror" }}
+			</div>
 		</div>
 	</div>
 </form>

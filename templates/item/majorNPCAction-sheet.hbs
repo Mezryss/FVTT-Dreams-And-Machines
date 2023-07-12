@@ -1,0 +1,132 @@
+{{#*inline "qualitiesInput"}}
+	<div class="px-1 w-full">
+		<label class="flex flex-wrap gap-x-1 gap-y-1 w-full items-center px-1 justify-center">
+			{{#each value}}
+				<span class="flex gap-1 border-1 border-solid border-black p-1 rounded-md bg-gray-100 font-roboto-flex items-center">
+						<input type="hidden" name="{{ ../name }}.{{ @index }}.label" value="{{ label }}" />
+						<span>{{ label }}</span>
+					{{#if rating}}
+						<input type="number" class="!w-10 !text-center !my-0 !h-5" name="{{ ../name }}.{{ @index }}.rating" value="{{ rating }}" />
+					{{/if}}
+					<a class="text-xs" data-action="delete-quality" data-name="{{ ../name }}" data-index="{{ @index }}" title="{{ localize "Labels.Item.DeleteQuality" }}">
+							<i class="fas fa-trash"></i>
+						</a>
+					</span>
+			{{/each}}
+			<input name="new-quality" type="text" class="min-w-[100px] max-w-[150px] rounded-md" placeholder="{{ localize "Labels.Item.AddQualityPlaceholder" }}" data-action="add-quality" data-name="{{ name }}" />
+		</label>
+	</div>
+{{/inline}}
+
+{{#*inline "qualitiesDisplay"}}
+	{{#if system.hasQualities}}
+		<div class="flex flex-wrap font-semibold text-lg whitespace-nowrap gap-x-1 gap-y-0.5 items-center w-full justify-center">
+			{{#each system.qualities}}
+				<span class="after:content-[','] after:-ml-1 last-of-type:after:content-['.']">
+					<span>{{ label }}</span>
+					{{#if rating}}
+						<span>{{ rating }}</span>
+					{{/if}}
+				</span>
+			{{/each}}
+		</div>
+	{{/if}}
+{{/inline}}
+
+<form class="{{ cssClass }} flex !flex-1 flex-col gap-1 items-center min-h-10">
+	{{> systems/dreams-and-machines/templates/item/partials/item-header.hbs }}
+
+	<div class="grid grid-cols-4 w-full p-1">
+		<label class="col-span-2 bg-green-600 text-white font-semibold p-1 uppercase border-0 border-l-1 border-solid border-green-600">{{ localize "TYPES.Actor.majorNPC" }}</label>
+		<label class="col-span-2 bg-green-600 text-white font-semibold p-1 uppercase text-center border-0 border-r-1 border-solid border-green-600">{{ localize "Labels.Item.SkillTest" }}</label>
+
+		<span class="flex items-center justify-center row-span-2 border-0 border-l-1 border-b-1 border-solid border-green-600 p-1 text-2xl text-center col-span-2">
+			{{#if item.parent}}
+				{{#with item.parent}}
+					<a data-action="open-sheet" data-uuid="{{ uuid }}">{{ name }}</a>
+				{{/with}}
+			{{else}}
+				<em class="text-sm">{{ localize "Labels.Item.AddToNPC" }}</em>
+			{{/if}}
+		</span>
+
+		<label class="text-green-600 font-semibold py-0.5 uppercase text-sm text-center border-0 border-l-1 border-solid border-green-600">{{ localize "Labels.Item.TN" }}</label>
+		<label class="text-green-600 font-semibold py-0.5 uppercase text-sm text-center border-0 border-x-1 border-solid border-green-600">{{ localize "Labels.Item.Focus" }}</label>
+
+		{{#if editable}}
+			<input type="number" name="system.skillTest.tn" value="{{ system.skillTest.tn }}" class="!text-3xl !text-center !h-full !p-0 !bg-none !rounded-none !border-0 !border-l-1 !border-b-1 !border-green-600 !w-full" />
+			<input type="number" name="system.skillTest.focus" value="{{ system.skillTest.focus }}" class="!text-3xl !text-center !h-full !p-0 !bg-none !rounded-none !border-0 !border-x-1 !border-b-1 !border-green-600 !w-full" />
+		{{else}}
+			<div class="text-3xl text-center border-0 border-solid border-l-1 border-b-1 border-green-600 w-full">{{ system.skillTest.tn }}</div>
+			<div class="text-3xl text-center border-0 border-solid border-x-1 border-b-1 border-green-600 w-full">{{ system.skillTest.focus }}</div>
+		{{/if}}
+	</div>
+
+	<div class="flex w-full h-full {{#if editable}}min-h-10{{/if}} text-center text-lg p-2">
+		{{#if editable}}
+			{{ editor enrichedDescription target="system.description" button=true editable=editable engine="prosemirror" }}
+		{{else}}
+			<span>{{{ enrichedDescription }}}</span>
+		{{/if}}
+	</div>
+
+	{{!-- Weapon Stat Input --}}
+	<div class="w-full grid grid-cols-2 p-1">
+		{{#if editable}}
+			<label class="text-center bg-green-600 w-full text-white uppercase font-semibold p-1">
+				{{ localize "Labels.Item.Weapon.Name" }}
+			</label>
+
+			<label class="text-center bg-green-600 w-full text-white uppercase font-semibold p-1">
+				{{ localize "Labels.Item.Weapon.Type" }}
+			</label>
+
+			<input type="text" name="system.weapon.name" value="{{ system.weapon.name }}" class="!text-lg !text-center !h-full !p-0 !bg-none !rounded-none !border-0 !border-l-1 !border-green-600 !w-full" />
+			<select name="system.weapon.type" class="!text-lg !text-center !h-full !p-0 !bg-none !rounded-none !border-0 !border-x-1 !border-green-600 !w-full">
+				{{#select system.weapon.type}}
+					<option value="Melee">{{ localize "Labels.Item.Weapon.Melee" }}</option>
+					<option value="Ranged">{{ localize "Labels.Item.Weapon.Ranged" }}</option>
+				{{/select}}
+			</select>
+		{{else}}
+			<label class="col-span-2 text-center bg-green-600 w-full text-white uppercase font-semibold p-1">
+				{{ localize "Labels.Item.Weapon.Label" }}
+			</label>
+
+			<span class="col-span-2 text-xl border-0 border-x-1 border-solid border-green-600 p-1 text-center">{{ system.weapon.name }} ({{ localize (concat "Labels.Item.Weapon." system.weapon.type) }})</span>
+		{{/if}}
+
+		<label class="text-center bg-green-600 w-full text-white uppercase font-semibold p-1">
+			{{ localize "Labels.Item.Damage" }}
+		</label>
+
+		<label class="text-center bg-green-600 w-full text-white uppercase font-semibold p-1">
+			{{ localize "Labels.Item.Qualities" }}
+		</label>
+
+		{{#if editable}}
+			<div class="border-1 border-r-0 border-solid border-t-0 border-green-600 p-1">
+				{{> qualitiesInput value=system.weapon.damageQualities name="system.weapon.damageQualities" }}
+			</div>
+
+			<div class="border-1 border-solid border-t-0 border-green-600 p-1">
+				{{> qualitiesInput value=system.weapon.qualities name="system.weapon.qualities" }}
+			</div>
+		{{else}}
+			<span class="text-lg w-full text-center border-1 border-t-0 border-r-0 border-solid border-green-600">
+				{{#each system.weapon.damageQualities}}
+					<em class="oblique font-semibold">{{ label }} {{ rating }}</em>
+					{{#unless @last}}{{ localize "Labels.Item.Weapon.or" }}{{/unless}}
+				{{/each}}
+				{{#unless system.weapon.damageQualities}}—{{/unless}}
+			</span>
+
+			<span class="text-lg w-full text-center border-1 border-t-0 border-solid border-green-600">
+				{{#each system.weapon.qualities}}
+					<span>{{ label }}{{#if rating}} {{ rating }}{{/if}}{{#unless @last}},{{/unless}}</span>
+				{{/each}}
+				{{#unless system.weapon.qualities}}—{{/unless}}
+			</span>
+		{{/if}}
+	</div>
+</form>

@@ -22,7 +22,7 @@ import ItemDescription from './templates/ItemDescription.mjs';
 /**
  * Wrapper utility for specifying Item Qualities properties.
  */
-function ItemQualities() {
+export function ItemQualities() {
 	const fields = foundry.data.fields;
 
 	return new fields.ArrayField(

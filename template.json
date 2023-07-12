@@ -178,7 +178,12 @@
 				"tn": 8,
 				"focus": 4
 			},
-			"weapon": null
+			"weapon": {
+				"name": "",
+				"type": "Melee",
+				"qualities": [],
+				"damageQualities": []
+			}
 		}
 	}
 }

@@ -1,5 +1,6 @@
 import ArchetypeDataModel from './data/ArchetypeDataModel.mjs';
 import ItemDataModel from './data/ItemDataModel.mjs';
+import MajorNPCActionDataModel from './data/MajorNPCActionDataModel.mjs';
 import OriginDataModel from './data/OriginDataModel.mjs';
 import TalentDataModel from './data/TalentDataModel.mjs';
 import TemperamentDataModel from './data/TemperamentDataModel.mjs';
@@ -8,6 +9,7 @@ import DnMItemSheet from './DnMItemSheet.mjs';
 import ArchetypeSheet from './sheet/ArchetypeSheet.mjs';
 import EquipmentSheet from './sheet/EquipmentSheet.mjs';
 import OriginSheet from './sheet/OriginSheet.mjs';
+import MajorNPCActionSheet from './sheet/MajorNPCActionSheet.mjs';
 
 /**
  * Shared base class for all Dreams and Machines item documents.
@@ -33,6 +35,7 @@ function registerDataModels() {
 	CONFIG.Item.dataModels.origin = OriginDataModel;
 	CONFIG.Item.dataModels.talent = TalentDataModel;
 	CONFIG.Item.dataModels.temperament = TemperamentDataModel;
+	CONFIG.Item.dataModels.majorNPCAction = MajorNPCActionDataModel;
 }
 
 /**
@@ -58,6 +61,11 @@ function registerSheets() {
 
 	Items.registerSheet('dreams-and-machines', DnMItemSheet, {
 		types: ['talent', 'temperament'],
+		makeDefault: true,
+	});
+
+	Items.registerSheet('dreams-and-machines', MajorNPCActionSheet, {
+		types: ['majorNPCAction'],
 		makeDefault: true,
 	});
 }
