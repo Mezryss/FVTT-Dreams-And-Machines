@@ -1,9 +1,17 @@
 <div class="flex flex-col gap-1 w-full p-2">
 	<span class="text-lg font-semibold text-center rounded-md text-white {{#if isGM}}bg-teal-600{{else}}bg-fuchsia-800{{/if}}">
-		{{#if skill}}
-			Rolling {{ attribute }} + {{ skill }}
+		{{#if fixedTargetNumber}}
+			{{#if fixedFocus}}
+				Rolling TN {{fixedTargetNumber}} / Focus {{ fixedFocus }}
+			{{else}}
+				Rolling TN {{fixedTargetNumber}}
+			{{/if}}
 		{{else}}
-			Rolling {{ attribute }}
+			{{#if skill}}
+				Rolling {{ attribute }} + {{ skill }}
+			{{else}}
+				Rolling {{ attribute }}
+			{{/if}}
 		{{/if}}
 	</span>
 

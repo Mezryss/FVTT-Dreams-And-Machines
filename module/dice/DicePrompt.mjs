@@ -3,15 +3,19 @@ import DnMRoller from './DnMRoller.mjs';
 export default class DicePrompt extends Application {
 	/**
 	 * @param {DnMActor} actor
-	 * @param {string} attribute
-	 * @param {string} skill
+	 * @param {string|undefined} attribute
+	 * @param {string|undefined} skill
+	 * @param {number|undefined} fixedTargetNumber
+	 * @param {number|undefined} fixedFocus
 	 */
-	static promptForRoll({ actor, attribute = 'insight', skill = '-' } = {}) {
+	static promptForRoll({ actor, attribute = 'insight', skill = '-', fixedTargetNumber = undefined, fixedFocus = undefined } = {}) {
 		const prompt = new DicePrompt();
 
 		prompt.actor = actor;
 		prompt.attribute = attribute;
 		prompt.skill = skill;
+		prompt.fixedTargetNumber = fixedTargetNumber;
+		prompt.fixedFocus = fixedFocus;
 
 		prompt.render(true);
 	}
@@ -31,14 +35,24 @@ export default class DicePrompt extends Application {
 	actor = undefined;
 
 	/**
-	 * @type {string}
+	 * @type {?string}
 	 */
 	attribute = 'insight';
 
 	/**
-	 * @type {string}
+	 * @type {?string}
 	 */
 	skill = '-';
+
+	/**
+	 * @type {number|undefined}
+	 */
+	fixedTargetNumber = undefined;
+
+	/**
+	 * @type {number|undefined}
+	 */
+	fixedFocus = undefined;
 
 	/**
 	 * @type {number}
@@ -70,6 +84,8 @@ export default class DicePrompt extends Application {
 				label: game.i18n.localize(`Skills.${k.capitalize()}`),
 				value: v,
 			})),
+			fixedTargetNumber: this.fixedTargetNumber,
+			fixedFocus: this.fixedFocus,
 			numDice: this.numDice,
 			isGM: game.user.isGM,
 			complication: this.complication,
@@ -79,6 +95,8 @@ export default class DicePrompt extends Application {
 	activateListeners(html) {
 		super.activateListeners(html);
 
+		html.find('[name=fixedTargetNumber]').on('change', this.setFixedTargetNumber.bind(this));
+		html.find('[name=fixedFocus]').on('change', this.setFixedFocus.bind(this));
 		html.find('[name=attribute]').on('change', this.setAttribute.bind(this));
 		html.find('[name=skill]').on('change', this.setSkill.bind(this));
 		html.find('[name=complication]').on('change', this.setComplicationRange.bind(this));
@@ -100,6 +118,26 @@ export default class DicePrompt extends Application {
 				input.focus();
 			}
 		}
+	}
+
+	setFixedTargetNumber(event) {
+		const fixedTargetNumber = +$(event.currentTarget).val();
+
+		if (!isNaN(fixedTargetNumber)) {
+			this.fixedTargetNumber = fixedTargetNumber;
+		}
+
+		this.render(true);
+	}
+
+	setFixedFocus(event) {
+		const fixedFocus = +$(event.currentTarget).val();
+
+		if (!isNaN(fixedFocus)) {
+			this.fixedFocus = fixedFocus;
+		}
+
+		this.render(true);
 	}
 
 	/**
@@ -160,6 +198,8 @@ export default class DicePrompt extends Application {
 			skill,
 			numDice: this.numDice,
 			complicationRange: this.complication,
+			fixedTargetNumber: this.fixedTargetNumber,
+			fixedFocus: this.fixedFocus,
 		});
 
 		await this.close();

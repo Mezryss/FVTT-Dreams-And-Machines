@@ -1,4 +1,5 @@
 import DnMActorSheet from '../DnMActorSheet.mjs';
+import DicePrompt from '../../dice/DicePrompt.mjs';
 
 /**
  * Manor JPC Sheet
@@ -39,6 +40,8 @@ export default class MajorNPCSheet extends DnMActorSheet {
 	activateListeners(html) {
 		super.activateListeners(html);
 
+		html.find('[data-action=roll-action]').on('click', this.rollAction.bind(this));
+
 		new ContextMenu(html, '[data-menu=action]', [
 			{
 				name: 'Labels.Item.Edit',
@@ -68,5 +71,30 @@ export default class MajorNPCSheet extends DnMActorSheet {
 				},
 			},
 		]);
+	}
+
+	/**
+	 * Event Handler; Called when the user clicks to roll an action with a TN > 0
+	 * @param {Event} event
+	 */
+	rollAction(event) {
+		const uuid = $(event.currentTarget).data('uuid');
+		if (!uuid) {
+			return;
+		}
+
+		const action = this.actor.items.find((i) => i.uuid === uuid);
+		if (!action) {
+			return;
+		}
+
+		/** @type MajorNPCActionDataModel */
+		const actionSystem = action.system;
+
+		DicePrompt.promptForRoll({
+			actor: this.actor,
+			fixedTargetNumber: actionSystem.skillTest.tn,
+			fixedFocus: actionSystem.skillTest.focus,
+		});
 	}
 }

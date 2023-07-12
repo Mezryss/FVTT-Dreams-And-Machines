@@ -24,15 +24,17 @@ export default class DnMRoller {
 	 *
 	 * @param {number} numDice
 	 * @param {number} complicationRange
+	 * @param {number|undefined} fixedTargetNumber A fixed Target Number to use.
+	 * @param {number|undefined} fixedFocus A fixed Focus Number to use.
 	 */
-	static async roll({ actor, attribute, skill, numDice, complicationRange }) {
-		const targetNumber = attribute.value + (skill?.value ?? 0);
+	static async roll({ actor, attribute, skill, numDice, complicationRange, fixedTargetNumber, fixedFocus }) {
+		const targetNumber = fixedTargetNumber ?? attribute.value;
 
 		const roll = new Roll(`${numDice}d20`);
 		await roll.evaluate({ async: true });
 		const result = this.parseRoll({
 			roll,
-			skillValue: skill?.value ?? 1,
+			skillValue: fixedFocus ?? skill?.value ?? 1,
 			targetNumber,
 			complicationRange,
 		});
@@ -44,6 +46,8 @@ export default class DnMRoller {
 			isGM: game.user.isGM,
 			targetNumber,
 			complicationRange,
+			fixedTargetNumber,
+			fixedFocus,
 		});
 
 		await ChatMessage.create({
