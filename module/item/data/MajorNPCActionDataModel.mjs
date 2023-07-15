@@ -17,6 +17,15 @@ import { ItemQualities } from './ItemDataModel.mjs';
  * @property {WeaponDetailExpanded} weapon Properties of the weapon used in this attack, if any.
  */
 export default class MajorNPCActionDataModel extends foundry.abstract.TypeDataModel {
+	/**
+	 * Utility property to get all weapon qualities in one combined array.
+	 *
+	 * @return ItemQuality[]
+	 */
+	get weaponQualities() {
+		return [...this.weapon.damageQualities, ...this.weapon.qualities];
+	}
+
 	static defineSchema() {
 		const fields = foundry.data.fields;
 
