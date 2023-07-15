@@ -2,7 +2,7 @@ import DnMActorSheet from '../DnMActorSheet.mjs';
 import DicePrompt from '../../dice/DicePrompt.mjs';
 
 /**
- * Manor JPC Sheet
+ * Major NPC Sheet
  */
 export default class MajorNPCSheet extends DnMActorSheet {
 	/**

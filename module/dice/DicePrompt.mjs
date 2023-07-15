@@ -69,21 +69,30 @@ export default class DicePrompt extends Application {
 	}
 
 	getData(options = {}) {
+		let attributes = [];
+		let skills = [];
+
+		if (this.actor.type !== 'npc') {
+			attributes = Object.entries(this.actor.system.attributes).map(([k, v]) => ({
+				name: k,
+				label: game.i18n.localize(`Attributes.${k.capitalize()}`),
+				value: v.value,
+			}));
+
+			skills = Object.entries(this.actor.system.skills).map(([k, v]) => ({
+				name: k,
+				label: game.i18n.localize(`Skills.${k.capitalize()}`),
+				value: v,
+			}));
+		}
+
 		return {
 			...super.getData(options),
 			actor: this.actor,
 			attribute: this.attribute ?? 'insight',
-			attributes: Object.entries(this.actor.system.attributes).map(([k, v]) => ({
-				name: k,
-				label: game.i18n.localize(`Attributes.${k.capitalize()}`),
-				value: v.value,
-			})),
+			attributes,
 			skill: this.skill ?? '-',
-			skills: Object.entries(this.actor.system.skills).map(([k, v]) => ({
-				name: k,
-				label: game.i18n.localize(`Skills.${k.capitalize()}`),
-				value: v,
-			})),
+			skills,
 			fixedTargetNumber: this.fixedTargetNumber,
 			fixedFocus: this.fixedFocus,
 			numDice: this.numDice,
@@ -179,22 +188,32 @@ export default class DicePrompt extends Application {
 	}
 
 	async roll() {
+		let attribute = undefined;
 		let skill = undefined;
 
-		// Moving to this instead of a ternary because Prettier & ESLint weren't getting along.
-		if (this.skill) {
-			skill = {
-				label: game.i18n.localize(`Skills.${this.skill.capitalize()}`),
-				value: this.actor.system.skills[this.skill],
-			};
+		switch (this.actor.type) {
+			case 'npc':
+				break;
+
+			default: {
+				attribute = {
+					label: game.i18n.localize(`Attributes.${this.attribute.capitalize()}`),
+					value: this.actor.system.attributes[this.attribute].value,
+				};
+
+				// Moving to this instead of a ternary because Prettier & ESLint weren't getting along.
+				if (this.skill) {
+					skill = {
+						label: game.i18n.localize(`Skills.${this.skill.capitalize()}`),
+						value: this.actor.system.skills[this.skill],
+					};
+				}
+			}
 		}
 
 		await DnMRoller.roll({
 			actor: this.actor,
-			attribute: {
-				label: game.i18n.localize(`Attributes.${this.attribute.capitalize()}`),
-				value: this.actor.system.attributes[this.attribute].value,
-			},
+			attribute,
 			skill,
 			numDice: this.numDice,
 			complicationRange: this.complication,

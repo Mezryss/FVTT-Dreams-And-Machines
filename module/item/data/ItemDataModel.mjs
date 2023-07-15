@@ -66,6 +66,15 @@ export default class ItemDataModel extends foundry.abstract.TypeDataModel {
 		return this.qualities.length > 0;
 	}
 
+	/**
+	 * Utility for fetching all qualities in a single list.
+	 *
+	 * @returns {ItemQuality[]}
+	 */
+	get allQualities() {
+		return [...this.weapon.damageQualities, ...this.weapon.qualities, ...this.qualities];
+	}
+
 	static defineSchema() {
 		const fields = foundry.data.fields;
 

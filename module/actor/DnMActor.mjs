@@ -1,8 +1,10 @@
-import CharacterSheet from './sheets/CharacterSheet.mjs';
 import CharacterDataModel from './data/CharacterDataModel.mjs';
 import MajorNPCDataModel from './data/MajorNPCDataModel.mjs';
+import NPCDataModel from './data/NPCDataModel.mjs';
+
+import CharacterSheet from './sheets/CharacterSheet.mjs';
 import MajorNPCSheet from './sheets/MajorNPCSheet.mjs';
-import DnMActorSheet from './DnMActorSheet.mjs';
+import NPCSheet from './sheets/NPCSheet.mjs';
 
 /**
  * Shared base class for all Dreams and Machines actor documents.
@@ -29,7 +31,7 @@ export function registerActors() {
 function registerDataModels() {
 	CONFIG.Actor.dataModels.character = CharacterDataModel;
 	CONFIG.Actor.dataModels.majorNPC = MajorNPCDataModel;
-	// TODO: NPC data model
+	CONFIG.Actor.dataModels.npc = NPCDataModel;
 }
 
 /**
@@ -48,7 +50,7 @@ function registerSheets() {
 		makeDefault: true,
 	});
 
-	Actors.registerSheet('dreams-and-machines', DnMActorSheet, {
+	Actors.registerSheet('dreams-and-machines', NPCSheet, {
 		types: ['npc'],
 		makeDefault: true,
 	});

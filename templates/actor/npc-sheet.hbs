@@ -1,7 +1,110 @@
 <form class="{{cssClass}} flex !flex-1 flex-col">
 	{{!-- Header --}}
-	<div class="flex bg-teal-600 w-full p-3 gap-4 items-center">
+	<div class="flex bg-purple-600 w-full p-3 gap-4 items-center">
 		<img class="w-14 h-14 -m-2" src="{{ actor.img }}" data-edit="img" alt="{{ actor.name }}" />
 		<input type="text" name="name" value="{{ actor.name }}" class="!border-0 !text-white !text-3xl !h-full !font-roboto-flex uppercase focus:normal-case !bg-none" />
+	</div>
+
+	<div class="grid grid-cols-2">
+		{{!-- Truth --}}
+		<label class="flex flex-col items-start w-full">
+			<div class="flex items-center w-full">
+				<span class="text-center bg-purple-600 py-0.5 px-4 text-white font-semibold uppercase">{{ localize "Labels.Actor.Truth" }}</span>
+			</div>
+			{{#if editable}}
+				<textarea name="system.truth" class="bg-none h-full resize-y border-none text-lg text-center">{{ system.truth }}</textarea>
+			{{else}}
+				<span class="flex items-center justify-center w-full h-full text-lg">{{ system.truth }}</span>
+			{{/if}}
+		</label>
+
+		{{!-- Dice Roll --}}
+		<div class="grid grid-cols-2 border-0 border-l-2 border-solid border-purple-600">
+			<label class="flex flex-col">
+				<span class="text-center w-full bg-purple-600 py-0.5 pl-2 text-white font-semibold uppercase">
+					<a data-action="roll"><i class="fas fa-dice-d20"></i></a>
+					<span>{{ localize "Labels.DicePrompt.Attribute" }}</span>
+				</span>
+				{{#if editable}}
+					<input type="number" min="0" name="system.attribute.value" value="{{ system.attribute.value }}" class="!bg-none !rounded-none !border-0 !text-center !text-3xl !font-semibold !h-[unset]" />
+				{{else}}
+					<span class="text-center text-3xl font-semibold">{{ system.attribute.value }}</span>
+				{{/if}}
+			</label>
+
+			<label class="flex flex-col">
+				<span class="text-center w-full bg-purple-600 py-0.5 pl-2 text-white font-semibold uppercase">
+					<a data-action="roll"><i class="fas fa-dice-d20"></i></a>
+					<span>{{ localize "Labels.DicePrompt.Skill" }}</span>
+				</span>
+				{{#if editable}}
+					<input type="number" min="0" name="system.skill.value" value="{{ system.skill.value }}" class="!bg-none !rounded-none !border-0 !text-center !text-3xl !font-semibold !h-[unset] !border-l-2 !border-purple-600" />
+				{{else}}
+					<span class="text-center text-3xl font-semibold border-0 border-l-2 border-solid border-purple-600">{{ system.skill.value }}</span>
+				{{/if}}
+			</label>
+
+			<label class="flex flex-col">
+				<span class="text-center text-purple-800 font-semibold uppercase border-0 border-t-1 border-purple-600 border-solid">{{ localize "Labels.Default" }}</span>
+				{{#if editable}}
+					<input type="number" min="0" name="system.attribute.default" value="{{ system.attribute.default }}" class="!bg-none !rounded-none !border-0 !text-center !text-3xl !font-semibold !h-[unset]" />
+				{{else}}
+					<span class="text-center text-3xl font-semibold">{{ system.attribute.default }}</span>
+				{{/if}}
+			</label>
+
+			<label class="flex flex-col">
+				<span class="text-center text-purple-800 font-semibold uppercase border-0 border-t-1 border-l-2 border-purple-600 border-solid">{{ localize "Labels.Default" }}</span>
+				{{#if editable}}
+					<input type="number" min="0" name="system.skill.default" value="{{ system.skill.default }}" class="!bg-none !rounded-none !border-0 !text-center !text-3xl !font-semibold !h-[unset] !border-l-2 !border-purple-600" />
+				{{else}}
+					<span class="text-center text-3xl font-semibold border-0 border-l-2 border-solid border-purple-600">{{ system.skill.default }}</span>
+				{{/if}}
+			</label>
+		</div>
+	</div>
+
+	{{!-- Combat --}}
+	<div class="grid grid-cols-2">
+		<label class="col-span-2 text-center w-full bg-purple-600 py-0.5 pl-2 text-white font-semibold uppercase">{{ localize "Labels.Combat" }}</label>
+
+		{{!-- Weapons --}}
+		<div class="flex flex-col">
+			<span class="text-center text-purple-800 font-semibold uppercase border-0 border-purple-600 border-solid">{{ localize "Labels.Weapons" }}</span>
+			<ul>
+				{{#each weapons}}
+					<li>
+						<span data-menu="weapon" data-uuid="{{ uuid }}">
+							<a data-action="open-sheet" data-uuid="{{ uuid }}" class="uppercase font-semibold text-lg">
+								{{ name }} ({{ localize (concat "Labels.Item.Weapon." system.weapon.type) }}):
+							</a>
+
+							{{#each system.allQualities}}
+								<span class="text-lg oblique whitespace-nowrap">{{ label }}{{#unless (eq rating null)}} {{ rating }}{{/unless}}{{#unless @last}},{{/unless}}</span>
+							{{/each}}
+						</span>
+
+						{{#if system.description}}
+							<div class="py-0.5 pl-2 mr-1">{{{  system.description }}}</div>
+						{{/if}}
+					</li>
+				{{/each}}
+			</ul>
+		</div>
+
+		{{!-- Special Actions --}}
+		<div class="flex flex-col border-0 border-l-2 border-purple-600 border-solid">
+			<span class="text-center text-purple-800 font-semibold uppercase border-0 border-purple-600 border-solid">{{ localize "Labels.SpecialActions" }}</span>
+
+			<div class="w-full h-full min-h-15 p-2">
+				{{ editor enrichedSpecialActions target="system.specialActions" button=true editable=editable engine="prosemirror" }}
+			</div>
+		</div>
+	</div>
+
+	{{!-- Notes --}}
+	<label class="w-full bg-purple-600 py-0.5 pl-2 text-white font-semibold uppercase">{{ localize "Labels.Notes" }}</label>
+	<div class="w-full h-full min-h-15 p-2">
+		{{ editor enrichedNotes target="system.notes" button=true editable=editable engine="prosemirror" }}
 	</div>
 </form>

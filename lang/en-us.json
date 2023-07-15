@@ -53,7 +53,8 @@
 			"Traits": "Traits",
 			"InjuriesToDefeat": "Injuries to Defeat",
 			"AddTrait": "Add Trait",
-			"AddActions": "Drag some Major NPC Actions onto this sheet to add actions this NPC can perform!"
+			"AddActions": "Drag some Major NPC Actions onto this sheet to add actions this NPC can perform!",
+			"Truth": "Truth"
 		},
 		"DicePrompt": {
 			"Attribute": "Attribute",
@@ -108,7 +109,11 @@
 		"Threat": "Threat",
 		"Notes": "Notes",
 		"Description": "Description",
-		"Value": "Value"
+		"Value": "Value",
+		"Default": "Default",
+		"Combat": "Combat",
+		"SpecialActions": "Special Actions",
+		"Weapons": "Weapons"
 	},
 	"Notifications": {
 		"NotEnoughMomentum": "Cannot spend Momentum while the pool is empty! Perhaps you should generate Threat instead?",

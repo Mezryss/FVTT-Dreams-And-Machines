@@ -41,7 +41,7 @@ export default class DnMRoller {
 
 		const template = await renderTemplate('systems/dreams-and-machines/templates/chat/dice-roll.hbs', {
 			...result,
-			attribute: attribute.label,
+			attribute: attribute?.label,
 			skill: skill?.label,
 			isGM: game.user.isGM,
 			targetNumber,
