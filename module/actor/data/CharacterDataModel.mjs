@@ -9,9 +9,6 @@ import Traits from './templates/Traits.mjs';
  * @mixes {Skills}
  * @mixes {Traits}
  *
- * @property {string} origin
- * @property {string} archetype
- * @property {string} temperament
  * @property {string} bond
  * @property {number} coin
  * @property {number} techLevel
@@ -32,18 +29,6 @@ export default class CharacterDataModel extends foundry.abstract.TypeDataModel {
 			...Skills(),
 			...Traits(),
 
-			origin: new fields.StringField({
-				initial: '',
-				nullable: false,
-			}),
-			archetype: new fields.StringField({
-				initial: '',
-				nullable: false,
-			}),
-			temperament: new fields.StringField({
-				initial: '',
-				nullable: false,
-			}),
 			bond: new fields.StringField({
 				initial: '',
 				nullable: false,
@@ -56,7 +41,7 @@ export default class CharacterDataModel extends foundry.abstract.TypeDataModel {
 			}),
 
 			techLevel: new fields.NumberField({
-				initial: 1,
+				initial: 0,
 				integer: true,
 				nullable: false,
 				min: 0,
@@ -64,13 +49,13 @@ export default class CharacterDataModel extends foundry.abstract.TypeDataModel {
 
 			spirit: new fields.SchemaField({
 				value: new fields.NumberField({
-					initial: 1,
+					initial: 0,
 					integer: true,
 					min: 0,
 					nullable: false,
 				}),
 				max: new fields.NumberField({
-					initial: 1,
+					initial: 0,
 					integer: true,
 					min: 0,
 					nullable: false,

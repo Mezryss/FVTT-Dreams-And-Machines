@@ -9,17 +9,29 @@
 		<div class="grid grid-cols-2 gap-1">
 			<label class="grid grid-cols-2 gap-1 items-center">
 				<span class="bg-fuchsia-900 text-white uppercase font-semibold flex items-center px-1 h-full justify-center">{{ localize "Labels.Actor.Origin" }}</span>
-				<input type="text" name="system.origin" value="{{ system.origin }}" class="!bg-white !rounded-none !bg-opacity-75 !text-center font-semibold !text-fuchsia-900 uppercase focus:normal-case" />
+				{{#if origin}}
+					<a data-action="open-sheet" data-uuid="{{ origin.uuid }}" class="flex items-center justify-center bg-white bg-opacity-75 text-center w-full font-semibold text-fuchsia-900 uppercase border-1 border-opacity-50 border-solid border-black h-full min-h-[1.75rem]">{{ origin.name }}</a>
+				{{else}}
+					<span class="oblique overflow-x-scrollbg-white bg-opacity-75 text-center w-full text-xs text-fuchsia-900">{{ localize "Labels.Actor.AddOrigin" }}</span>
+				{{/if}}
 			</label>
 
 			<label class="grid grid-cols-2 gap-1 items-center">
 				<span class="bg-fuchsia-900 text-white uppercase font-semibold flex items-center px-1 h-full justify-center">{{ localize "Labels.Actor.Archetype" }}</span>
-				<input type="text" name="system.archetype" value="{{ system.archetype }}" class="!bg-white !rounded-none !bg-opacity-75 !text-center font-semibold !text-fuchsia-900 uppercase focus:normal-case" />
+				{{#if archetype}}
+					<a data-action="open-sheet" data-uuid="{{ archetype.uuid }}" class="flex items-center justify-center bg-white bg-opacity-75 text-center w-full font-semibold text-fuchsia-900 uppercase border-1 border-opacity-50 border-solid border-black h-full min-h-[1.75rem]">{{ archetype.name }}</a>
+				{{else}}
+					<span class="oblique overflow-x-scrollbg-white bg-opacity-75 text-center w-full text-xs text-fuchsia-900">{{ localize "Labels.Actor.AddArchetype" }}</span>
+				{{/if}}
 			</label>
 
 			<label class="grid grid-cols-2 gap-1 items-center">
 				<span class="bg-fuchsia-900 text-white uppercase font-semibold flex items-center px-1 h-full justify-center">{{ localize "Labels.Actor.Temperament" }}</span>
-				<input type="text" name="system.temperament" value="{{ system.temperament }}" class="!bg-white !rounded-none !bg-opacity-75 !text-center font-semibold !text-fuchsia-900 uppercase focus:normal-case" />
+				{{#if temperament}}
+					<a data-action="open-sheet" data-uuid="{{ temperament.uuid }}" class="flex items-center justify-center bg-white bg-opacity-75 text-center w-full font-semibold text-fuchsia-900 uppercase border-1 border-opacity-50 border-solid border-black h-full min-h-[1.75rem]">{{ temperament.name }}</a>
+				{{else}}
+					<span class="oblique overflow-x-scrollbg-white bg-opacity-75 text-center w-full text-xs text-fuchsia-900">{{ localize "Labels.Actor.AddTemperament" }}</span>
+				{{/if}}
 			</label>
 
 			<label class="grid grid-cols-2 gap-1 items-center">
@@ -54,83 +66,51 @@
 			<span class="col-span-4 bg-fuchsia-900 text-white uppercase font-semibold flex items-center px-1 h-full justify-center">{{ localize "Labels.Actor.Attributes" }}</span>
 
 			<div class="flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
-				<a data-action="roll" data-attribute="insight" class="flex items-baseline gap-1 font-semibold uppercase text-fuchsia-900">
-					<i class="fas fa-dice-d20"></i>
-					<span>{{ localize "Attributes.Insight" }}</span>
-				</a>
-				<input type="number" name="system.attributes.insight.value" value="{{ system.attributes.insight.value }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-4xl font-semibold !p-2 !py-6" />
+				{{#if (and exhausted temperament (eq temperament.system.exhaustionType 'Confused'))}}
+					<span class="cursor-not-allowed flex items-baseline gap-1 font-semibold uppercase text-red-700">{{ localize "Attributes.Insight" }}</span>
+				{{else}}
+					<a data-action="roll" data-attribute="insight" class="flex items-baseline gap-1 font-semibold uppercase text-fuchsia-900">
+						<i class="fas fa-dice-d20"></i>
+						<span>{{ localize "Attributes.Insight" }}</span>
+					</a>
+				{{/if}}
+				<input type="number" name="system.attributes.insight.value" value="{{ system.attributes.insight.value }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-4xl font-semibold !p-2 !py-6 {{#if (and exhausted temperament (eq temperament.system.exhaustionType 'Confused'))}}!text-red-700{{/if}}" />
 			</div>
 
 			<div class="flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
-				<a data-action="roll" data-attribute="might" class="flex items-baseline gap-1 font-semibold uppercase text-fuchsia-900">
-					<i class="fas fa-dice-d20"></i>
-					<span>{{ localize "Attributes.Might" }}</span>
-				</a>
-				<input type="number" name="system.attributes.might.value" value="{{ system.attributes.might.value }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-4xl font-semibold !p-2 !py-6" />
+				{{#if (and exhausted temperament (eq temperament.system.exhaustionType 'Weary'))}}
+					<span class="cursor-not-allowed flex items-baseline gap-1 font-semibold uppercase text-red-700">{{ localize "Attributes.Might" }}</span>
+				{{else}}
+					<a data-action="roll" data-attribute="might" class="flex items-baseline gap-1 font-semibold uppercase text-fuchsia-900">
+						<i class="fas fa-dice-d20"></i>
+						<span>{{ localize "Attributes.Might" }}</span>
+					</a>
+				{{/if}}
+				<input type="number" name="system.attributes.might.value" value="{{ system.attributes.might.value }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-4xl font-semibold !p-2 !py-6  {{#if (and exhausted temperament (eq temperament.system.exhaustionType 'Weary'))}}!text-red-700{{/if}}" />
 			</div>
 
 			<div class="flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
-				<a data-action="roll" data-attribute="quickness" class="flex items-baseline gap-1 font-semibold uppercase text-fuchsia-900">
-					<i class="fas fa-dice-d20"></i>
-					<span>{{ localize "Attributes.Quickness" }}</span>
-				</a>
-				<input type="number" name="system.attributes.quickness.value" value="{{ system.attributes.quickness.value }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-4xl font-semibold !p-2 !py-6" />
+				{{#if (and exhausted temperament (eq temperament.system.exhaustionType 'Breathless'))}}
+					<span class="cursor-not-allowed flex items-baseline gap-1 font-semibold uppercase text-red-700">{{ localize "Attributes.Quickness" }}</span>
+				{{else}}
+					<a data-action="roll" data-attribute="quickness" class="flex items-baseline gap-1 font-semibold uppercase text-fuchsia-900">
+						<i class="fas fa-dice-d20"></i>
+						<span>{{ localize "Attributes.Quickness" }}</span>
+					</a>
+				{{/if}}
+				<input type="number" name="system.attributes.quickness.value" value="{{ system.attributes.quickness.value }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-4xl font-semibold !p-2 !py-6 {{#if (and exhausted temperament (eq temperament.system.exhaustionType 'Breathless'))}}!text-red-700{{/if}}" />
 			</div>
 
 			<div class="flex flex-col items-center bg-white border-1 border-fuchsia-200 border-solid p-1">
-				<a data-action="roll" data-attribute="resolve" class="flex items-baseline gap-1 font-semibold uppercase text-fuchsia-900">
-					<i class="fas fa-dice-d20"></i>
-					<span>{{ localize "Attributes.Resolve" }}</span>
-				</a>
-				<input type="number" name="system.attributes.resolve.value" value="{{ system.attributes.resolve.value }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-4xl font-semibold !p-2 !py-6" />
-			</div>
-
-			<div class="flex flex-col p-1 whitespace-nowrap">
-				<label class="flex flex-nowrap items-center font-semibold">
-					<input type="checkbox" name="system.attributes.insight.exhaustion" {{ checked system.attributes.insight.exhaustion }} />
-					<span>{{ localize "Labels.Actor.Exhaustion" }}</span>
-				</label>
-
-				<label class="flex flex-nowrap items-center font-semibold">
-					<input type="checkbox" name="system.attributes.insight.confused" {{ checked system.attributes.insight.confused }} />
-					<span>{{ localize "Labels.Actor.Confused" }}</span>
-				</label>
-			</div>
-
-			<div class="flex flex-col p-1 whitespace-nowrap">
-				<label class="flex flex-nowrap items-center font-semibold">
-					<input type="checkbox" name="system.attributes.might.exhaustion" {{ checked system.attributes.might.exhaustion }} />
-					<span>{{ localize "Labels.Actor.Exhaustion" }}</span>
-				</label>
-
-				<label class="flex flex-nowrap items-center font-semibold">
-					<input type="checkbox" name="system.attributes.might.weary" {{ checked system.attributes.might.weary }} />
-					<span>{{ localize "Labels.Actor.Weary" }}</span>
-				</label>
-			</div>
-
-			<div class="flex flex-col p-1 whitespace-nowrap">
-				<label class="flex flex-nowrap items-center font-semibold">
-					<input type="checkbox" name="system.attributes.quickness.exhaustion" {{ checked system.attributes.quickness.exhaustion }} />
-					<span>{{ localize "Labels.Actor.Exhaustion" }}</span>
-				</label>
-
-				<label class="flex flex-nowrap items-center font-semibold">
-					<input type="checkbox" name="system.attributes.quickness.confused" {{ checked system.attributes.quickness.breathless }} />
-					<span>{{ localize "Labels.Actor.Breathless" }}</span>
-				</label>
-			</div>
-
-			<div class="flex flex-col p-1 whitespace-nowrap">
-				<label class="flex flex-nowrap items-center font-semibold">
-					<input type="checkbox" name="system.attributes.resolve.exhaustion" {{ checked system.attributes.resolve.exhaustion }} />
-					<span>{{ localize "Labels.Actor.Exhaustion" }}</span>
-				</label>
-
-				<label class="flex flex-nowrap items-center font-semibold">
-					<input type="checkbox" name="system.attributes.resolve.despairing" {{ checked system.attributes.resolve.despairing }} />
-					<span>{{ localize "Labels.Actor.Despairing" }}</span>
-				</label>
+				{{#if (and exhausted temperament (eq temperament.system.exhaustionType 'Despairing'))}}
+					<span class="cursor-not-allowed flex items-baseline gap-1 font-semibold uppercase text-red-700">{{ localize "Attributes.Resolve" }}</span>
+				{{else}}
+					<a data-action="roll" data-attribute="resolve" class="flex items-baseline gap-1 font-semibold uppercase text-fuchsia-900">
+						<i class="fas fa-dice-d20"></i>
+						<span>{{ localize "Attributes.Resolve" }}</span>
+					</a>
+				{{/if}}
+				<input type="number" name="system.attributes.resolve.value" value="{{ system.attributes.resolve.value }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-4xl font-semibold !p-2 !py-6 {{#if (and exhausted temperament (eq temperament.system.exhaustionType 'Despairing'))}}!text-red-700{{/if}}" />
 			</div>
 		</div>
 
@@ -210,7 +190,7 @@
 			<div class="grid grid-cols-2 bg-white border-1 border-fuchsia-200 border-solid">
 				<span class="col-span-2 bg-fuchsia-900 text-white uppercase font-semibold flex items-center px-1 justify-center">{{ localize "Labels.Actor.Spirit" }}</span>
 				<label class="flex flex-col border-fuchsia-200 border-0 border-r-1 border-solid">
-					<input type="number" name="system.spirit.value" value="{{ system.spirit.value }}" min="0" class="!border-0 rounded-none !bg-none !text-center !text-2xl font-semibold !p-2 !h-full" />
+					<input type="number" name="system.spirit.value" value="{{ system.spirit.value }}" min="0" max="{{ system.spirit.max }}" class="!border-0 rounded-none !bg-none !text-center !text-2xl font-semibold !p-2 !h-full" />
 					<span class="border-t-1 border-fuchsia-200 text-fuchsia-900 uppercase text-xs flex items-center justify-center">{{ localize "Labels.Current" }}</span>
 				</label>
 				<label class="flex flex-col">
@@ -229,10 +209,56 @@
 		<div class="flex flex-col">
 			<span class="w-full bg-fuchsia-900 text-white uppercase font-semibold flex items-center px-1 h-full justify-center">{{ localize "Labels.Actor.Talents" }}</span>
 			<div class="w-full h-full bg-white border-1 border-t-0 border-fuchsia-200 p-2">
+				{{!-- Origin Benefit --}}
+				{{#if origin}}
+					<div class="pl-4">
+						<span class="font-bold -ml-4"><a data-action="open-sheet" data-uuid="{{ origin.uuid }}">{{ origin.system.benefit.name }}</a>:</span>
+						{{{ origin.system.benefit.description }}}
+					</div>
+				{{/if}}
+
 				{{#each talents}}
 					<div class="pl-4">
 						<span class="font-bold -ml-4" data-menu="item" data-action="open-sheet" data-uuid="{{ uuid }}"><a>{{ name }}:</a></span>
 						{{{ description }}}
+					</div>
+				{{/each}}
+
+				{{!-- Temperament --}}
+				{{#if temperament}}
+					<div class="pl-4">
+						<span class="font-bold -ml-4"><a data-action="open-sheet" data-uuid="{{ temperament.uuid }}">{{ temperament.name }}</a>:</span>
+						{{{ enrichedTemperamentEffect }}}
+						{{{ enrichedExhaustionEffect }}}
+					</div>
+				{{/if}}
+			</div>
+		</div>
+
+		{{!-- Equipment --}}
+		<div class="flex flex-col">
+			<span class="w-full bg-fuchsia-900 text-white uppercase font-semibold flex items-center px-1 h-full justify-center">{{ localize "Labels.Actor.Equipment" }}</span>
+			<div class="w-full h-full bg-white border-1 border-t-0 border-fuchsia-200 p-2">
+				{{#each equipment}}
+					<div class="pl-4">
+						<span class="-ml-4 flex whitespace-nowrap gap-1 text-lg" data-menu="item" data-action="open-sheet" data-uuid="{{ uuid }}">
+							<a class="font-bold">{{ name }}{{#if (gt system.techLevel 0)}} (TL{{ system.techLevel }}{{#if system.isWeapon}}, {{localize (concat "Labels.Item.Weapon." system.weapon.type)}}{{/if}}){{else}}{{#if system.isWeapon}} ({{localize (concat "Labels.Item.Weapon." system.weapon.type)}}){{/if}}{{/if}}{{#if system.hasQualities}}:{{else}}.{{/if}}</a>
+							{{#if system.hasQualities}}
+								<div class="flex flex-wrap whitespace-nowrap gap-x-1 gap-y-0.5 items-center w-full oblique">
+									{{#each system.allQualities}}
+										<span class="after:content-[','] after:-ml-1 last-of-type:after:content-['.']">
+											<span>{{ label }}</span>
+											{{#if rating}}
+												<span>{{ rating }}</span>
+											{{/if}}
+										</span>
+									{{/each}}
+								</div>
+							{{/if}}
+						</span>
+						{{#if system.description}}
+							{{{ system.description }}}
+						{{/if}}
 					</div>
 				{{/each}}
 			</div>
@@ -259,35 +285,6 @@
 				<div class="w-full h-full min-h-15 p-2">
 					{{ editor enrichedDrive target="system.drive" button=true editable=editable engine="prosemirror" }}
 				</div>
-			</div>
-		</div>
-
-		{{!-- Equipment --}}
-		<div class="flex flex-col">
-			<span class="w-full bg-fuchsia-900 text-white uppercase font-semibold flex items-center px-1 h-full justify-center">{{ localize "Labels.Actor.Equipment" }}</span>
-			<div class="w-full h-full bg-white border-1 border-t-0 border-fuchsia-200 p-2">
-				{{#each equipment}}
-					<div class="pl-4">
-						<span class="-ml-4 flex whitespace-nowrap gap-1 text-lg" data-menu="item" data-action="open-sheet" data-uuid="{{ uuid }}">
-							<a class="font-bold">{{ name }}{{#if (gt system.techLevel 0)}} (TL{{ system.techLevel }}){{/if}}{{#if system.hasQualities}}:{{else}}.{{/if}}</a>
-							{{#if system.hasQualities}}
-								<div class="flex flex-wrap whitespace-nowrap gap-x-1 gap-y-0.5 items-center w-full">
-									{{#each system.qualities}}
-										<span class="after:content-[','] after:-ml-1 last-of-type:after:content-['.']">
-											<span>{{ label }}</span>
-											{{#if rating}}
-												<span>{{ rating }}</span>
-											{{/if}}
-										</span>
-									{{/each}}
-								</div>
-							{{/if}}
-						</span>
-						{{#if system.description}}
-							{{{ system.description }}}
-						{{/if}}
-					</div>
-				{{/each}}
 			</div>
 		</div>
 	</div>

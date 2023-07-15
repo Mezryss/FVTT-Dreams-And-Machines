@@ -54,7 +54,10 @@
 			"InjuriesToDefeat": "Injuries to Defeat",
 			"AddTrait": "Add Trait",
 			"AddActions": "Drag some Major NPC Actions onto this sheet to add actions this NPC can perform!",
-			"Truth": "Truth"
+			"Truth": "Truth",
+			"AddArchetype": "Drag & Drop an Archetype item onto this sheet to set your archetype!",
+			"AddOrigin": "Drag & Drop an Origin item onto this sheet to set your origin!",
+			"AddTemperament": "Drag & Drop a Temperament item onto this sheet to set your temperament!"
 		},
 		"DicePrompt": {
 			"Attribute": "Attribute",

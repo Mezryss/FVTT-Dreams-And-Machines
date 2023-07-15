@@ -63,7 +63,7 @@ export default class ItemDataModel extends foundry.abstract.TypeDataModel {
 	 * @returns {boolean} Whether the Item has any Qualities in its list.
 	 */
 	get hasQualities() {
-		return this.qualities.length > 0;
+		return this.allQualities.length > 0;
 	}
 
 	/**
@@ -72,7 +72,18 @@ export default class ItemDataModel extends foundry.abstract.TypeDataModel {
 	 * @returns {ItemQuality[]}
 	 */
 	get allQualities() {
-		return [...this.weapon.damageQualities, ...this.weapon.qualities, ...this.qualities];
+		let protection = [];
+
+		if (this.hasProtection) {
+			protection = [
+				{
+					label: game.i18n.localize('Labels.Item.Protection'),
+					rating: this.protection.value,
+				},
+			];
+		}
+
+		return [...this.weapon.damageQualities, ...this.weapon.qualities, ...protection, ...this.qualities];
 	}
 
 	static defineSchema() {
