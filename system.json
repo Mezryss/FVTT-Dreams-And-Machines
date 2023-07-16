@@ -2,7 +2,7 @@
 	"id": "dreams-and-machines",
 	"title": "Dreams and Machines",
 	"description": "Unofficial implementation of the Dreams and Machines QuickStart Rules",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"compatibility": {
 		"minimum": 11,
 		"verified": 11,

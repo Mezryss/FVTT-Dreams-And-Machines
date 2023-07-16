@@ -1,3 +1,6 @@
+### v1.1.1
+- Add roll button for NPC sheets' Default attribute & skill.
+
 ### v1.1.0
 - First release for Starter Set release series.
 
