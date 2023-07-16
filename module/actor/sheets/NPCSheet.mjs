@@ -32,6 +32,7 @@ export default class NPCSheet extends DnMActorSheet {
 		// Unbind listener from DnMActorSheet
 		html.find('[data-action=roll]').off('click');
 		html.find('[data-action=roll]').on('click', this.roll.bind(this));
+		html.find('[data-action=roll-default]').on('click', this.rollDefault.bind(this));
 
 		if (!this.isEditable) {
 			return;
@@ -76,6 +77,17 @@ export default class NPCSheet extends DnMActorSheet {
 			actor: this.actor,
 			fixedTargetNumber: this.system.attribute.value,
 			fixedFocus: this.system.skill.value,
+		});
+	}
+
+	/**
+	 * Event Handler; Called when the user clicks to roll for the NPC's default attribute & skill.
+	 */
+	rollDefault() {
+		DicePrompt.promptForRoll({
+			actor: this.actor,
+			fixedTargetNumber: this.system.attribute.default,
+			fixedFocus: this.system.skill.default,
 		});
 	}
 }

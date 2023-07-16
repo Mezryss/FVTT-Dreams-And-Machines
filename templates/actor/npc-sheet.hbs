@@ -45,7 +45,10 @@
 			</label>
 
 			<label class="flex flex-col">
-				<span class="text-center text-purple-800 font-semibold uppercase border-0 border-t-1 border-purple-600 border-solid">{{ localize "Labels.Default" }}</span>
+				<span class="text-center text-purple-800 font-semibold uppercase border-0 border-t-1 border-purple-600 border-solid">
+					<a data-action="roll-default"><i class="fas fa-dice-d20"></i></a>
+					<span>{{ localize "Labels.Default" }}</span>
+				</span>
 				{{#if editable}}
 					<input type="number" min="0" name="system.attribute.default" value="{{ system.attribute.default }}" class="!bg-none !rounded-none !border-0 !text-center !text-3xl !font-semibold !h-[unset]" />
 				{{else}}
@@ -54,7 +57,10 @@
 			</label>
 
 			<label class="flex flex-col">
-				<span class="text-center text-purple-800 font-semibold uppercase border-0 border-t-1 border-l-2 border-purple-600 border-solid">{{ localize "Labels.Default" }}</span>
+				<span class="text-center text-purple-800 font-semibold uppercase border-0 border-t-1 border-l-2 border-purple-600 border-solid">
+					<a data-action="roll-default"><i class="fas fa-dice-d20"></i></a>
+					<span>{{ localize "Labels.Default" }}</span>
+				</span>
 				{{#if editable}}
 					<input type="number" min="0" name="system.skill.default" value="{{ system.skill.default }}" class="!bg-none !rounded-none !border-0 !text-center !text-3xl !font-semibold !h-[unset] !border-l-2 !border-purple-600" />
 				{{else}}
