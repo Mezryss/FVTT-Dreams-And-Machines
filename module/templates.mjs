@@ -2,9 +2,9 @@
  * Helper function for registering an Actor partial.
  * @param {string} name
  */
-function actorPartial(name) {
-	return `systems/dreams-and-machines/templates/actor/partials/actor-${name}.hbs`;
-}
+// function actorPartial(name) {
+// 	return `systems/dreams-and-machines/templates/actor/partials/actor-${name}.hbs`;
+// }
 
 /**
  * Helper function for registering an Item partial.
