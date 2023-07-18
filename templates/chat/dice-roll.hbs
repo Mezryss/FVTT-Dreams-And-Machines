@@ -1,4 +1,15 @@
 <div class="flex flex-col gap-1 w-full p-2">
+	{{#if item}}
+		<span class="border-1 border-solid text-xl uppercase font-semibold text-center rounded-md {{#if isGM}}text-teal-600 border-teal-600{{else}}text-fuchsia-800 border-fuchsia-800{{/if}}">
+			{{!-- Show the weapon name, rather than Action name, for Major NPC actions. --}}
+			{{#if (and item.system.weapon item.system.weapon.name)}}
+				{{ item.system.weapon.name }}
+			{{else}}
+				{{ item.name }}
+			{{/if}}
+		</span>
+	{{/if}}
+
 	<span class="text-lg font-semibold text-center rounded-md text-white {{#if isGM}}bg-teal-600{{else}}bg-fuchsia-800{{/if}}">
 		{{#if fixedTargetNumber}}
 			{{#if fixedFocus}}
@@ -32,9 +43,38 @@
 		</span>
 
 		<span class="flex flex-col gap-1 items-center">
-		<span class="text-sm font-semibold w-full text-center rounded-md text-white {{#if (gt complications 0)}}bg-rose-800{{else}}{{#if isGM}}bg-teal-600{{else}}bg-fuchsia-800{{/if}}{{/if}}">Complications</span>
+			<span class="text-sm font-semibold w-full text-center rounded-md text-white {{#if (gt complications 0)}}bg-rose-800{{else}}{{#if isGM}}bg-teal-600{{else}}bg-fuchsia-800{{/if}}{{/if}}">Complications</span>
 			<span class="text-xl">{{ complications }}</span>
 		</span>
+
+		{{#if (and item item.system.isWeapon)}}
+			<span class="flex flex-col gap-1 items-center">
+				<span class="text-sm font-semibold w-full text-center rounded-md text-white {{#if isGM}}bg-teal-600{{else}}bg-fuchsia-800{{/if}}">{{ localize "Labels.Item.Damage" }}</span>
+				<span class="text-sm flex flex-wrap items-center gap-1 justify-center">
+					{{#if item.system.weapon.damageQualities}}
+						{{#each item.system.weapon.damageQualities}}
+							<span class="oblique font-semibold">{{ label }}{{#if (gt rating 0)}} {{ rating }}{{/if}}</span>
+							{{#unless @last}}<span>{{ localize "Labels.Item.Weapon.or" }}</span>{{/unless}}
+						{{/each}}
+					{{else}}
+						—
+					{{/if}}
+				</span>
+			</span>
+
+			<span class="flex flex-col gap-1 items-center">
+				<span class="text-sm font-semibold w-full text-center rounded-md text-white {{#if isGM}}bg-teal-600{{else}}bg-fuchsia-800{{/if}}">{{ localize "Labels.Item.Qualities" }}</span>
+				<span class="text-sm flex flex-wrap items-center gap-1 justify-center">
+					{{#if item.system.weapon.qualities}}
+						{{#each item.system.weapon.qualities}}
+							<span class="oblique font-semibold">{{ label }}{{#if (gt rating 0)}} {{ rating }}{{/if}}{{#unless @last}},{{/unless}}</span>
+						{{/each}}
+					{{else}}
+						—
+					{{/if}}
+				</span>
+			</span>
+		{{/if}}
 	</span>
 
 	<div class="flex justify-center gap-4 text-5xl">

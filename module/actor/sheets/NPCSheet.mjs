@@ -71,12 +71,22 @@ export default class NPCSheet extends DnMActorSheet {
 
 	/**
 	 * Event Handler; Called when the user clicks to roll for the NPC's attribute & skill.
+	 *
+	 * @param {Event} event
 	 */
-	roll() {
+	async roll(event) {
+		const target = $(event.currentTarget);
+		const itemUuid = target.data('uuid');
+		let item = undefined;
+		if (itemUuid) {
+			item = await fromUuid(itemUuid);
+		}
+
 		DicePrompt.promptForRoll({
 			actor: this.actor,
 			fixedTargetNumber: this.system.attribute.value,
 			fixedFocus: this.system.skill.value,
+			item,
 		});
 	}
 

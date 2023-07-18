@@ -106,16 +106,24 @@ export default class DnMActorSheet extends ActorSheet {
 	/**
 	 * @param {MouseEvent} event
 	 */
-	promptForRoll(event) {
+	async promptForRoll(event) {
 		const target = $(event.currentTarget);
 
 		const attribute = target.data('attribute');
 		const skill = target.data('skill');
 
+		const itemUuid = target.data('uuid');
+		/** @type DnMItem|undefined */
+		let item = undefined;
+		if (itemUuid) {
+			item = await fromUuid(itemUuid);
+		}
+
 		DicePrompt.promptForRoll({
 			actor: this.actor,
 			attribute,
 			skill,
+			item,
 		});
 	}
 

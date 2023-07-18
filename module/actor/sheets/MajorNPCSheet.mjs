@@ -95,6 +95,7 @@ export default class MajorNPCSheet extends DnMActorSheet {
 			actor: this.actor,
 			fixedTargetNumber: actionSystem.skillTest.tn,
 			fixedFocus: actionSystem.skillTest.focus,
+			item: action,
 		});
 	}
 }

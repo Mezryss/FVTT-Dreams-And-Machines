@@ -241,8 +241,11 @@
 			<div class="w-full h-full bg-white border-1 border-t-0 border-fuchsia-200 p-2">
 				{{#each equipment}}
 					<div class="pl-4">
-						<span class="-ml-4 flex whitespace-nowrap gap-1 text-lg" data-menu="item" data-action="open-sheet" data-uuid="{{ uuid }}">
-							<a class="font-bold">{{ name }}{{#if (gt system.techLevel 0)}} (TL{{ system.techLevel }}{{#if system.isWeapon}}, {{localize (concat "Labels.Item.Weapon." system.weapon.type)}}{{/if}}){{else}}{{#if system.isWeapon}} ({{localize (concat "Labels.Item.Weapon." system.weapon.type)}}){{/if}}{{/if}}{{#if system.hasQualities}}:{{else}}.{{/if}}</a>
+						<span class="-ml-4 flex whitespace-nowrap gap-1 text-lg" data-menu="item" data-uuid="{{ uuid }}">
+							{{#if system.isWeapon}}
+								<a data-action="roll" data-attribute="{{#if (eq system.weapon.type 'Melee')}}might{{else}}quickness{{/if}}" data-skill="fight" data-uuid="{{ uuid }}"><i class="fas fa-dice-d20"></i></a>
+							{{/if}}
+							<a data-action="open-sheet" data-uuid="{{ uuid }}" class="font-bold">{{ name }}{{#if (gt system.techLevel 0)}} (TL{{ system.techLevel }}{{#if system.isWeapon}}, {{localize (concat "Labels.Item.Weapon." system.weapon.type)}}{{/if}}){{else}}{{#if system.isWeapon}} ({{localize (concat "Labels.Item.Weapon." system.weapon.type)}}){{/if}}{{/if}}{{#if system.hasQualities}}:{{else}}.{{/if}}</a>
 							{{#if system.hasQualities}}
 								<div class="flex flex-wrap whitespace-nowrap gap-x-1 gap-y-0.5 items-center w-full oblique">
 									{{#each system.allQualities}}

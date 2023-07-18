@@ -1,3 +1,6 @@
+### v1.1.2
+- Add weapon info to attack rolls. For PCs, weapon rolls will correctly default to Might+Fight or Quickness+Fight in the prompt if the roll is Melee or Ranged, respectively.
+
 ### v1.1.1
 - Add roll button for NPC sheets' Default attribute & skill.
 

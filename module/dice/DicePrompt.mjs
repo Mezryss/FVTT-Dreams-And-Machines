@@ -7,8 +7,9 @@ export default class DicePrompt extends Application {
 	 * @param {string|undefined} skill
 	 * @param {number|undefined} fixedTargetNumber
 	 * @param {number|undefined} fixedFocus
+	 * @param {DnMItem|undefined} item An optional item (usually a weapon) to note alongside the roll.
 	 */
-	static promptForRoll({ actor, attribute = 'insight', skill = '-', fixedTargetNumber = undefined, fixedFocus = undefined } = {}) {
+	static promptForRoll({ actor, attribute = 'insight', skill = '-', fixedTargetNumber, fixedFocus, item } = {}) {
 		const prompt = new DicePrompt();
 
 		prompt.actor = actor;
@@ -16,6 +17,7 @@ export default class DicePrompt extends Application {
 		prompt.skill = skill;
 		prompt.fixedTargetNumber = fixedTargetNumber;
 		prompt.fixedFocus = fixedFocus;
+		prompt.item = item;
 
 		prompt.render(true);
 	}
@@ -63,6 +65,11 @@ export default class DicePrompt extends Application {
 	 * @type {number}
 	 */
 	complication = 20;
+
+	/**
+	 * @type {DnMItem|undefined}
+	 */
+	item = undefined;
 
 	get template() {
 		return 'systems/dreams-and-machines/templates/app/dice-prompt.hbs';
@@ -215,6 +222,7 @@ export default class DicePrompt extends Application {
 			actor: this.actor,
 			attribute,
 			skill,
+			item: this.item,
 			numDice: this.numDice,
 			complicationRange: this.complication,
 			fixedTargetNumber: this.fixedTargetNumber,

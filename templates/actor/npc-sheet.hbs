@@ -77,25 +77,25 @@
 		{{!-- Weapons --}}
 		<div class="flex flex-col">
 			<span class="text-center text-purple-800 font-semibold uppercase border-0 border-purple-600 border-solid">{{ localize "Labels.Weapons" }}</span>
-			<ul>
-				{{#each weapons}}
-					<li>
-						<span data-menu="weapon" data-uuid="{{ uuid }}">
-							<a data-action="open-sheet" data-uuid="{{ uuid }}" class="uppercase font-semibold text-lg">
-								{{ name }} ({{ localize (concat "Labels.Item.Weapon." system.weapon.type) }}):
-							</a>
+			{{#each weapons}}
+				<div class="flex items-center px-2">
+					<span data-menu="weapon" data-uuid="{{ uuid }}">
+						<a data-action="roll" data-uuid="{{ uuid }}"><i class="fas fa-dice-d20"></i></a>
 
-							{{#each system.allQualities}}
-								<span class="text-lg oblique whitespace-nowrap">{{ label }}{{#unless (eq rating null)}} {{ rating }}{{/unless}}{{#unless @last}},{{/unless}}</span>
-							{{/each}}
-						</span>
+						<a data-action="open-sheet" data-uuid="{{ uuid }}" class="uppercase font-semibold text-lg">
+							{{ name }} ({{ localize (concat "Labels.Item.Weapon." system.weapon.type) }}):
+						</a>
 
-						{{#if system.description}}
-							<div class="py-0.5 pl-2 mr-1">{{{  system.description }}}</div>
-						{{/if}}
-					</li>
-				{{/each}}
-			</ul>
+						{{#each system.allQualities}}
+							<span class="text-lg oblique whitespace-nowrap">{{ label }}{{#unless (eq rating null)}} {{ rating }}{{/unless}}{{#unless @last}},{{/unless}}</span>
+						{{/each}}
+					</span>
+
+					{{#if system.description}}
+						<div class="py-0.5 pl-2 mr-1">{{{  system.description }}}</div>
+					{{/if}}
+				</div>
+			{{/each}}
 		</div>
 
 		{{!-- Special Actions --}}

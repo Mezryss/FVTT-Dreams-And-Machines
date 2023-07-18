@@ -26,6 +26,13 @@ export default class MajorNPCActionDataModel extends foundry.abstract.TypeDataMo
 		return [...this.weapon.damageQualities, ...this.weapon.qualities];
 	}
 
+	/**
+	 * Allow chat templates to treat this equivalent to an Equipment item.
+	 */
+	get isWeapon() {
+		return true;
+	}
+
 	static defineSchema() {
 		const fields = foundry.data.fields;
 

@@ -26,8 +26,9 @@ export default class DnMRoller {
 	 * @param {number} complicationRange
 	 * @param {number|undefined} fixedTargetNumber A fixed Target Number to use.
 	 * @param {number|undefined} fixedFocus A fixed Focus Number to use.
+	 * @param {DnMItem|undefined} item An optional item (usually a weapon) to include along with the roll.
 	 */
-	static async roll({ actor, attribute, skill, numDice, complicationRange, fixedTargetNumber, fixedFocus }) {
+	static async roll({ actor, attribute, skill, numDice, complicationRange, fixedTargetNumber, fixedFocus, item }) {
 		const targetNumber = fixedTargetNumber ?? attribute.value;
 
 		const roll = new Roll(`${numDice}d20`);
@@ -48,6 +49,7 @@ export default class DnMRoller {
 			complicationRange,
 			fixedTargetNumber,
 			fixedFocus,
+			item,
 		});
 
 		await ChatMessage.create({
