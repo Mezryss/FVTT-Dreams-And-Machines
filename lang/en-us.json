@@ -9,6 +9,7 @@
 			"archetype": "Archetype",
 			"item": "Equipment",
 			"origin": "Origin",
+			"specialAbility": "Special Ability",
 			"talent": "Talent",
 			"temperament": "Temperament",
 			"majorNPCAction": "Major NPC Action"
@@ -50,7 +51,7 @@
 			"Drive": "Drive",
 			"Equipment": "Equipment",
 			"PersonalThreat": "Personal Threat",
-			"Traits": "Traits",
+			"Truths": "Truths",
 			"InjuriesToDefeat": "Injuries to Defeat",
 			"AddTrait": "Add Trait",
 			"AddActions": "Drag some Major NPC Actions onto this sheet to add actions this NPC can perform!",

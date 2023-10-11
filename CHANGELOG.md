@@ -1,3 +1,7 @@
+### v1.2.0
+- The full system is out! In preview, at least.
+- This version supports the full release of Dreams and Machines!
+
 ### v1.1.2
 - Add weapon info to attack rolls. For PCs, weapon rolls will correctly default to Might+Fight or Quickness+Fight in the prompt if the roll is Melee or Ranged, respectively.
 

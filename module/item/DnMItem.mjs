@@ -2,6 +2,7 @@ import ArchetypeDataModel from './data/ArchetypeDataModel.mjs';
 import ItemDataModel from './data/ItemDataModel.mjs';
 import MajorNPCActionDataModel from './data/MajorNPCActionDataModel.mjs';
 import OriginDataModel from './data/OriginDataModel.mjs';
+import SpecialAbilityDataModel from './data/SpecialAbilityDataModel.mjs';
 import TalentDataModel from './data/TalentDataModel.mjs';
 import TemperamentDataModel from './data/TemperamentDataModel.mjs';
 
@@ -33,6 +34,7 @@ function registerDataModels() {
 	CONFIG.Item.dataModels.archetype = ArchetypeDataModel;
 	CONFIG.Item.dataModels.item = ItemDataModel;
 	CONFIG.Item.dataModels.origin = OriginDataModel;
+	CONFIG.Item.dataModels.specialAbility = SpecialAbilityDataModel;
 	CONFIG.Item.dataModels.talent = TalentDataModel;
 	CONFIG.Item.dataModels.temperament = TemperamentDataModel;
 	CONFIG.Item.dataModels.majorNPCAction = MajorNPCActionDataModel;
@@ -60,7 +62,7 @@ function registerSheets() {
 	});
 
 	Items.registerSheet('dreams-and-machines', DnMItemSheet, {
-		types: ['talent', 'temperament'],
+		types: ['specialAbility', 'talent', 'temperament'],
 		makeDefault: true,
 	});
 

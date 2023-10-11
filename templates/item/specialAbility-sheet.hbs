@@ -1,0 +1,13 @@
+<form class="{{ cssClass }} flex !flex-1 flex-col gap-1 items-center min-h-10">
+	{{!-- Item Header --}}
+	{{> systems/dreams-and-machines/templates/item/partials/item-header.hbs }}
+
+	{{!-- Description --}}
+	{{#if editable}}
+		{{> systems/dreams-and-machines/templates/item/partials/item-description.hbs }}
+	{{else}}
+		<div class="text-center text-lg p-1">
+			{{{ enrichedDescription }}}
+		</div>
+	{{/if}}
+</form>

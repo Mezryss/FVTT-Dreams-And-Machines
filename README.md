@@ -1,6 +1,9 @@
 # FVTT: Dreams and Machines
 An unofficial implementation of [Modiphius's Dreams and Machines](https://www.dreamsandmachines.com/) RPG QuickStart.
 
+## Trello Board
+For an overview of in-progress tasks, see the [Project's Trello Board](https://trello.com/b/qr6yQfIl/foundry-dreams-and-machines).
+
 ## Building
 The only pre-processing done in this project is Tailwind CSS.
 

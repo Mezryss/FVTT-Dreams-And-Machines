@@ -84,7 +84,7 @@
 			"truth": "",
 			"attribute": {
 				"value": 8,
-				"default": 1
+				"default": 7
 			} ,
 			"skill": {
 				"value": 3,
@@ -100,6 +100,7 @@
 			"archetype",
 			"item",
 			"origin",
+			"specialAbility",
 			"talent",
 			"temperament",
 			"majorNPCAction"
@@ -159,9 +160,12 @@
 			},
 			"archetypes": []
 		},
+		"specialAbility": {
+			"templates": ["itemDescription"]
+		},
 		"talent": {
 			"templates": ["itemDescription"],
-			"archetype": ""
+			"archetype": "General"
 		},
 		"temperament": {
 			"templates": ["itemDescription"],
