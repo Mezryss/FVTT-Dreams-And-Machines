@@ -80,7 +80,7 @@
 			{{#each weapons}}
 				<div>
 					<div class="flex items-center px-2">
-						<span data-menu="weapon" data-uuid="{{ uuid }}">
+						<span data-menu="item" data-uuid="{{ uuid }}">
 							<a data-action="roll" data-uuid="{{ uuid }}"><i class="fas fa-dice-d20"></i></a>
 
 							<a data-action="open-sheet" data-uuid="{{ uuid }}" class="uppercase font-semibold text-lg">
@@ -108,6 +108,14 @@
 				{{ editor enrichedSpecialActions target="system.specialActions" button=true editable=editable engine="prosemirror" }}
 			</div>
 		</div>
+	</div>
+
+	{{!-- Special Abilities --}}
+	<label class="w-full bg-purple-600 py-0.5 pl-2 text-white font-semibold uppercase">{{ localize "Labels.SpecialAbilities" }}</label>
+	<div class="w-full p-2">
+		{{#each abilities}}
+			<p><strong data-menu="item" data-uuid="{{ uuid }}"><a data-action="open-sheet" data-uuid="{{ uuid }}">{{ name }}</a></strong>: {{{ system.description }}}</p>
+		{{/each}}
 	</div>
 
 	{{!-- Notes --}}

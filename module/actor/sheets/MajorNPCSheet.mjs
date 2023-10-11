@@ -29,11 +29,21 @@ export default class MajorNPCSheet extends DnMActorSheet {
 				}),
 		);
 
+		const abilities = await Promise.all(
+			this.actor.items
+				.filter(i => i.type === 'specialAbility')
+				.map(async i => {
+					i.enrichedDescription = await TextEditor.enrichHTML(i.system.description, { async: true });
+					return i;
+				}),
+		);
+
 		return {
 			...super.getData(options),
 			enrichedDescription: await TextEditor.enrichHTML(this.system.description, { async: true }),
 			enrichedNotes: await TextEditor.enrichHTML(this.system.notes, { async: true }),
 			actions,
+			abilities,
 		};
 	}
 
@@ -41,36 +51,6 @@ export default class MajorNPCSheet extends DnMActorSheet {
 		super.activateListeners(html);
 
 		html.find('[data-action=roll-action]').on('click', this.rollAction.bind(this));
-
-		new ContextMenu(html, '[data-menu=action]', [
-			{
-				name: 'Labels.Item.Edit',
-				icon: '<i class="fas fa-pencil"></i>',
-				callback: async (i) => {
-					const uuid = i.data('uuid');
-					if (!uuid) {
-						return;
-					}
-
-					const item = await this.actor.items.find((i) => i.uuid === uuid);
-					item?.sheet?.render(true);
-				},
-			},
-
-			{
-				name: 'Labels.Item.Delete',
-				icon: '<i class="fas fa-trash"></i>',
-				callback: async (i) => {
-					const uuid = i.data('uuid');
-					if (!uuid) {
-						return;
-					}
-
-					const item = await this.actor.items.find((i) => i.uuid === uuid);
-					item?.delete();
-				},
-			},
-		]);
 	}
 
 	/**

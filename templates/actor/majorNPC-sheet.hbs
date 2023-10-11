@@ -152,7 +152,7 @@
 										<i class="fas fa-dice-d20"></i>
 									</a>
 								{{/if}}
-								<span data-menu="action" data-uuid="{{ uuid }}" class="text-black">
+								<span data-menu="item" data-uuid="{{ uuid }}" class="text-black">
 									<span class="flex items-center gap-1">
 										<a class="text-2xl font-semibold text-teal-700" data-action="open-sheet" data-uuid="{{ uuid }}">{{ name }}</a>
 										<span class="text-lg text-teal-700">({{ localize "Labels.Item.TN" }} {{#if (gt system.skillTest.tn 0)}}{{ system.skillTest.tn }}{{else}}—{{/if}} / {{ localize "Labels.Item.Focus" }} {{#if (gt system.skillTest.focus 0)}}{{ system.skillTest.focus }}{{else}}—{{/if}})</span>
@@ -179,6 +179,13 @@
 			{{else}}
 				<em class="p-1">{{ localize "Labels.Actor.AddActions" }}</em>
 			{{/if}}
+
+			<label class="w-full bg-teal-600 py-0.5 pl-2 text-white font-semibold uppercase">{{ localize "Labels.SpecialAbilities" }}</label>
+			<div class="w-full p-2">
+				{{#each abilities}}
+					<p><strong data-menu="item" data-uuid="{{ uuid }}"><a data-action="open-sheet" data-uuid="{{ uuid }}">{{ name }}</a>:</strong> {{{ enrichedDescription }}}</p>
+				{{/each}}
+			</div>
 
 			<label class="w-full bg-teal-600 py-0.5 pl-2 text-white font-semibold uppercase">{{ localize "Labels.Description" }}</label>
 			<div class="w-full h-full min-h-15 p-2">

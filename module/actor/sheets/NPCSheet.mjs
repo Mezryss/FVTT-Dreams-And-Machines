@@ -16,12 +16,14 @@ export default class NPCSheet extends DnMActorSheet {
 		const enrichedSpecialActions = await TextEditor.enrichHTML(this.system.specialActions, { async: true });
 		const enrichedNotes = await TextEditor.enrichHTML(this.system.notes, { async: true });
 
+		const abilities = this.actor.items.filter(i => i.type === 'specialAbility')
 		const weapons = this.actor.items.filter((i) => i.type === 'item' && i.system.isWeapon);
 
 		return {
 			...super.getData(options),
 			enrichedSpecialActions,
 			enrichedNotes,
+			abilities,
 			weapons,
 		};
 	}
@@ -33,40 +35,6 @@ export default class NPCSheet extends DnMActorSheet {
 		html.find('[data-action=roll]').off('click');
 		html.find('[data-action=roll]').on('click', this.roll.bind(this));
 		html.find('[data-action=roll-default]').on('click', this.rollDefault.bind(this));
-
-		if (!this.isEditable) {
-			return;
-		}
-
-		new ContextMenu(html, '[data-menu=weapon]', [
-			{
-				name: 'Labels.Item.Edit',
-				icon: '<i class="fas fa-pencil"></i>',
-				callback: async (i) => {
-					const uuid = i.data('uuid');
-					if (!uuid) {
-						return;
-					}
-
-					const item = await this.actor.items.find((i) => i.uuid === uuid);
-					item?.sheet?.render(true);
-				},
-			},
-
-			{
-				name: 'Labels.Item.Delete',
-				icon: '<i class="fas fa-trash"></i>',
-				callback: async (i) => {
-					const uuid = i.data('uuid');
-					if (!uuid) {
-						return;
-					}
-
-					const item = await this.actor.items.find((i) => i.uuid === uuid);
-					item?.delete();
-				},
-			},
-		]);
 	}
 
 	/**
