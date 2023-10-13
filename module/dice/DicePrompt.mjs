@@ -209,7 +209,7 @@ export default class DicePrompt extends Application {
 				};
 
 				// Moving to this instead of a ternary because Prettier & ESLint weren't getting along.
-				if (this.skill) {
+				if (this.skill && this.skill !== '-') {
 					skill = {
 						label: game.i18n.localize(`Skills.${this.skill.capitalize()}`),
 						value: this.actor.system.skills[this.skill],

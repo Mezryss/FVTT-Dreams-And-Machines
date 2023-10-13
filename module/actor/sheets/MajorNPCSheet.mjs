@@ -17,10 +17,21 @@ export default class MajorNPCSheet extends DnMActorSheet {
 			this.actor.items
 				.filter((i) => i.type === 'majorNPCAction')
 				.map(async (i) => {
+					/** @type {MajorNPCActionDataModel} */
+					const system = i.system;
+
 					let enrichedDescription = undefined;
 
 					if (i.system.description) {
 						enrichedDescription = await TextEditor.enrichHTML(i.system.description);
+					}
+
+					if (i.system.skillTest.attribute !== '-') {
+						i.system.skillTest.tn = this.system.attributes[i.system.skillTest.attribute].value;
+					}
+
+					if (i.system.skillTest.skill !== '-') {
+						i.system.skillTest.focus = this.system.skills[i.system.skillTest.skill];
 					}
 
 					i.enrichedDescription = enrichedDescription;
@@ -71,10 +82,12 @@ export default class MajorNPCSheet extends DnMActorSheet {
 		/** @type MajorNPCActionDataModel */
 		const actionSystem = action.system;
 
+		let skill = undefined;
+
 		DicePrompt.promptForRoll({
 			actor: this.actor,
-			fixedTargetNumber: actionSystem.skillTest.tn,
-			fixedFocus: actionSystem.skillTest.focus,
+			attribute: actionSystem.skillTest.attribute,
+			skill: actionSystem.skillTest.skill,
 			item: action,
 		});
 	}

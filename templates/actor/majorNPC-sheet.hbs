@@ -147,8 +147,8 @@
 					{{#each actions}}
 						<div class="flex flex-col">
 							<div class="flex items-center gap-1 text-teal-700">
-								{{#if (gt system.skillTest.tn 0)}}
-									<a data-action="roll-action" data-uuid="{{ uuid }}" class="text-xl">
+								{{#if (ne system.skillTest.attribute '-')}}
+									<a data-action="roll-action" data-uuid="{{ uuid }}" data-attribute="{{ system.skillTest.attribute }}" data-skill="{{ system.skillTest.skill }}" class="text-xl">
 										<i class="fas fa-dice-d20"></i>
 									</a>
 								{{/if}}

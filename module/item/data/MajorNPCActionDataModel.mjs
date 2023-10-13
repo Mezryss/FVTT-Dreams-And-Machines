@@ -12,8 +12,8 @@ import { ItemQualities } from './ItemDataModel.mjs';
  * @mixes ItemDescription
  *
  * @property {object} skillTest Skill test the Major NPC makes for this action
- * @property {number} skillTest.tn Target Number the NPC must beat.
- * @property {number} skillTest.focus Focus value for the NPC's roll.
+ * @property {'-'|'might'|'quickness'|'insight'|'resolve'} skillTest.attribute Attribute used for the skill test.
+ * @property {'-'|'fight'|'move'|'operate'|'sneak'|'study'|'survive'|'talk'} skillTest.skill Skill used for the skill test.
  * @property {WeaponDetailExpanded} weapon Properties of the weapon used in this attack, if any.
  */
 export default class MajorNPCActionDataModel extends foundry.abstract.TypeDataModel {
@@ -40,20 +40,31 @@ export default class MajorNPCActionDataModel extends foundry.abstract.TypeDataMo
 			...ItemDescription(),
 
 			skillTest: new fields.SchemaField({
-				tn: new fields.NumberField({
-					initial: 8,
-					integer: true,
-					min: 0,
-					max: 20,
+				attribute: new fields.StringField({
+					initial: '-',
 					nullable: false,
+					choices: [
+						'-',
+						'might',
+						'quickness',
+						'insight',
+						'resolve'
+					]
 				}),
 
-				focus: new fields.NumberField({
-					initial: 0,
-					integer: true,
-					min: 0,
-					max: 20,
+				skill: new fields.StringField({
+					initial: '-',
 					nullable: false,
+					choices: [
+						'-',
+						'fight',
+						'move',
+						'operate',
+						'sneak',
+						'study',
+						'survive',
+						'talk'
+					]
 				}),
 			}),
 

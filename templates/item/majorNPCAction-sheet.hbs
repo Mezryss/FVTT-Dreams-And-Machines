@@ -50,15 +50,39 @@
 			{{/if}}
 		</span>
 
-		<label class="text-green-600 font-semibold py-0.5 uppercase text-sm text-center border-0 border-l-1 border-solid border-green-600">{{ localize "Labels.Item.TN" }}</label>
-		<label class="text-green-600 font-semibold py-0.5 uppercase text-sm text-center border-0 border-x-1 border-solid border-green-600">{{ localize "Labels.Item.Focus" }}</label>
+		<label class="text-green-600 font-semibold py-0.5 uppercase text-sm text-center border-0 border-l-1 border-solid border-green-600">{{ localize "Labels.DicePrompt.Attribute" }}</label>
+		<label class="text-green-600 font-semibold py-0.5 uppercase text-sm text-center border-0 border-x-1 border-solid border-green-600">{{ localize "Labels.DicePrompt.Skill" }}</label>
 
 		{{#if editable}}
+			<select name="system.skillTest.attribute" class="!text-center !h-full !p-0 !bg-none !rounded-none !border-0 !border-l-1 !border-b-1 !border-green-600 !w-full">
+				{{#select system.skillTest.attribute}}
+					<option value="-">-</option>
+					<option value="might">{{ localize "Attributes.Might" }}</option>
+					<option value="quickness">{{ localize "Attributes.Quickness" }}</option>
+					<option value="insight">{{ localize "Attributes.Insight" }}</option>
+					<option value="resolve">{{ localize "Attributes.Resolve" }}</option>
+				{{/select}}
+			</select>
+
+			<select name="system.skillTest.skill" class="!text-center !h-full !p-0 !bg-none !rounded-none !border-0 !border-x-1 !border-b-1 !border-green-600 !w-full">
+				{{#select system.skillTest.skill}}
+					<option value="-">-</option>
+					<option value="fight">{{ localize "Skills.Fight" }}</option>
+					<option value="move">{{ localize "Skills.Move" }}</option>
+					<option value="operate">{{ localize "Skills.Operate" }}</option>
+					<option value="sneak">{{ localize "Skills.Sneak" }}</option>
+					<option value="study">{{ localize "Skills.Study" }}</option>
+					<option value="survive">{{ localize "Skills.Survive" }}</option>
+					<option value="talk">{{ localize "Skills.Talk" }}</option>
+				{{/select}}
+			</select>
+			{{!--
 			<input type="number" name="system.skillTest.tn" value="{{ system.skillTest.tn }}" class="!text-3xl !text-center !h-full !p-0 !bg-none !rounded-none !border-0 !border-l-1 !border-b-1 !border-green-600 !w-full" />
 			<input type="number" name="system.skillTest.focus" value="{{ system.skillTest.focus }}" class="!text-3xl !text-center !h-full !p-0 !bg-none !rounded-none !border-0 !border-x-1 !border-b-1 !border-green-600 !w-full" />
+			--}}
 		{{else}}
-			<div class="text-3xl text-center border-0 border-solid border-l-1 border-b-1 border-green-600 w-full">{{ system.skillTest.tn }}</div>
-			<div class="text-3xl text-center border-0 border-solid border-x-1 border-b-1 border-green-600 w-full">{{ system.skillTest.focus }}</div>
+			<div class="text-3xl text-center border-0 border-solid border-l-1 border-b-1 border-green-600 w-full">{{ system.skillTest.attribute }}</div>
+			<div class="text-3xl text-center border-0 border-solid border-x-1 border-b-1 border-green-600 w-full">{{ system.skillTest.skill }}</div>
 		{{/if}}
 	</div>
 
