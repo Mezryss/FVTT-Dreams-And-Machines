@@ -55,6 +55,9 @@ export function ItemQualities() {
  * @property {ProtectionDetails} protection Protection provided by the item if it's a type of armor.
  * @property {boolean} isWeapon Whether the Item is a weapon.
  * @property {WeaponDetails} weapon Details for the weapon, if the item is in fact a weapon.
+ * @property {boolean} isGLIF Whether the Item is a GLIF.
+ * @property {object} GLIF Details for the GLIF, if the item is in fact a GLIF.
+ * @property {number} GLIF.complexity Complexity of the GLIF.
  */
 export default class ItemDataModel extends foundry.abstract.TypeDataModel {
 	/**
@@ -139,6 +142,20 @@ export default class ItemDataModel extends foundry.abstract.TypeDataModel {
 				qualities: ItemQualities(),
 
 				damageQualities: ItemQualities(),
+			}),
+
+			isGLIF: new fields.BooleanField({
+				initial: false,
+				nullable: false,
+			}),
+
+			GLIF: new fields.SchemaField({
+				complexity: new fields.NumberField({
+					initial: 1,
+					integer: true,
+					min: 0,
+					nullable: false,
+				}),
 			}),
 		};
 	}

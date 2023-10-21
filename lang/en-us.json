@@ -95,6 +95,10 @@
 			"TN": "TN",
 			"Focus": "Focus",
 			"AddToNPC": "Add this action to a Major NPC's sheet!",
+			"IsGLIF": "Is GLIF",
+			"GLIF": {
+				"Complexity": "Complexity"
+			},
 			"Weapon": {
 				"Label": "Weapon",
 				"Melee": "Melee",

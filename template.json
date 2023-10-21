@@ -141,6 +141,10 @@
 				"type": "Melee",
 				"qualities": [],
 				"damageQualities": []
+			},
+			"isGLIF": false,
+			"GLIF": {
+				"complexity": 1
 			}
 		},
 		"origin": {

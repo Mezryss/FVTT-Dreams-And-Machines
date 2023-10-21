@@ -51,85 +51,109 @@
 
 	{{!-- Editable Sheet --}}
 	{{#if editable}}
-		{{!-- Weapon Block --}}
-		<div class="flex flex-col items-start w-full">
-			{{!-- Item Qualities --}}
-			<div class="flex flex-col items-center w-full p-1">
-				<div class="py-0.5 w-full text-center font-semibold uppercase text-white bg-fuchsia-900">{{ localize "Labels.Item.Qualities" }}</div>
-				<div class="w-full border-1 border-t-0 border-fuchsia-900 border-solid p-1">
-					{{> qualitiesInput value=system.qualities name="system.qualities" }}
-				</div>
-			</div>
-
-			{{!-- Is Weapon checkbox --}}
-			<div class="grid grid-cols-2 gap-2 w-full pr-1">
+		{{#if system.isGLIF }}
+			<div class="flex flex-col items-start w-full">
 				<label class="flex items-center">
-					<input type="checkbox" name="system.isWeapon" {{ checked system.isWeapon }} />
-					<span>{{ localize "Labels.Item.IsWeapon" }}</span>
+					<input type="checkbox" name="system.isGLIF" {{ checked system.isGLIF }} />
+					<span>{{ localize "Labels.Item.IsGLIF" }}</span>
 				</label>
 
+				<div class="px-1 w-full">
+					<label class="flex flex-col items-center font-semibold">
+						<span class="text-center py-0.5 w-full whitespace-nowrap bg-fuchsia-900 text-white uppercase">{{ localize "Labels.Item.GLIF.Complexity" }}</span>
+						<input type="number" class="disabled:!border-1 disabled:!border-solid !text-center !h-10 !text-3xl !rounded-none !w-full !border-fuchsia-900" name="system.GLIF.complexity" value="{{ system.GLIF.complexity }}" />
+					</label>
+				</div>
+			</div>
+		{{else}}
+		{{!-- GLIF --}}
+			{{!-- Weapon Block --}}
+			<div class="flex flex-col items-start w-full">
+				{{!-- Item Qualities --}}
+				<div class="flex flex-col items-center w-full p-1">
+					<div class="py-0.5 w-full text-center font-semibold uppercase text-white bg-fuchsia-900">{{ localize "Labels.Item.Qualities" }}</div>
+					<div class="w-full border-1 border-t-0 border-fuchsia-900 border-solid p-1">
+						{{> qualitiesInput value=system.qualities name="system.qualities" }}
+					</div>
+				</div>
+
+				<div class="flex flex-col items-start w-full">
+					<label class="flex items-center">
+						<input type="checkbox" name="system.isGLIF" {{ checked system.isGLIF }} />
+						<span>{{ localize "Labels.Item.IsGLIF" }}</span>
+					</label>
+				</div>
+
+				{{!-- Is Weapon checkbox --}}
+				<div class="grid grid-cols-2 gap-2 w-full pr-1">
+					<label class="flex items-center">
+						<input type="checkbox" name="system.isWeapon" {{ checked system.isWeapon }} />
+						<span>{{ localize "Labels.Item.IsWeapon" }}</span>
+					</label>
+
+					{{#if system.isWeapon}}
+						<select name="system.weapon.type" class="!w-full">
+							{{#select system.weapon.type}}
+								<option value="Melee">{{ localize "Labels.Item.Weapon.Melee" }}</option>
+								<option value="Ranged">{{ localize "Labels.Item.Weapon.Ranged" }}</option>
+							{{/select}}
+						</select>
+					{{/if}}
+				</div>
+
+				{{!-- Weapon Stat Input --}}
 				{{#if system.isWeapon}}
-					<select name="system.weapon.type" class="!w-full">
-						{{#select system.weapon.type}}
-							<option value="Melee">{{ localize "Labels.Item.Weapon.Melee" }}</option>
-							<option value="Ranged">{{ localize "Labels.Item.Weapon.Ranged" }}</option>
-						{{/select}}
-					</select>
+					<div class="w-full grid grid-cols-2 p-1">
+						<label class="text-center bg-fuchsia-900 w-full text-white uppercase font-semibold p-1">
+							{{ localize "Labels.Item.Damage" }}
+						</label>
+
+						<label class="text-center bg-fuchsia-900 w-full text-white uppercase font-semibold p-1">
+							{{ localize "Labels.Item.Qualities" }}
+						</label>
+
+						<div class="border-1 border-solid border-t-0 border-fuchsia-900 p-1">
+							{{> qualitiesInput value=system.weapon.damageQualities name="system.weapon.damageQualities" }}
+						</div>
+
+						<div class="border-1 border-solid border-t-0 border-fuchsia-900 p-1">
+							{{> qualitiesInput value=system.weapon.qualities name="system.weapon.qualities" }}
+						</div>
+					</div>
 				{{/if}}
 			</div>
 
-			{{!-- Weapon Stat Input --}}
-			{{#if system.isWeapon}}
-				<div class="w-full grid grid-cols-2 p-1">
-					<label class="text-center bg-fuchsia-900 w-full text-white uppercase font-semibold p-1">
-						{{ localize "Labels.Item.Damage" }}
-					</label>
+			{{!-- Protection Block --}}
+			<div class="flex flex-col items-start w-full">
+				<label class="flex items-center">
+					<input type="checkbox" name="system.hasProtection" {{ checked system.hasProtection }} />
+					<span>{{ localize "Labels.Item.HasProtection" }}</span>
+				</label>
 
-					<label class="text-center bg-fuchsia-900 w-full text-white uppercase font-semibold p-1">
-						{{ localize "Labels.Item.Qualities" }}
-					</label>
+				{{#if system.hasProtection}}
+					<div class="grid grid-cols-3 p-1 w-full">
+						<label class="flex flex-col text-center bg-fuchsia-900 w-full text-white uppercase font-semibold p-1">
+							{{ localize "Labels.Item.ProtectionValue" }}
+						</label>
 
-					<div class="border-1 border-solid border-t-0 border-fuchsia-900 p-1">
-						{{> qualitiesInput value=system.weapon.damageQualities name="system.weapon.damageQualities" }}
+						<label class="col-span-2 text-center bg-fuchsia-900 w-full text-white uppercase font-semibold p-1">
+							{{ localize "Labels.Notes" }}
+						</label>
+
+						<input type="number" class="!text-center !h-full !text-xl !rounded-none !w-full !border-fuchsia-900" name="system.protection.value" value="{{ system.protection.value }}" />
+
+						<div class="col-span-2 border-1 border-fuchsia-900 border-solid">
+							<textarea class="resize-y border-none rounded-none w-full h-full" name="system.protection.notes">{{ system.protection.notes }}</textarea>
+						</div>
 					</div>
+				{{/if}}
+			</div>
 
-					<div class="border-1 border-solid border-t-0 border-fuchsia-900 p-1">
-						{{> qualitiesInput value=system.weapon.qualities name="system.weapon.qualities" }}
-					</div>
-				</div>
-			{{/if}}
-		</div>
-
-		{{!-- Protection Block --}}
-		<div class="flex flex-col items-start w-full">
-			<label class="flex items-center">
-				<input type="checkbox" name="system.hasProtection" {{ checked system.hasProtection }} />
-				<span>{{ localize "Labels.Item.HasProtection" }}</span>
-			</label>
-
-			{{#if system.hasProtection}}
-				<div class="grid grid-cols-3 p-1 w-full">
-					<label class="flex flex-col text-center bg-fuchsia-900 w-full text-white uppercase font-semibold p-1">
-						{{ localize "Labels.Item.ProtectionValue" }}
-					</label>
-
-					<label class="col-span-2 text-center bg-fuchsia-900 w-full text-white uppercase font-semibold p-1">
-						{{ localize "Labels.Notes" }}
-					</label>
-
-					<input type="number" class="!text-center !h-full !text-xl !rounded-none !w-full !border-fuchsia-900" name="system.protection.value" value="{{ system.protection.value }}" />
-
-					<div class="col-span-2 border-1 border-fuchsia-900 border-solid">
-						<textarea class="resize-y border-none rounded-none w-full h-full" name="system.protection.notes">{{ system.protection.notes }}</textarea>
-					</div>
-				</div>
-			{{/if}}
-		</div>
-
-		{{!-- Tech Level & Value --}}
-		<div class="px-1">
-			{{> techLevelValueInput }}
-		</div>
+			{{!-- Tech Level & Value --}}
+			<div class="px-1">
+				{{> techLevelValueInput }}
+			</div>
+		{{/if}}
 
 		{{!-- Description --}}
 		{{> systems/dreams-and-machines/templates/item/partials/item-description.hbs }}
