@@ -8,15 +8,15 @@ import ItemDescription from './templates/ItemDescription.mjs';
 
 /**
  * @typedef {object} WeaponDetails
- * @property {'Melee'|'Ranged'} type Whether the weapon is a Melee or Ranged weapon.
+ * @property {'Melee'|'Ranged'|'MeleeRanged'} type Whether the weapon is a Melee or Ranged weapon.
  * @property {ItemQuality[]} damageQualities Quality and rating applied for damage.
  * @property {ItemQuality[]} qualities Weapon Qualities
  */
 
 /**
  * @typedef {object} ProtectionDetails
- * @property {number} value Actual protection value
- * @property {string} notes Note text, usually describing the impact of Breaker
+ * @property {number} value Normal protection value
+ * @property {number} breaker Protection against Breaker attacks
  */
 
 /**
@@ -70,6 +70,13 @@ export default class ItemDataModel extends foundry.abstract.TypeDataModel {
 	}
 
 	/**
+	 * Template utility for fetching the last index for damage qualities.
+	 */
+	get lastDamageQualityIndex() {
+		return this.weapon.damageQualities.length - 1;
+	}
+
+	/**
 	 * Utility for fetching all qualities in a single list.
 	 *
 	 * @returns {ItemQuality[]}
@@ -86,7 +93,7 @@ export default class ItemDataModel extends foundry.abstract.TypeDataModel {
 			];
 		}
 
-		return [...this.weapon.damageQualities, ...this.weapon.qualities, ...protection, ...this.qualities];
+		return [...this.weapon.qualities, ...protection, ...this.qualities];
 	}
 
 	static defineSchema() {
@@ -107,6 +114,30 @@ export default class ItemDataModel extends foundry.abstract.TypeDataModel {
 				nullable: false,
 			}),
 
+			rarity: new fields.NumberField({
+				initial: 1,
+				integer: true,
+				min: 0,
+				nullable: false,
+			}),
+
+			supplyPointCost: new fields.StringField({
+				initial: '-',
+				nullable: false,
+			}),
+
+			category: new fields.StringField({
+				initial: '',
+				nullable: false,
+			}),
+
+			quantity: new fields.NumberField({
+				initial: 1,
+				integer: true,
+				min: 0,
+				nullable: false,
+			}),
+
 			qualities: ItemQualities(),
 
 			hasProtection: new fields.BooleanField({
@@ -121,8 +152,10 @@ export default class ItemDataModel extends foundry.abstract.TypeDataModel {
 					min: 0,
 					nullable: false,
 				}),
-				notes: new fields.HTMLField({
-					initial: '',
+				breaker: new fields.NumberField({
+					initial: 0,
+					integer: true,
+					min: 0,
 					nullable: false,
 				}),
 			}),
@@ -135,7 +168,7 @@ export default class ItemDataModel extends foundry.abstract.TypeDataModel {
 			weapon: new fields.SchemaField({
 				type: new fields.StringField({
 					initial: 'Melee',
-					choices: ['Melee', 'Ranged'],
+					choices: ['Melee', 'Ranged', 'MeleeRanged'],
 					nullable: false,
 				}),
 

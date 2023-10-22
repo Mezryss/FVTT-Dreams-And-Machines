@@ -81,8 +81,8 @@
 			"HasProtection": "Provides Protection",
 			"IsWeapon": "Is Weapon",
 			"Damage": "Damage",
-			"ProtectionValue": "Protection Value",
 			"Protection": "Protection",
+			"ProtectionBreaker": "Protection (Breaker)",
 			"StartingCoin": "Starting Coin",
 			"StartingGear": "Starting Gear",
 			"AddStartingGear": "Drag & Drop Equipment onto this sheet to reference them as starting equipment for the archetype!",
@@ -96,6 +96,10 @@
 			"Focus": "Focus",
 			"AddToNPC": "Add this action to a Major NPC's sheet!",
 			"IsGLIF": "Is GLIF",
+			"Rarity": "Rarity",
+			"SupplyPointCost": "Supply Points",
+			"Quantity": "Quantity",
+			"Category": "Category",
 			"GLIF": {
 				"Complexity": "Complexity"
 			},
@@ -103,6 +107,7 @@
 				"Label": "Weapon",
 				"Melee": "Melee",
 				"Ranged": "Ranged",
+				"MeleeRanged": "Melee/Ranged",
 				"or": "or",
 				"Name": "Weapon Name",
 				"Type": "Weapon Type"
@@ -118,7 +123,8 @@
 		"Notes": "Notes",
 		"SpecialAbilities": "Special Abilities",
 		"Description": "Description",
-		"Value": "Value",
+		"Value": "Coin",
+		"Cost": "Cost",
 		"Default": "Default",
 		"Combat": "Combat",
 		"SpecialActions": "Special Actions",

@@ -240,14 +240,38 @@
 			<span class="w-full bg-fuchsia-900 text-white uppercase font-semibold flex items-center px-1 h-full justify-center">{{ localize "Labels.Actor.Equipment" }}</span>
 			<div class="w-full h-full bg-white border-1 border-t-0 border-fuchsia-200 p-2">
 				{{#each equipment}}
-					<div class="pl-4">
-						<span class="-ml-4 flex whitespace-nowrap gap-1 text-lg" data-menu="item" data-uuid="{{ uuid }}">
+					<div class="pl-4 border-0 border-b-1 border-dashed border-fuchsia-800 last-of-type:border-b-0">
+						<span class="-ml-4 flex items-center whitespace-nowrap gap-1 text-lg" data-menu="item" data-uuid="{{ uuid }}">
+							<span class="grid items-center gap-0.5 bg-slate-300 rounded-xl px-1 mr-1" style="grid-template-columns: repeat(3, 1rem)">
+								<a data-action="decrease-quantity" data-uuid="{{ uuid }}"><i class="fas fa-minus text-base"></i></a>
+								<span class="text-center">{{ system.quantity }}</span>
+								<a data-action="increase-quantity" data-uuid="{{ uuid }}"><i class="fas fa-plus text-base"></i></a>
+							</span>
 							{{#if system.isWeapon}}
-								<a data-action="roll" data-attribute="{{#if (eq system.weapon.type 'Melee')}}might{{else}}quickness{{/if}}" data-skill="fight" data-uuid="{{ uuid }}"><i class="fas fa-dice-d20"></i></a>
+								{{#if (or (eq system.weapon.type 'Melee') (eq system.weapon.type 'MeleeRanged'))}}
+									<a data-action="roll" data-attribute="might" data-skill="fight" data-uuid="{{ uuid }}"><i class="fas fa-sword"></i></a>
+								{{/if}}
+
+								{{#if (or (eq system.weapon.type 'Ranged') (eq system.weapon.type 'MeleeRanged'))}}
+									<a data-action="roll" data-attribute="quickness" data-skill="fight" data-uuid="{{ uuid }}"><i class="fas fa-bow-arrow"></i></a>
+								{{/if}}
 							{{/if}}
 							<a data-action="open-sheet" data-uuid="{{ uuid }}" class="font-bold">{{ name }}{{#if (gt system.techLevel 0)}} (TL{{ system.techLevel }}{{#if system.isWeapon}}, {{localize (concat "Labels.Item.Weapon." system.weapon.type)}}{{/if}}){{else}}{{#if system.isWeapon}} ({{localize (concat "Labels.Item.Weapon." system.weapon.type)}}){{/if}}{{/if}}{{#if system.hasQualities}}:{{else}}.{{/if}}</a>
 							{{#if system.hasQualities}}
 								<div class="flex flex-wrap whitespace-nowrap gap-x-1 gap-y-0.5 items-center w-full oblique">
+									{{#each system.weapon.damageQualities}}
+										<span>
+											<span>{{ label }}</span>
+											{{#if rating}}
+												<span>{{ rating }}</span>
+											{{/if}}
+											{{#if (ne @index ../system.lastDamageQualityIndex)}}
+												<span>or</span>
+											{{else if (gt ../system.allQualities.length 0)}}
+												<span class="-ml-1">,</span>
+											{{/if}}
+										</span>
+									{{/each}}
 									{{#each system.allQualities}}
 										<span class="after:content-[','] after:-ml-1 last-of-type:after:content-['.']">
 											<span>{{ label }}</span>

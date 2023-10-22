@@ -134,7 +134,7 @@
 			"hasProtection": false,
 			"protection": {
 				"number": 0,
-				"notes": ""
+				"breaker": 0
 			},
 			"isWeapon": false,
 			"weapon": {

@@ -26,6 +26,47 @@ export default class CharacterSheet extends DnMActorSheet {
 		return super.system;
 	}
 
+	activateListeners(html) {
+		super.activateListeners(html);
+
+		html.find('[data-action=increase-quantity]').on('click', this.increaseQuantity.bind(this));
+		html.find('[data-action=decrease-quantity]').on('click', this.decreaseQuantity.bind(this));
+	}
+
+	/**
+	 * @param {Event} event
+	 */
+	async increaseQuantity(event) {
+		const itemUuid = $(event.currentTarget).data('uuid');
+		const item = await fromUuid(itemUuid);
+		if (!item) {
+			return;
+		}
+
+		await item.update({
+			'system.quantity': item.system.quantity + 1,
+		});
+	}
+
+	/**
+	 * @param {Event} event
+	 */
+	async decreaseQuantity(event) {
+		const itemUuid = $(event.currentTarget).data('uuid');
+		const item = await fromUuid(itemUuid);
+		if (!item) {
+			return;
+		}
+
+		if (item.system.quantity - 1 === 0) {
+			await item.delete();
+		} else {
+			await item.update({
+				'system.quantity': item.system.quantity - 1,
+			});
+		}
+	}
+
 	async getData(options = {}) {
 		const talents = await Promise.all(
 			this.actor.items

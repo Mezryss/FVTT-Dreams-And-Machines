@@ -34,14 +34,22 @@
 {{/inline}}
 
 {{#*inline "techLevelValueInput"}}
-	<div class="grid grid-cols-2 w-full">
+	<div class="grid grid-cols-4 w-full">
 		<label class="flex flex-col items-center font-semibold">
 			<span class="text-center py-0.5 w-full whitespace-nowrap bg-fuchsia-900 text-white uppercase">{{ localize "Labels.TechLevel" }}</span>
 			<input type="number" class="disabled:!border-1 disabled:!border-solid !text-center !h-10 !text-3xl !rounded-none !w-full !border-fuchsia-900" name="system.techLevel" value="{{ system.techLevel }}" />
 		</label>
 		<label class="flex flex-col items-center font-semibold">
+			<span class="text-center py-0.5 w-full whitespace-nowrap bg-fuchsia-900 text-white uppercase">{{ localize "Labels.Item.SupplyPointCost" }}</span>
+			<input type="text" class="disabled:!border-b-1 disabled:!border-t-1 disabled:!border-r-1 disabled:!border-solid !border-l-0 !text-center !h-10 !text-3xl !rounded-none !w-full !border-fuchsia-900" name="system.supplyPointCost" value="{{ system.supplyPointCost }}" />
+		</label>
+		<label class="flex flex-col items-center font-semibold">
 			<span class="text-center py-0.5 w-full whitespace-nowrap bg-fuchsia-900 text-white uppercase">{{ localize "Labels.Value" }}</span>
 			<input type="number" class="disabled:!border-b-1 disabled:!border-t-1 disabled:!border-r-1 disabled:!border-solid !border-l-0 !text-center !h-10 !text-3xl !rounded-none !w-full !border-fuchsia-900" name="system.value" value="{{ system.value }}" />
+		</label>
+		<label class="flex flex-col items-center font-semibold">
+			<span class="text-center py-0.5 w-full whitespace-nowrap bg-fuchsia-900 text-white uppercase">{{ localize "Labels.Item.Rarity" }}</span>
+			<input type="number" class="disabled:!border-b-1 disabled:!border-t-1 disabled:!border-r-1 disabled:!border-solid !border-l-0 !text-center !h-10 !text-3xl !rounded-none !w-full !border-fuchsia-900" name="system.rarity" value="{{ system.rarity }}" />
 		</label>
 	</div>
 {{/inline}}
@@ -66,7 +74,19 @@
 				</div>
 			</div>
 		{{else}}
-		{{!-- GLIF --}}
+			<div class="p-1 w-full">
+				<div class="grid grid-cols-4 w-full">
+					<label class="flex flex-col items-center font-semibold" style="grid-column: 1 / span 3;">
+						<span class="text-center py-0.5 w-full whitespace-nowrap bg-fuchsia-900 text-white uppercase">{{ localize "Labels.Item.Category" }}</span>
+						<input type="text" class="disabled:!border-1 disabled:!border-solid !text-center !h-10 !text-3xl !rounded-none !w-full !border-fuchsia-900" name="system.category" value="{{ system.category }}" />
+					</label>
+					<label class="flex flex-col items-center font-semibold">
+						<span class="text-center py-0.5 w-full whitespace-nowrap bg-fuchsia-900 text-white uppercase">{{ localize "Labels.Item.Quantity" }}</span>
+						<input type="text" class="disabled:!border-b-1 disabled:!border-t-1 disabled:!border-r-1 disabled:!border-solid !border-l-0 !text-center !h-10 !text-3xl !rounded-none !w-full !border-fuchsia-900" name="system.quantity" value="{{ system.quantity }}" />
+					</label>
+				</div>
+			</div>
+
 			{{!-- Weapon Block --}}
 			<div class="flex flex-col items-start w-full">
 				{{!-- Item Qualities --}}
@@ -96,6 +116,7 @@
 							{{#select system.weapon.type}}
 								<option value="Melee">{{ localize "Labels.Item.Weapon.Melee" }}</option>
 								<option value="Ranged">{{ localize "Labels.Item.Weapon.Ranged" }}</option>
+								<option value="MeleeRanged">{{ localize "Labels.Item.Weapon.MeleeRanged" }}</option>
 							{{/select}}
 						</select>
 					{{/if}}
@@ -131,19 +152,16 @@
 				</label>
 
 				{{#if system.hasProtection}}
-					<div class="grid grid-cols-3 p-1 w-full">
-						<label class="flex flex-col text-center bg-fuchsia-900 w-full text-white uppercase font-semibold p-1">
-							{{ localize "Labels.Item.ProtectionValue" }}
-						</label>
-
-						<label class="col-span-2 text-center bg-fuchsia-900 w-full text-white uppercase font-semibold p-1">
-							{{ localize "Labels.Notes" }}
-						</label>
-
-						<input type="number" class="!text-center !h-full !text-xl !rounded-none !w-full !border-fuchsia-900" name="system.protection.value" value="{{ system.protection.value }}" />
-
-						<div class="col-span-2 border-1 border-fuchsia-900 border-solid">
-							<textarea class="resize-y border-none rounded-none w-full h-full" name="system.protection.notes">{{ system.protection.notes }}</textarea>
+					<div class="p-1 w-full">
+						<div class="grid grid-cols-2 w-full">
+							<label class="flex flex-col items-center font-semibold">
+								<span class="text-center py-0.5 w-full whitespace-nowrap bg-fuchsia-900 text-white uppercase">{{ localize "Labels.Item.Protection" }}</span>
+								<input type="number" class="disabled:!border-1 disabled:!border-solid !text-center !h-10 !text-3xl !rounded-none !w-full !border-fuchsia-900" name="system.protection.value" value="{{ system.protection.value }}" />
+							</label>
+							<label class="flex flex-col items-center font-semibold">
+								<span class="text-center py-0.5 w-full whitespace-nowrap bg-fuchsia-900 text-white uppercase">{{ localize "Labels.Item.ProtectionBreaker" }}</span>
+								<input type="number" class="disabled:!border-b-1 disabled:!border-t-1 disabled:!border-r-1 disabled:!border-solid !border-l-0 !text-center !h-10 !text-3xl !rounded-none !w-full !border-fuchsia-900" name="system.protection.breaker" value="{{ system.protection.breaker }}" />
+							</label>
 						</div>
 					</div>
 				{{/if}}
